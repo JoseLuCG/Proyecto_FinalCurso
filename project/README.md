@@ -35,12 +35,15 @@ class user = {
     this.Age = Age,
     this.Description = Description,
     this.Photos = [Photos],
-    *this.LinkToRRSS = LinkToRRSS
+  //this.LinkToRRSS = LinkToRRSS Optional
 }
 class message = {
     this.Time = Time,
-    this.User = User,
-    this.Content = Content,
-
+    this.EmisorUser = EmisorUser,
+    this.ReceptorUser = ReceptorUser,
+    this.Content = Content, //This content can be strings or pics.
+}
+class intereses = {
+    this.Descripcion = Desciption
 }
 ```
