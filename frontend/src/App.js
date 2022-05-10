@@ -1,10 +1,10 @@
 import './App.css';
-import ProfileCard from './components/ProfileCard/ProfileCard';
+import PrincipalView from './Views/PrincipalView/PrincipalView';
 
 function App() {
   return (
     <>
-      <ProfileCard/>
+      <PrincipalView/>
     </>
   );
 }
