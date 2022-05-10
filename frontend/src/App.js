@@ -1,10 +1,10 @@
 import './App.css';
-import PicIcon from './components/PicIcon/PicIcon';
+import ProfileCard from './components/ProfileCard/ProfileCard';
 
 function App() {
   return (
     <>
-      <PicIcon/>
+      <ProfileCard/>
     </>
   );
 }
