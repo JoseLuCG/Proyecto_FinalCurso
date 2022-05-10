@@ -19,7 +19,7 @@ function ProfileCard () {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Fugit vel, dolor reprehenderit alias cumque sapiente eius
                 blanditiis esse et minus veniam atque, laborum ex corporis
-                 magnam odit magni odio recusandae.
+                magnam odit magni odio recusandae.
             </p>
         </div>
     );
