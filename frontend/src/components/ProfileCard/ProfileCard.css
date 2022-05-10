@@ -1,0 +1,12 @@
+.profileContainer {
+    background-color: rgb(23, 139, 134);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.nameProfile {
+    grid-column-start: 3;
+    grid-column-end: 2;
+}
+PicIcon {
+
+}
