@@ -1,9 +1,10 @@
 import './App.css';
+import PicIcon from './components/PicIcon/PicIcon';
 
 function App() {
   return (
     <>
-      <h1>Hola mundo</h1>
+      <PicIcon/>
     </>
   );
 }
