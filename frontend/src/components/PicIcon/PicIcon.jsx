@@ -1,7 +1,10 @@
-function PicIcon() {
+import './PicIcon.css';
+
+
+function PicIcon({img}) {
     return (
-        <div>
-            <h1>Esto es el PicIcon</h1>
+        <div className="picContainer">
+            <img src={img}/>
         </div>
     );
 }
