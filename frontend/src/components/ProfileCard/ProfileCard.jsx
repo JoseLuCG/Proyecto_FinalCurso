@@ -5,20 +5,22 @@ import './ProfileCard.css';
 function ProfileCard () {
     return (
         <div className="profileContainer">
-            <div>
+            <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg"/>
-                <ul>
-                    <li>Age</li>
-                </ul>
+                <h2>Age</h2>
             </div>
-            <h1 className="nameProfile">name_profile</h1>
-            <ul>
-                <li>Name</li>
-                <li>City</li>
-                <li>Interests</li>
-                <li>Age</li>
-                <li>Description</li>
-            </ul>
+            <div>
+                <h1 className="nameProfile">Name_profile</h1>
+                    <h2>Name</h2>
+                    <h2>City</h2>
+                    <h2>Interests</h2>
+            </div>
+            <p>Description
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Fugit vel, dolor reprehenderit alias cumque sapiente eius
+                blanditiis esse et minus veniam atque, laborum ex corporis
+                 magnam odit magni odio recusandae.
+            </p>
         </div>
     );
 }
