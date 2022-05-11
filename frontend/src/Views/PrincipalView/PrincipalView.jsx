@@ -12,6 +12,6 @@ function PrincipalView () {
                 <ProfileCard/>
         </div>
         </>
-    )
+    );
 }
 export default PrincipalView;
