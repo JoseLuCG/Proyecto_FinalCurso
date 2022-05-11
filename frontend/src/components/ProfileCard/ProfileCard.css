@@ -8,6 +8,9 @@
     align-items: center;
     justify-items: start;
     margin: 20px;
+    flex-grow: 1;
+    min-width: 25rem;
+    max-width: 35rem;
 }
 .containerPhoto{
     display: flex;

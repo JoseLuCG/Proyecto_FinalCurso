@@ -3,13 +3,15 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard";
 
 function PrincipalView () {
     return(
-        <div className="principalContainer">
+        <>
             <h1>This is a Principal view</h1>
-            <ProfileCard/>
-            <ProfileCard/>
-            <ProfileCard/>
-            <ProfileCard/>
+            <div className="principalContainer">
+                <ProfileCard/>
+                <ProfileCard/>
+                <ProfileCard/>
+                <ProfileCard/>
         </div>
-    );
+        </>
+    )
 }
 export default PrincipalView;
