@@ -6,8 +6,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 10rem;
-    height: 10rem;
+    width: 5rem;
+    height: 5rem;
 }
 img {
     border-radius: 50%;

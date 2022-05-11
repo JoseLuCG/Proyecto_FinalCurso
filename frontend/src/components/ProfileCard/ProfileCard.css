@@ -9,8 +9,8 @@
     justify-items: start;
     margin: 20px;
     flex-grow: 1;
-    min-width: 25rem;
-    max-width: 35rem;
+    min-width: 15rem;
+    max-width: 25rem;
 }
 .containerPhoto{
     display: flex;
