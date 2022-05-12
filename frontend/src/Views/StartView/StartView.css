@@ -6,3 +6,8 @@
     justify-content: center;
     align-content: center;
 }
+.LogoApp {
+    width: 10rem;
+    height: 10rem;
+    margin: 2rem;
+}
