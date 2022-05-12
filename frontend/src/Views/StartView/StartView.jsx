@@ -1,8 +1,11 @@
+import './StartView.css';
+
 function StartView () {
     return(
-        <div>
-            <h1>This is the startView</h1>
-            <p>Ey, listen!</p>
+        <div className='logingContainer'>
+            <h1>Login view</h1>
+            <input type="text" />
+            <input type="password" />
         </div>
     );
 }
