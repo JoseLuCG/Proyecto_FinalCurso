@@ -1,3 +1,4 @@
+import CircleButton from '../../components/CircleButton/CircleButton';
 import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
 
@@ -5,6 +6,7 @@ function RegistrerView() {
     return(
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
+            <CircleButton/>
             <label> 
                 Nombre de perfil
                 <input id="nameProfile" type="text"/>
