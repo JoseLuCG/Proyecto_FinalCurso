@@ -1,3 +1,4 @@
+import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
 
 function RegistrerView() {
@@ -40,6 +41,7 @@ function RegistrerView() {
                 Foto
                 <input type="text"/>
             </label>
+            <SaveButton/>
         </div>
     );
 }
