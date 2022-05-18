@@ -15,46 +15,67 @@ function RegistrerView() {
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
 
-    
+    /**
+     * A factory for the each handler of the RegistrerView. 
+     * @param {seter} setState - A seter of the each `useState`.
+     * @returns A handler function for each `useState`.
+     */
+    function changeValueFactory(setState){
+        return function (ev) {
+            setState(ev.target.value)
+        }
+    }
+
+    //Handlers:
+    const nameProfileChangeHandler = changeValueFactory(setNameProfile);
+    const nameChangeHandler = changeValueFactory(setNameUser);
+    const passwordChangeHandler = changeValueFactory(setPassword);
+    const locationChangeHandler = changeValueFactory(setLocation);
+    const interestChangeHandler = changeValueFactory(setInterest);
+    const ageChangeHandler = changeValueFactory(setAge);
+    const descriptionChangeHandler = changeValueFactory(setDescription);
+    const emailChangeHandler = changeValueFactory(setEmail);
+    const photoChangeHandler = changeValueFactory(setPhoto);
+
     return(
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
             <CircleButton/>
             <label> 
                 Nombre de perfil
-                <input id="nameProfile" type="text"/>
+                <input onChange={nameProfileChangeHandler} id="nameProfile" type="text"/>
             </label>
             <label>
                 Nombre
-                <input id="nameUser" type="text"/>
+                <input onChange={nameChangeHandler} id="nameUser" type="text"/>
             </label>
             <label>
                 Contraseña
-                <input type="password" />
+                <input onChange={passwordChangeHandler} type="password" />
             </label>
             <label>
                 Ciudad
-                <input type="text"/>
+                <input onChange={locationChangeHandler} type="text"/>
             </label>
             <label>
                 Intereses
-                <input type="text"/>
+                <input onChange={interestChangeHandler} type="text"/>
             </label>
             <label>
                 Edad
-                <input type="text"/>
+                <input onChange={ageChangeHandler} type="text"/>
             </label>
             <label>
                 Descripción
-                <input type="text"/>
+                <input onChange={descriptionChangeHandler} type="text"/>
             </label>
             <label>
                 Correo electrónico
-                <input type="text"/>
+                <input onChange={emailChangeHandler} type="text"/>
             </label>
             <label>
                 Foto
-                <input type="text"/>
+                <input onChange={photoChangeHandler} type="text"/>
             </label>
             <SaveButton/>
         </div>
