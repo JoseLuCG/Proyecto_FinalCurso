@@ -1,6 +1,6 @@
 import { db } from "./data/database.mjs";
 
-export function firstControler(req, res) {
+export function singupControler(req, res) {
     try {
         const {
             nameProfile,
