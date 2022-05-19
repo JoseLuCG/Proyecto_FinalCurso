@@ -56,7 +56,6 @@ export function singupControler(req, res) {
         res.sendStatus(500);
     }
 }
-
 /**
  * Realize a query at the database obtains all users.
  * @param {*} req 
