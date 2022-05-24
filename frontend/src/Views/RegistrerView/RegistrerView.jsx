@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { changeValueFactory } from '../../apptools.mjs';
 import CircleButton from '../../components/CircleButton/CircleButton';
 import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
@@ -14,19 +15,9 @@ function RegistrerView() {
     const [ description, setDescription ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
-
-    /**
-     * A factory for the each handler of the RegistrerView. 
-     * @param {seter} setState - A seter of the each `useState`.
-     * @returns A handler function for each `useState`.
-     */
-    function changeValueFactory(setState){
-        return function (ev) {
-            setState(ev.target.value)
-        }
-    }
-
+    
     //Handlers:
+
     const nameProfileChangeHandler = changeValueFactory(setNameProfile);
     const nameChangeHandler = changeValueFactory(setNameUser);
     const passwordChangeHandler = changeValueFactory(setPassword);
