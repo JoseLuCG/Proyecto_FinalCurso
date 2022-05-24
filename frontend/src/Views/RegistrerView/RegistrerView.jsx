@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import CircleButton from '../../components/CircleButton/CircleButton';
 import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
 
 function RegistrerView() {
-    //States:
+    //----------States:----------
     const [ nameProfile, setNameProfile ] = useState("");
     const [ nameUser, setNameUser ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -15,8 +15,9 @@ function RegistrerView() {
     const [ description, setDescription ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
+    const [ dataUser, setDataUser ] = useState();
     
-    //Handlers:
+    //----------Handlers:----------
 
     const nameProfileChangeHandler = changeValueFactory(setNameProfile);
     const nameChangeHandler = changeValueFactory(setNameUser);
@@ -28,6 +29,26 @@ function RegistrerView() {
     const emailChangeHandler = changeValueFactory(setEmail);
     const photoChangeHandler = changeValueFactory(setPhoto);
 
+    //----------UseEfects:----------
+    useEffect(
+        ()=>{
+          setDataUser({
+            nameProfile,
+            nameUser,
+            password,
+            location,
+            interest,
+            age,
+            description,
+            email,
+            photo
+        })
+        },
+        [nameProfile,nameUser,password,location,interest,age,description,email,photo]
+    );
+
+    //----------Functions:----------
+    
     return(
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
