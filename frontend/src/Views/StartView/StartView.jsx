@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { changeValueFactory } from '../../apptools.mjs';
+import { changeValueFactory } from '../../tools/apptools.mjs';
 import './StartView.css';
 
 function StartView () {
