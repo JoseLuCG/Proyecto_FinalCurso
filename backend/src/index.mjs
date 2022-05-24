@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsersControler, singupControler } from "./controlers.mjs";
+import { getUsersControler, singupControler } from "./controlers/controlers.mjs";
 import { PORT } from "./models/defines.mjs";
 
 //Create the instances:
