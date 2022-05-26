@@ -8,7 +8,7 @@ import './RegistrerView.css';
 function RegistrerView() {
     //----------States:----------
     const [ store, setStore ] = useContext(Context);
-    
+
     const [ nameProfile, setNameProfile ] = useState("");
     const [ nameUser, setNameUser ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -34,7 +34,20 @@ function RegistrerView() {
     //----------UseEfects:----------
 
     //----------Functions:----------
-    
+    function saveData () {
+        const newStore = {...store};
+        newStore.nameProfile = nameProfile;
+        newStore.nameUser = nameUser;
+        newStore.password = password;
+        newStore.location = location;
+        newStore.interest = interest;
+        newStore.age = age;
+        newStore.description = description;
+        newStore.email = email;
+        newStore.photo = photo;
+        setStore(newStore);
+    }
+
     return(
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
