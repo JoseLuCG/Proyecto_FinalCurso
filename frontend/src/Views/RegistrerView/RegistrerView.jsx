@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { Context } from '../../storage/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import CircleButton from '../../components/CircleButton/CircleButton';
 import SaveButton from '../../components/SaveButton/SaveButton';
@@ -6,6 +7,8 @@ import './RegistrerView.css';
 
 function RegistrerView() {
     //----------States:----------
+    const [ store, setStore ] = useContext(Context);
+    
     const [ nameProfile, setNameProfile ] = useState("");
     const [ nameUser, setNameUser ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -15,7 +18,6 @@ function RegistrerView() {
     const [ description, setDescription ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
-    const [ dataUser, setDataUser ] = useState();
     
     //----------Handlers:----------
 
@@ -30,22 +32,6 @@ function RegistrerView() {
     const photoChangeHandler = changeValueFactory(setPhoto);
 
     //----------UseEfects:----------
-    useEffect(
-        ()=>{
-          setDataUser({
-            nameProfile,
-            nameUser,
-            password,
-            location,
-            interest,
-            age,
-            description,
-            email,
-            photo
-        })
-        },
-        [nameProfile,nameUser,password,location,interest,age,description,email,photo]
-    );
 
     //----------Functions:----------
     

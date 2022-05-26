@@ -6,6 +6,13 @@ export function ContextProvider ( {children} ) {
     const store = useState({
         nameProfile: "",
         nameUser: "",
+        password: "",
+        location:"",
+        interest: [],
+        age: 0,
+        description: "",
+        email: "",
+        photo:""
     });
     return (
         <Context.Provider value={store}>
