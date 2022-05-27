@@ -53,10 +53,10 @@ function ProfileCard () {
         <div className={styles.profileContainer}>
             <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg"/>
-                <input id="age" type="text" placeholder="Edad"/>
+                <input onChange={ageChangeHandler} id="age" type="number" placeholder="Edad"/>
             </div>
             <div>
-                <input id="nameProfile" type="text" placeholder="Nombre de perfil"/>
+                <input onChange={nameProfileChangeHandler} id="nameProfile" type="text" placeholder="Nombre de perfil"/>
                 <input id="name" type="text" placeholder="Nombre"/>
                 <input id="location" type="text" placeholder="Ciudad"/>
                 <input id="interests" type="text" placeholder="Intereses"/>
