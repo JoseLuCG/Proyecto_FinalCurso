@@ -53,13 +53,13 @@ function ProfileCard () {
         <div className={styles.profileContainer}>
             <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg"/>
-                <input id="nameProfile" type="text" placeholder="Edad"/>
+                <input id="age" type="text" placeholder="Edad"/>
             </div>
             <div>
                 <input id="nameProfile" type="text" placeholder="Nombre de perfil"/>
-                <input id="nameProfile" type="text" placeholder="Nombre"/>
-                <input id="nameProfile" type="text" placeholder="Ciudad"/>
-                <input id="nameProfile" type="text" placeholder="Intereses"/>
+                <input id="name" type="text" placeholder="Nombre"/>
+                <input id="location" type="text" placeholder="Ciudad"/>
+                <input id="interests" type="text" placeholder="Intereses"/>
             </div>
             <textarea name="description" id="description" cols="30" rows="10" placeholder="Descripción"></textarea>
         </div>
