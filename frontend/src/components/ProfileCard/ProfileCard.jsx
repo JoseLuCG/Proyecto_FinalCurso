@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from '../../storage/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import PicIcon from "../PicIcon/PicIcon";
-import './ProfileCard.css';
+import styles from './ProfileCard.module.css';
 
 
 function ProfileCard () {
@@ -18,6 +18,7 @@ function ProfileCard () {
         const [ description, setDescription ] = useState("");
         const [ email, setEmail ] = useState("");
         const [ photo, setPhoto ] = useState("");
+        const editable = useRef(true)
         
         //----------Handlers:----------
     
@@ -49,7 +50,7 @@ function ProfileCard () {
         }
     
     return (
-        <div className="profileContainer">
+        <div className={styles.profileContainer}>
             <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg"/>
                 <input id="nameProfile" type="text" placeholder="Edad"/>

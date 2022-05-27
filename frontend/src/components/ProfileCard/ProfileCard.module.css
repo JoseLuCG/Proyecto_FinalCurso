@@ -12,7 +12,7 @@
     min-width: 15rem;
     max-width: 25rem;
 }
-.containerPhoto{
+.profileContainer .containerPhoto{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,11 +21,11 @@
     align-items: center;
     margin: 10px;
 }
-.nameProfile {
+.profileContainer .nameProfile {
     grid-column-start: 3;
     grid-column-end: 2;
 }
-#description {
+.profileContainer #description {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 2;
