@@ -4,6 +4,7 @@ import { changeValueFactory } from '../../tools/apptools.mjs';
 import CircleButton from '../../components/CircleButton/CircleButton';
 import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
+import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
 
 function RegistrerView() {
     //----------States:----------
@@ -52,42 +53,7 @@ function RegistrerView() {
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
             <CircleButton/>
-            <label> 
-                Nombre de perfil
-                <input onChange={nameProfileChangeHandler} id="nameProfile" type="text"/>
-            </label>
-            <label>
-                Nombre
-                <input onChange={nameChangeHandler} id="nameUser" type="text"/>
-            </label>
-            <label>
-                Contraseña
-                <input onChange={passwordChangeHandler} type="password" />
-            </label>
-            <label>
-                Ciudad
-                <input onChange={locationChangeHandler} type="text"/>
-            </label>
-            <label>
-                Intereses
-                <input onChange={interestChangeHandler} type="text"/>
-            </label>
-            <label>
-                Edad
-                <input onChange={ageChangeHandler} type="text"/>
-            </label>
-            <label>
-                Descripción
-                <input onChange={descriptionChangeHandler} type="text"/>
-            </label>
-            <label>
-                Correo electrónico
-                <input onChange={emailChangeHandler} type="text"/>
-            </label>
-            <label>
-                Foto
-                <input onChange={photoChangeHandler} type="text"/>
-            </label>
+            <ProfileCard/>
             <SaveButton/>
         </div>
     );
