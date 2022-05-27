@@ -57,11 +57,11 @@ function ProfileCard () {
             </div>
             <div>
                 <input onChange={nameProfileChangeHandler} id="nameProfile" type="text" placeholder="Nombre de perfil"/>
-                <input id="name" type="text" placeholder="Nombre"/>
-                <input id="location" type="text" placeholder="Ciudad"/>
-                <input id="interests" type="text" placeholder="Intereses"/>
+                <input onChange={nameChangeHandler} id="name" type="text" placeholder="Nombre"/>
+                <input onChange={locationChangeHandler} id="location" type="text" placeholder="Ciudad"/>
+                <input onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses"/>
             </div>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="Descripción"></textarea>
+            <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="30" rows="10" placeholder="Descripción"></textarea>
         </div>
     );
 }

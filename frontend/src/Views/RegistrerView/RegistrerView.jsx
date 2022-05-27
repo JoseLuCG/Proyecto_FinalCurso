@@ -4,12 +4,16 @@ import './RegistrerView.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
 
 function RegistrerView() {
+    //----------States:----------
+ 
+    //----------Handlers:----------
 
     return(
         <div className='registrerContainer'>
             <h1>This is the RegistrerView</h1>
             <CircleButton/>
-            <ProfileCard/>
+            <h1>Completa tus datos:</h1>
+           <ProfileCard/>
             <SaveButton/>
         </div>
     );
