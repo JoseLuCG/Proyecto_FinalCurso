@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from '../../storage/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import PicIcon from "../PicIcon/PicIcon";
+import SaveButton from '../SaveButton/SaveButton.jsx';
 import styles from './ProfileCard.module.css';
 
 
@@ -61,7 +62,8 @@ function ProfileCard () {
                 <input onChange={locationChangeHandler} id="location" type="text" placeholder="Ciudad"/>
                 <input onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses"/>
             </div>
-            <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="30" rows="10" placeholder="Descripción"></textarea>
+            <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
+            <SaveButton/>
         </div>
     );
 }

@@ -14,7 +14,6 @@ function RegistrerView() {
             <CircleButton/>
             <h1>Completa tus datos:</h1>
            <ProfileCard/>
-            <SaveButton/>
         </div>
     );
 }
