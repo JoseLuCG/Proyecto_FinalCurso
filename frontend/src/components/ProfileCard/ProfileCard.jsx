@@ -64,7 +64,7 @@ function ProfileCard () {
             <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
             <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña"/>
             <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo"/>
-            <button id='saveButton'>Save</button>
+            <button id='saveButton' onClick={saveData}>Save</button>
         </div>
     );
 }
