@@ -1,5 +1,4 @@
 import CircleButton from '../../components/CircleButton/CircleButton';
-import SaveButton from '../../components/SaveButton/SaveButton';
 import './RegistrerView.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
 
