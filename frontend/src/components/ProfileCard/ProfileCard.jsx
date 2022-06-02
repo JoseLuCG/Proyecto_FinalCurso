@@ -35,6 +35,9 @@ function ProfileCard () {
         //----------UseEfects:----------
     
         //----------Functions:----------
+        /**
+         * This function save the data of states in the context.
+         */
         function saveData () {
             const newStore = {...store};
             newStore.nameProfile = nameProfile;
@@ -48,23 +51,28 @@ function ProfileCard () {
             newStore.photo = photo;
             setStore(newStore);
         }
-    
+        function sendDataControler() {
+
+        }
+
     return (
         <div className={styles.profileContainer}>
             <div className="containerPhoto">
-                <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg"/>
-                <input onChange={ageChangeHandler} id="age" type="number" placeholder="Edad"/>
+                <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
+                <input onChange={ageChangeHandler} id="age" type="number" placeholder="Edad" />
             </div>
             <div>
                 <input onChange={nameProfileChangeHandler} id="nameProfile" type="text" placeholder="Nombre de perfil"/>
-                <input onChange={nameChangeHandler} id="name" type="text" placeholder="Nombre"/>
-                <input onChange={locationChangeHandler} id="location" type="text" placeholder="Ciudad"/>
-                <input onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses"/>
+                <input onChange={nameChangeHandler} id="name" type="text" placeholder="Nombre" />
+                <input onChange={locationChangeHandler} id="location" type="text" placeholder="Ciudad" />
+                <input onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses" />
             </div>
             <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
-            <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña"/>
-            <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo"/>
-            <button id='saveButton' onClick={saveData}>Save</button>
+            <div hidden>
+                <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
+                <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo" />
+                <button id='saveButton' onClick={saveData}>Save</button>
+            </div>
         </div>
     );
 }
