@@ -15,10 +15,38 @@ db.run(`
             nameProfile  TEXT NOT NULL, 
             nameUser TEXT NOT NULL,
             password TEXT NOT NULL,
-            location TEXT NOT NULL,
-            interest TEXT, 
+            location TEXT NOT NULL, 
             age TEXT NOT NULL,
             description TEXT,
             email TEXT NOT NULL
+        )
+`);
+db.run(`
+    CREATE TABLE
+        IF NOT EXISTS
+        interests (
+            idInterest INTEGER PRIMARY KEY,
+            description TEXT NOT NULL
+        )
+`);
+db.run(`
+    CREATE TABLE
+        IF NOT EXISTS
+        user_interests (
+            idInterest,
+            idUser,
+            description,
+            nameProfile
+        )
+`);
+db.run(`
+    CREATE TABLE
+        IF NOT EXISTS
+        messages (
+            time INTEGER PRIMARY KEY,
+            emisorUser,
+            receptorUser,
+            content,
+            type
         )
 `);
