@@ -11,6 +11,8 @@ import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
  */
 export function singupControler(req, res) {
     try {
+        let userId;
+        const interestsIds = [];
         const {nameProfile,nameUser,password,location,interest,age,description,email} = req.body;
         const sql = `
         INSERT INTO users(nameProfile,nameUser,password,location,age,description,email)
@@ -23,7 +25,7 @@ export function singupControler(req, res) {
                 res.sendStatus(500);
             }
             if(data){
-                const userId = data.id;
+                userId = data.id;
                 console.log(userId);
             }
         });
@@ -34,6 +36,19 @@ export function singupControler(req, res) {
                     VALUES("${element}")
                 `;
                 db.run(setInterest, (err)=>{throw err});
+                db.get(sqlIDReturn, (err, data)=>{
+                    if (err){
+                        console.error(err);
+                        res.sendStatus(500);
+                    }
+                    if(data){
+                        interestsIds.push(data.id);
+                        console.log(userId);
+                        if (interestsIds.length === interest.length) {
+                            //Insert the contents in the table user_interest.
+                        }
+                    }
+                });
           }
         );
        res.sendStatus(200)
