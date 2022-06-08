@@ -1,5 +1,5 @@
 import { db } from "../data/database.mjs";
-import { defaultCallback } from "../models/defines.mjs";
+import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
 
 /**
  * Obtain the object `user` and realize a query with
@@ -39,23 +39,19 @@ export function singupControler(req, res) {
                 "${description}",
                 "${email}"
             )
-
         `;
         db.run(sql, defaultCallback);
-        const sql2 = 'select last_insert_rowid() from users'
-        db.run(sql2, (err,data)=>{
-            if(err){
-                throw err;
+        db.get(sqlIDReturn, (err, data)=>{
+            if (err){
+                console.error(err);
+                res.sendStatus(500);
             }
             if(data){
-                interest.map(()=>{
-                    //insertar cada dato del for con el id guardado en data
-                })
-
-                
+                const userId = data.id;
+                console.log(userId);
             }
-        })
-        //db.run(`select last_insert_rowid()`);
+        });
+        //db.get(`select last_insert_rowid()`);
         /*
         interest.forEach(
           element =>{ 
@@ -68,6 +64,7 @@ export function singupControler(req, res) {
           }
         );
         */
+       res.sendStatus(200)
     } catch (err) {
         console.error(err);
         res.sendStatus(500);
