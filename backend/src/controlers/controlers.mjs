@@ -27,18 +27,15 @@ export function singupControler(req, res) {
                 console.log(userId);
             }
         });
-        /*
         interest.forEach(
           element =>{ 
                 const setInterest = `
                     INSERT INTO interests(description)
                     VALUES("${element}")
                 `;
-                db.run
-                console.log(element, setInterest)
+                db.run(setInterest, (err)=>{throw err});
           }
         );
-        */
        res.sendStatus(200)
     } catch (err) {
         console.error(err);
