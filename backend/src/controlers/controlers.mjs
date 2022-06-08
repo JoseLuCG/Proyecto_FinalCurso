@@ -11,34 +11,10 @@ import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
  */
 export function singupControler(req, res) {
     try {
-        const {
-            nameProfile,
-            nameUser,
-            password,
-            location,
-            interest,
-            age,
-            description,
-            email
-        } = req.body;
+        const {nameProfile,nameUser,password,location,interest,age,description,email} = req.body;
         const sql = `
-        INSERT INTO users(
-            nameProfile,
-            nameUser,
-            password,
-            location,
-            age,
-            description,
-            email)
-            VALUES(
-                "${nameProfile}",
-                "${nameUser}",
-                "${password}",
-                "${location}",
-                "${age}",
-                "${description}",
-                "${email}"
-            )
+        INSERT INTO users(nameProfile,nameUser,password,location,age,description,email)
+            VALUES("${nameProfile}","${nameUser}","${password}","${location}","${age}","${description}","${email}")
         `;
         db.run(sql, defaultCallback);
         db.get(sqlIDReturn, (err, data)=>{
@@ -51,7 +27,6 @@ export function singupControler(req, res) {
                 console.log(userId);
             }
         });
-        //db.get(`select last_insert_rowid()`);
         /*
         interest.forEach(
           element =>{ 
