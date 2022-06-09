@@ -45,13 +45,19 @@ export function singupControler(req, res) {
                         interestsIds.push(data.id);
                         console.log(userId);
                         if (interestsIds.length === interest.length) {
-                            //Insert the contents in the table user_interest.
+                            for (let item of interestsIds){
+                                db.run(
+                                    `INSERT INTO user_interests(idInterest,idUser,description,nameProfile)
+                                    VALUES(${item},${userId},${},${nameProfile})`,
+                                    (err)=>{throw err}
+                                );
+                            }
                         }
                     }
                 });
           }
         );
-       res.sendStatus(200)
+       res.sendStatus(200);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);
