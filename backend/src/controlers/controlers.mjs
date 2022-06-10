@@ -47,8 +47,8 @@ export function singupControler(req, res) {
                         if (interestsIds.length === interest.length) {
                             for (let item of interestsIds){
                                 db.run(
-                                    `INSERT INTO user_interests(idInterest,idUser,description,nameProfile)
-                                    VALUES(${item},${userId},${},${nameProfile})`,
+                                    `INSERT INTO user_interests(idInterest,idUser)
+                                    VALUES(${item},${userId})`,
                                     (err)=>{throw err}
                                 );
                             }
