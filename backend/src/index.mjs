@@ -6,6 +6,7 @@ import { PORT } from "./models/defines.mjs";
 const app = express();
 const jsonParser = express.json();
 
+
 // Endpoints of the API:
 try{
     app.post("/singup/",jsonParser, singupControler);
@@ -14,6 +15,12 @@ try{
     app.listen(PORT, ()=>{
         console.log("Express Running...")
     });
+
+    app.use((err, req, res, next)=>{
+        console.error(err);
+        next()
+    })
+    
 }catch (err){
     console.log(err);
 }

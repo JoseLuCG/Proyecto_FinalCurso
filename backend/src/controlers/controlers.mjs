@@ -12,7 +12,6 @@ import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
 export function singupControler(req, res) {
     try {
         let userId;
-        const interestsIds = [];
         const {nameProfile,nameUser,password,location,interest,age,description,email} = req.body;
         const sql = `
         INSERT INTO users(nameProfile,nameUser,password,location,age,description,email)
@@ -23,40 +22,47 @@ export function singupControler(req, res) {
             if (err){
                 console.error(err);
                 res.sendStatus(500);
-            }
-            if(data){
+            } else if (data){
                 userId = data.id;
                 console.log(userId);
-            }
-        });
-        interest.forEach(
-          element =>{ 
-                const setInterest = `
-                    INSERT INTO interests(description)
-                    VALUES("${element}")
-                `;
-                db.run(setInterest, (err)=>{throw err});
-                db.get(sqlIDReturn, (err, data)=>{
-                    if (err){
-                        console.error(err);
-                        res.sendStatus(500);
-                    }
-                    if(data){
-                        interestsIds.push(data.id);
-                        console.log(userId);
-                        if (interestsIds.length === interest.length) {
-                            for (let item of interestsIds){
+                interest.forEach(
+                    element => {
+                        const setInterest = `
+                              INSERT INTO interests(description)
+                              VALUES (?)
+                          `;
+                        db.run(setInterest, element, 
+                            (err) => {
+                                if (err) {
+                                    console.error(err);
+                                    res.sendStatus(500);
+                                } 
+                            });
+                        db.get(sqlIDReturn, (err, data) => {
+                            if (err) {
+                                console.error(err);
+                                res.sendStatus(500);
+                            }
+                            if (data) {
+                                const interestId = data.id;
                                 db.run(
                                     `INSERT INTO user_interests(idInterest,idUser)
-                                    VALUES(${item},${userId})`,
-                                    (err)=>{throw err}
+                                    VALUES(${interestId},${userId})`,
+                                    (err) => {
+                                        if (err) {
+                                            console.error(err);
+                                            res.sendStatus(500);
+                                        }
+                                    }
                                 );
+
                             }
-                        }
+                        });
                     }
-                });
-          }
-        );
+                  );
+            }
+        });
+
        res.sendStatus(200);
     } catch (err) {
         console.error(err);

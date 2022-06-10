@@ -33,10 +33,9 @@ db.run(`
     CREATE TABLE
         IF NOT EXISTS
         user_interests (
+            idUserInterestRelationship INTEGER PRIMARY KEY,
             idInterest,
-            idUser,
-            description,
-            nameProfile
+            idUser
         )
 `);
 db.run(`
