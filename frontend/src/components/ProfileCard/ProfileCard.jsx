@@ -44,7 +44,9 @@ function ProfileCard () {
             newStore.nameUser = nameUser;
             newStore.password = password;
             newStore.location = location;
-            newStore.interest = interest;
+            newStore.interest = interest.split(",").map(
+                tag => tag.trim()
+            );
             newStore.age = age;
             newStore.description = description;
             newStore.email = email;
