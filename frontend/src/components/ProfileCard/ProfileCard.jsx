@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from '../../storage/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
+import { registrerUser } from '../../tools/controlers.mjs';
 import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
 
@@ -45,7 +46,7 @@ function ProfileCard () {
             newStore.password = password;
             newStore.location = location;
             newStore.interest = interest.split(",").map(
-                tag => tag.trim()
+                tag => tag.trim(" ")
             );
             newStore.age = age;
             newStore.description = description;
@@ -54,7 +55,8 @@ function ProfileCard () {
             setStore(newStore);
         }
         function sendDataControler() {
-
+            saveData()
+            registrerUser(store)
         }
 
     return (
@@ -70,10 +72,10 @@ function ProfileCard () {
                 <input onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses" />
             </div>
             <textarea onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
-            <div hidden>
+            <div /*hidden*/>
                 <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
                 <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo" />
-                <button id='saveButton' onClick={saveData}>Save</button>
+                <button id='saveButton' onClick={sendDataControler}>Save</button>
             </div>
         </div>
     );

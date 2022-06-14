@@ -1,16 +1,20 @@
 import { URL } from "./defines.mjs"
 //----------Constatnts----------
-const jsonData = JSON.stringify(data);
-const params = {
-    method: 'POST',
-    body: jsonData,
-    headers: {
-        "Content-Type": "application/json"
-    }
-};
+function dataToString (dataAtTrasf) {
+    const jsonData = JSON.stringify(dataAtTrasf);
+    const params = {
+        method: 'POST',
+        body: jsonData,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    return params;
+}
 
 //----------Functions----------
 export async function registrerUser (data) {
+    const params = dataToString(data)
     const response = await fetch(
         URL+"/singup/",
         params
