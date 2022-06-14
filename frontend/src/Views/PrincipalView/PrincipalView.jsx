@@ -6,11 +6,8 @@ function PrincipalView () {
         <>
             <h1>This is a Principal view</h1>
             <div className="principalContainer">
-                <ProfileCard/>
-                <ProfileCard/>
-                <ProfileCard/>
-                <ProfileCard/>
-        </div>
+                <h1>Holas</h1>
+            </div>
         </>
     );
 }

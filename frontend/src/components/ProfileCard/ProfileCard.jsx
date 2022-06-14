@@ -35,6 +35,13 @@ function ProfileCard () {
     
         //----------UseEfects:----------
     
+        useEffect(
+            ()=>{
+                registrerUser(store);
+            },
+            [store]
+        )
+
         //----------Functions:----------
         /**
          * This function save the data of states in the context.
@@ -46,7 +53,7 @@ function ProfileCard () {
             newStore.password = password;
             newStore.location = location;
             newStore.interest = interest.split(",").map(
-                tag => tag.trim(" ")
+                tag => tag.trim(" ").toLowerCase()
             );
             newStore.age = age;
             newStore.description = description;
@@ -54,10 +61,7 @@ function ProfileCard () {
             newStore.photo = photo;
             setStore(newStore);
         }
-        function sendDataControler() {
-            saveData()
-            registrerUser(store)
-        }
+
 
     return (
         <div className={styles.profileContainer}>
@@ -75,7 +79,7 @@ function ProfileCard () {
             <div /*hidden*/>
                 <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
                 <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo" />
-                <button id='saveButton' onClick={sendDataControler}>Save</button>
+                <button id='saveButton' onClick={saveData}>Save</button>
             </div>
         </div>
     );
