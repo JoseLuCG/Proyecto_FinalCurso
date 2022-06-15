@@ -31,3 +31,8 @@ function dataToString (dataAtTrasf) {
     };
     return params;
 }
+export async function getUsers (url) {
+    const response = await fetch(url+"/users/");
+    const data = await response.json();
+    return data;
+}
