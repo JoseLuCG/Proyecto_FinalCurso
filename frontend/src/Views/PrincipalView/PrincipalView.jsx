@@ -20,7 +20,7 @@ function PrincipalView () {
             <div className="principalContainer">
                 <button onClick={loadUsers}>Carga usuarios</button>
                 {users.map(
-                    (user)=><ProfileCard user={user}/>
+                    (user)=><ProfileCard user={user} editable="false"/>
                 )}
             </div>
         </>

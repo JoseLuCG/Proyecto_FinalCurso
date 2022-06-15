@@ -6,7 +6,7 @@ import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
 
 
-function ProfileCard ({user}) {
+function ProfileCard ({user, editable}) {
         //----------States:----------
         const [ store, setStore ] = useContext(Context);
 
@@ -19,7 +19,6 @@ function ProfileCard ({user}) {
         const [ description, setDescription ] = useState("");
         const [ email, setEmail ] = useState("");
         const [ photo, setPhoto ] = useState("");
-        const editable = useRef(true)
         
         //----------Handlers:----------
     
