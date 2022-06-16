@@ -32,15 +32,6 @@ function ProfileCard ({user, editable}) {
         const emailChangeHandler = changeValueFactory(setEmail);
         const photoChangeHandler = changeValueFactory(setPhoto);
     
-        //----------UseEfects:----------
-    
-        useEffect(
-            ()=>{
-                registrerUser(store);
-            },
-            [store]
-        )
-
         //----------Functions:----------
         /**
          * This function save the data of states in the context.
@@ -58,6 +49,7 @@ function ProfileCard ({user, editable}) {
             newStore.description = description;
             newStore.email = email;
             newStore.photo = photo;
+            registrerUser(newStore);
             setStore(newStore);
         }
 
@@ -75,7 +67,7 @@ function ProfileCard ({user, editable}) {
                 <input value={user && user.interest} onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses" />
             </div>
                 <textarea value={user && user.description} onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
-            <div /*hidden*/>
+            <div hidden={ editable &&  "hidden"}>
                 <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
                 <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo" />
                 <button id='saveButton' onClick={saveData}>Save</button>
