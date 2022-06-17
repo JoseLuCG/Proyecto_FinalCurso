@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
-//import { Link } from 'react-router-dom';
 import './StartView.css';
 
 function StartView () {
@@ -18,7 +18,9 @@ function StartView () {
             <input onChange={userInfoChangeHandler} type="text" placeholder='Nombre de usuario o email'/>
             <input onChange={passwordChangeHandler} type="password" placeholder='Contraseña'/>
             <div>
+                <Link to={"/profiles/"}>
                 <button>Entrar</button>
+                </Link>
                 <button>Registrarse</button>
             </div>
         </div>
