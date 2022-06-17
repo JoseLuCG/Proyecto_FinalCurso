@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { changeValueFactory } from '../../tools/apptools.mjs';
+//import { Link } from 'react-router-dom';
 import './StartView.css';
 
 function StartView () {
