@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from 'react';
-import { Context } from '../../storage/SharedStorage.jsx';
+import { Context } from '../../services/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { registrerUser } from '../../tools/controlers.mjs';
 import PicIcon from "../PicIcon/PicIcon";
