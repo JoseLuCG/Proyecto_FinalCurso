@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
+import { logingUser } from '../../tools/controlers.mjs';
 import './StartView.css';
 
 function StartView () {
@@ -11,6 +12,15 @@ function StartView () {
     //Handlers:
     const userInfoChangeHandler = changeValueFactory(setUserInfo);
     const passwordChangeHandler = changeValueFactory(setPassword);
+    
+    async function sendLogin() {
+        const user = {
+            password,
+            userInfo
+        }
+        response = await logingUser;
+    }
+    //
     return (
         <div className='logingContainer'>
             <h1>Start view</h1>
@@ -19,7 +29,7 @@ function StartView () {
             <input onChange={passwordChangeHandler} type="password" placeholder='Contraseña' />
             <div>
                 <Link to={"/profiles/"}>
-                    <button>Entrar</button>
+                    <button onClick={sendLogin}>Entrar</button>
                 </Link>
                 <Link to={"/sing-up/"}>
                     <button>Registrarse</button>
