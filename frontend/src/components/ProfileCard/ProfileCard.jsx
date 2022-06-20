@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from '../../services/SharedStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
-import { registrerUser } from '../../tools/controlers.mjs';
+import { postUser } from '../../tools/controlers.mjs';
 import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
 
@@ -49,7 +49,7 @@ function ProfileCard ({user, editable}) {
             newStore.description = description;
             newStore.email = email;
             newStore.photo = photo;
-            registrerUser(newStore);
+            postUser(newStore);
             setStore(newStore);
         }
 

@@ -7,7 +7,7 @@ import { URL } from "./defines.mjs"
  * information.
  * @param {Object} data - The user object.
  */
-export async function registrerUser (data) {
+export async function postUser (data) {
     const params = dataToString(data)
     const response = await fetch(
         URL+"/singup/",
