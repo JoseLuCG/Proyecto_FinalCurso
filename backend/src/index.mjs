@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsersControler, singupControler } from "./controlers/controlers.mjs";
+import { getUsersControler, loginUSerControler, singupControler } from "./controlers/controlers.mjs";
 import { PORT } from "./models/defines.mjs";
 
 //Create the instances:
@@ -11,6 +11,7 @@ const jsonParser = express.json();
 try{
     app.post("/singup/",jsonParser, singupControler);
     app.get("/users/", getUsersControler);
+    app.post("/login/", jsonParser, loginUSerControler)
 
     app.listen(PORT, ()=>{
         console.log("Express Running...")

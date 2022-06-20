@@ -5,7 +5,7 @@ import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
  * Obtain the object `user` and realize a query with
  * the properties of them. Introduce the object data
  * in the database with your data and create a a new
- * row in the database.
+ * row in the database. Adds the interest too.
  * @param {*} req 
  * @param {*} res 
  */
@@ -86,6 +86,26 @@ export function getUsersControler(req, res){
             }
         })
     }catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+
+export function loginUSerControler (req, res) {
+    try {
+        const {userData,password} = req.body;
+        db.all(`
+            SELECT * FROM users
+            WHERE password = "${password}" AND (nameProfile = "${userData}" OR email = "${userData}")`,
+            (err,data)=>{
+            if (err){
+                console.error(err);
+                res.sendStatus(201);
+            } else {
+                res.json(data);
+            }
+        });
+    } catch(err) {
         console.error(err);
         res.sendStatus(500);
     }
