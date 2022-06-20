@@ -18,7 +18,7 @@ function StartView () {
             password,
             userInfo
         }
-        response = await logingUser;
+       const response = await logingUser;
     }
     //
     return (
