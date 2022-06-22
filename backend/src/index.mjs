@@ -17,11 +17,11 @@ try{
         console.log("Express Running...")
     });
 
-    app.use((err, req, res, next)=>{
+    /*app.use((err, req, res, next)=>{
         console.error(err);
         next()
     })
-    
+    */
 }catch (err){
     console.log(err);
 }
