@@ -24,7 +24,6 @@ export function singupControler(req, res) {
                 res.sendStatus(500);
             } else if (data){
                 userId = data.id;
-                console.log(userId);
                 interest.forEach(
                     element => {
                         const setInterest = `
@@ -103,6 +102,7 @@ export function loginUSerControler (req, res) {
                 res.sendStatus(201);
             } else {
                 res.json(data);
+                //query interest
             }
         });
     } catch(err) {
