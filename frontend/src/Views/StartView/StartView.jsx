@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+import { Context } from '../../services/SharedStorage.jsx';
 import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { logingUser } from '../../tools/controlers.mjs';
@@ -6,26 +7,30 @@ import './StartView.css';
 
 function StartView () {
     //States:
-    const [ userInfo , setUserInfo ] = useState("");
+    const [ store, setStore ] = useContext(Context);
+
+    const [ userData , setuserData ] = useState("");
     const [ password, setPassword ] = useState("");
 
     //Handlers:
-    const userInfoChangeHandler = changeValueFactory(setUserInfo);
+    const userDataChangeHandler = changeValueFactory(setuserData);
     const passwordChangeHandler = changeValueFactory(setPassword);
     
     async function sendLogin() {
         const user = {
             password,
-            userInfo
+            userData
         }
-       const response = await logingUser;
+       const response = await logingUser(user);
+       setStore(response);
+       
     }
     //
     return (
         <div className='logingContainer'>
             <h1>Start view</h1>
             <img className='LogoApp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtepaT1fXQVI9_pyOM34JaAx7aASFWzfmyQg&usqp=CAU" alt="Logo imagen" />
-            <input onChange={userInfoChangeHandler} type="text" placeholder='Nombre de usuario o email' />
+            <input onChange={userDataChangeHandler} type="text" placeholder='Nombre de usuario o email' />
             <input onChange={passwordChangeHandler} type="password" placeholder='Contraseña' />
             <div>
                 <Link to={"/profiles/"}>
