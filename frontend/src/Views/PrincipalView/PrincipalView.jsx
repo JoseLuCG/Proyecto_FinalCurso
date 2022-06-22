@@ -12,7 +12,6 @@ function PrincipalView () {
         const a = await getUsers(URL);
         setUSers(a);
         //setUSers(JSON.stringify(getUsers(URL)));
-        console.log(a)
     }
     return(
         <>
@@ -20,7 +19,7 @@ function PrincipalView () {
             <div className="principalContainer">
                 <button onClick={loadUsers}>Carga usuarios</button>
                 {users.map(
-                    (user)=><ProfileCard user={user} editable="false"/>
+                    (user)=><ProfileCard key={user.id} user={user} editable="false"/>
                 )}
             </div>
         </>
