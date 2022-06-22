@@ -1,5 +1,5 @@
 import { Context } from "./SharedStorage";
-
+import { useContext } from "react";
 import Login from "../components/Login/Login.jsx";
 
 function Authorization ({children}) {
@@ -12,3 +12,4 @@ function Authorization ({children}) {
         </>
     );
 }
+export default Authorization;
