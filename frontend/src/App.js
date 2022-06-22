@@ -1,18 +1,17 @@
 import './App.css';
-import ChatView from './Views/ChatView/ChatView';
 import PrincipalView from './Views/PrincipalView/PrincipalView';
 import RegistrerView from './Views/RegistrerView/RegistrerView';
-import StartView from './components/Login/Login';
+import Login from './components/Login/Login';
 import { Route, Routes } from 'react-router-dom';
+import Authorization from './services/Authorization';
 
 function App() {
   return (
     <>
       <Routes>
+        <Route path='/profiles/' element={<Authorization><PrincipalView/></Authorization>}/>
         <Route path='/' element={<Login/>}/>
         <Route path='/sing-up/' element={<RegistrerView/>}/>
-        <Route path='/profiles/' element={<PrincipalView/>}/>
-        <Route path='/chat/' element={<ChatView/>}/>
       </Routes>
     </>
   );
