@@ -31,10 +31,10 @@ import { URL } from "./defines.mjs"
  * information.
  * @param {Object} data - The user object.
  */
-export async function postUser (data) {
+export async function postUser(data) {
     const params = dataToString(data);
-    const response = await fetch(
-        URL+"/singup/",
+    fetch(
+        URL + "/singup/",
         params
     );
 }
@@ -54,5 +54,6 @@ export async function logingUser (data) {
     const response = await fetch(
         URL+"/login/",
         params
-    ); 
+    );
+    return await response.json(); 
 }
