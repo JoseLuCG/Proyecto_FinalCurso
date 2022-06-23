@@ -33,10 +33,11 @@ import { URL } from "./defines.mjs"
  */
 export async function postUser(data) {
     const params = dataToString(data);
-    fetch(
+    const response = await fetch(
         URL + "/singup/",
         params
     );
+
 }
 /**
  * Realize the fetch at the backend and get the users in
