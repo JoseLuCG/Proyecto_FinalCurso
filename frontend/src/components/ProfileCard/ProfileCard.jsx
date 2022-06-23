@@ -45,7 +45,7 @@ function ProfileCard ({user, editable}) {
             newStore.interest = interest.split(",").map(
                 tag => tag.trim(" ").toLowerCase()
             );
-            newStore.age = age;
+            newStore.age = parseInt(age, 10);
             newStore.description = description;
             newStore.email = email;
             newStore.photo = photo;
