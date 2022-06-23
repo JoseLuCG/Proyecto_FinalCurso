@@ -93,7 +93,7 @@ export function getUsersControler(req, res){
 export function loginUSerControler (req, res) {
     try {
         const {userData,password} = req.body;
-        db.all(`
+        db.get(`
             SELECT * FROM users
             WHERE password = "${password}" AND (nameProfile = "${userData}" OR email = "${userData}")`,
             (err,data)=>{
@@ -102,7 +102,6 @@ export function loginUSerControler (req, res) {
                 res.sendStatus(201);
             } else {
                 res.json(data);
-                //query interest
             }
         });
     } catch(err) {
