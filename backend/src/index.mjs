@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsersControler, loginUSerControler, singupControler } from "./controlers/controlers.mjs";
+import { getUsersControler, loginUSerControler, singupControler, putUserControler} from "./controlers/controlers.mjs";
 import { PORT } from "./models/defines.mjs";
 
 //Create the instances:
@@ -11,7 +11,7 @@ const jsonParser = express.json();
 try{
     app.post("/singup/",jsonParser, singupControler);
     app.post("/login/", jsonParser, loginUSerControler);
-    //app.put("/user/:id", jsonParser, putUserControler);
+    app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);
 
