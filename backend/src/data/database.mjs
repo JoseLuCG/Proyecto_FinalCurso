@@ -16,7 +16,7 @@ db.run(`
             nameUser TEXT NOT NULL,
             password TEXT NOT NULL,
             location TEXT NOT NULL, 
-            age TEXT NOT NULL,
+            age INTEGER NOT NULL,
             description TEXT,
             email TEXT NOT NULL
         )
