@@ -10,8 +10,10 @@ const jsonParser = express.json();
 // Endpoints of the API:
 try{
     app.post("/singup/",jsonParser, singupControler);
+    app.post("/login/", jsonParser, loginUSerControler);
+    //app.put("/user/:id", jsonParser, putUserControler);
+    //app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);
-    app.post("/login/", jsonParser, loginUSerControler)
 
     app.listen(PORT, ()=>{
         console.log("Express Running...")
