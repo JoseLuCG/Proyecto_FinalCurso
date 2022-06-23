@@ -70,7 +70,7 @@ function ProfileCard ({user, editable}) {
             <button>Mensaje</button>
             <div hidden={editable && "hidden"}>
                 <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
-                <input onChange={emailChangeHandler} id="email" type="text" placeholder="Correo" />
+                <input onChange={emailChangeHandler} id="email" type="email" placeholder="Correo" />
                 <button id='saveButton' onClick={saveData}>Save</button>
             </div>
         </div>
