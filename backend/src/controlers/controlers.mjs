@@ -126,13 +126,19 @@ export function loginUSerControler (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-/*
+
+
 export function putUserControler (req, res) {
+    const {nameProfile,nameUser,password,location,interest,age,description,email,id} = req.body;
     db.run(
-        `UPDATE
+        `UPDATE users 
+        SET nameProfile = ${nameProfile},
+            nameUser = ${nameUser},
+        WHERE
+            id = ${id}
+
         `,
         ()=>{
 
         });
 }
-*/
