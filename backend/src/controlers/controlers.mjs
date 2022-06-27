@@ -147,7 +147,7 @@ export function putUserControler(req, res) {
             res.sendStatus(500);
         });
     db.run(
-        `DELETE FROM user_interest WHERE idUser = ${id};`,
+        `DELETE FROM user_interests WHERE idUser = ${id};`,
         (err) => {
             if (err) {
                 console.error(err);
@@ -174,13 +174,13 @@ export function putUserControler(req, res) {
                                 const interestId = data.id;
                                 db.run(
                                     `INSERT INTO user_interests(idInterest,idUser)
-                                    VALUES(${interestId},${userId})`,
+                                    VALUES(${interestId},${id})`,
                                     (err) => {
                                         if (err) {
                                             console.error(err);
                                             res.sendStatus(500);
                                         } else {
-                                            if ( ! res.finished ) res.json(userId);
+                                            if ( ! res.finished ) res.sendStatus(200);
                                         }
                                     }
                                 );
