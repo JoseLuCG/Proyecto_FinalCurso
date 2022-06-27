@@ -128,8 +128,8 @@ export function loginUSerControler (req, res) {
  */
 
 
-export function putUserControler (req, res) {
-    const {nameProfile,nameUser,password,location,interest,age,description,email,id} = req.body;
+export function putUserControler(req, res) {
+    const { nameProfile, nameUser, password, location, interest, age, description, email, id } = req.body;
     db.run(
         `UPDATE users 
         SET nameProfile = "${nameProfile}",
@@ -141,11 +141,55 @@ export function putUserControler (req, res) {
             email = "${email}"
         WHERE
             id = ${id}
-
         `,
-        (err)=>{
+        (err) => {
             console.error(err);
             res.sendStatus(500);
         });
-    
+    db.run(
+        `DELETE FROM user_interest WHERE idUser = ${id};`,
+        (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                interest.forEach(
+                    element => {
+                        const setInterest = `
+                            INSERT INTO interests(description)
+                            VALUES (?)
+                        `;
+                        db.run(setInterest, element, 
+                            (err) => {
+                                if (err) {
+                                    console.error(err);
+                                    res.sendStatus(500);
+                                } 
+                            });
+                        db.get(sqlIDReturn, (err, data) => {
+                            if (err) {
+                                console.error(err);
+                                res.sendStatus(500);
+                            }
+                            if (data) {
+                                const interestId = data.id;
+                                db.run(
+                                    `INSERT INTO user_interests(idInterest,idUser)
+                                    VALUES(${interestId},${userId})`,
+                                    (err) => {
+                                        if (err) {
+                                            console.error(err);
+                                            res.sendStatus(500);
+                                        } else {
+                                            if ( ! res.finished ) res.json(userId);
+                                        }
+                                    }
+                                );
+
+                            }
+                        });
+                    }
+                );
+            }
+        });
+
 }
