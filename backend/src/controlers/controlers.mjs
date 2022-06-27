@@ -143,8 +143,12 @@ export function putUserControler(req, res) {
             id = ${id}
         `,
         (err) => {
-            console.error(err);
-            res.sendStatus(500);
+            if (err){
+                console.error(err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
         });
     db.run(
         `DELETE FROM user_interests WHERE idUser = ${id};`,
