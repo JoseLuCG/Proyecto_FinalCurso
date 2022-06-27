@@ -132,13 +132,20 @@ export function putUserControler (req, res) {
     const {nameProfile,nameUser,password,location,interest,age,description,email,id} = req.body;
     db.run(
         `UPDATE users 
-        SET nameProfile = ${nameProfile},
-            nameUser = ${nameUser},
+        SET nameProfile = "${nameProfile}",
+            nameUser = "${nameUser}",
+            password = "${password}",
+            location = "${location}",
+            age = ${age},
+            description = "${description}",
+            email = "${email}"
         WHERE
             id = ${id}
 
         `,
-        ()=>{
-
+        (err)=>{
+            console.error(err);
+            res.sendStatus(500);
         });
+    
 }
