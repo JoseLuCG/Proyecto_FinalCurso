@@ -40,6 +40,15 @@ db.run(`
 `);
 db.run(`
     CREATE TABLE
+        IF NOT  EXISTS
+        normalized_interests(
+            id_normal_interest INTEGER PRIMARY KEY,
+            name_interest TEXT NOT NULL,
+            idInterest
+        )
+`);
+db.run(`
+    CREATE TABLE
         IF NOT EXISTS
         messages (
             time INTEGER PRIMARY KEY,
