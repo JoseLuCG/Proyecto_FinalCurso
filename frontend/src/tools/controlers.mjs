@@ -37,7 +37,7 @@ export async function postUser(data) {
         URL + "/singup/",
         params
     );
-
+    return await response.json();
 }
 /**
  * Realize the fetch at the backend and get the users in
