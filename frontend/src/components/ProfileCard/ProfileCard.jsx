@@ -36,7 +36,7 @@ function ProfileCard ({user, editable}) {
         /**
          * This function save the data of states in the context.
          */
-        function saveData () {
+        async function saveData () {
             const newStore = {...store};
             newStore.nameProfile = nameProfile;
             newStore.nameUser = nameUser;
@@ -49,8 +49,9 @@ function ProfileCard ({user, editable}) {
             newStore.description = description;
             newStore.email = email;
             newStore.photo = photo;
-            postUser(newStore);
+            const userID = await postUser(newStore);
             setStore(newStore);
+
         }
 
 
