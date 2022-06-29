@@ -1,5 +1,5 @@
 import { db } from "../data/database.mjs";
-import { defaultCallback, sqlIDReturn } from "../models/defines.mjs";
+import { sqlIDReturn } from "../models/defines.mjs";
 
 /**
  * Obtain the object `user` and realize a query with
