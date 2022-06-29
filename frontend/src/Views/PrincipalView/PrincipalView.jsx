@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../../tools/controlers.mjs';
 import { URL } from '../../tools/defines.mjs';
+import NavigationBar from '../../components/NavigationBar/NavigationBar';
 
 function PrincipalView () {
     const [ users, setUSers ] = useState([]);
@@ -17,6 +18,7 @@ function PrincipalView () {
     return(
         <>
             <h1>This is a Principal view</h1>
+            <NavigationBar/>
             <div className="principalContainer">
                 <Link to={"/edit-user/"}>
                     <button>Editar</button>
