@@ -50,6 +50,7 @@ function ProfileCard ({user, editable}) {
             newStore.email = email;
             newStore.photo = photo;
             const userID = await postUser(newStore);
+            newStore.id = userID;
             setStore(newStore);
 
         }
