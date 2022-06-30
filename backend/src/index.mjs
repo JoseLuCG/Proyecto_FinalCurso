@@ -14,6 +14,8 @@ const jsonParser = express.json();
 
 // Endpoints of the API:
 try{
+    app.use("/",express.static("../../frontend/build/", {index: "index.html"}))
+
     app.post("/singup/",jsonParser, singupControler);
     app.post("/login/", jsonParser, loginUSerControler);
     app.put("/user-edit/", jsonParser, putUserControler);
