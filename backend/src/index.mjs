@@ -1,6 +1,11 @@
 import express from "express";
 import { getUsersControler, loginUSerControler, singupControler, putUserControler} from "./controlers/controlers.mjs";
-import { PORT } from "./models/defines.mjs";
+import { config } from "dotenv"
+//import { PORT } from "./models/defines.mjs";
+
+if ( process.env.NODE_ENV != "production" ) {
+    config()
+}
 
 //Create the instances:
 const app = express();
@@ -15,8 +20,8 @@ try{
     //app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);
 
-    app.listen(PORT, ()=>{
-        console.log("Express Running...")
+    app.listen( process.env.PORT, ()=> {
+        console.log(`Listening at ${process.env.PORT}`,"Express Running") 
     });
 
     /*app.use((err, req, res, next)=>{
