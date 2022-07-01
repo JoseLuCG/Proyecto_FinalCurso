@@ -18,3 +18,7 @@ export async function singupControlerMdb (req, res) {
         console.log(err);
     }
 }
+
+export function loginUSerControlerMdb (req, res) {
+    
+}

@@ -19,6 +19,7 @@ try{
     
     //----------User endpoints----------
     app.post("/singup/", jsonParser , singupControlerMdb );
+    app.post("/login/", jsonParser, loginUSerControlerMdb);
 
     //----------Listen the port----------
     app.listen( process.env.PORT, ()=> {
