@@ -20,5 +20,16 @@ export async function singupControlerMdb (req, res) {
 }
 
 export function loginUSerControlerMdb (req, res) {
-    
+    const result = await users.findOne({
+        $and: [
+            { password: request.params.password },
+            {
+                $or: [
+                    { nameProfile: req.body.userData },
+                    { email: req.body.userData }
+                ]
+            }
+        ]
+    })
+    response.json( result)
 }
