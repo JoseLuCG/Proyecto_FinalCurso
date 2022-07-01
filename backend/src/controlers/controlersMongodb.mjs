@@ -1,6 +1,11 @@
 import { ObjectId } from "mongodb";
 import { users } from "../data/mongodb.mjs";
 
+/**
+ * Add a new document in the mongo database.
+ * @param {*} req - Param of express.
+ * @param {*} res - Param of express.
+ */
 export async function singupControlerMdb (req, res) {
     try{
         const result = await users.insertOne({
@@ -18,7 +23,12 @@ export async function singupControlerMdb (req, res) {
         console.log(err);
     }
 }
-
+/**
+ * This controler find in the database the document that
+ * coincide whit the object receive from the frontend.
+ * @param {*} req - Param of express.
+ * @param {*} res - Param of express.
+ */
 export  async function loginUSerControlerMdb (req, res) {
     const result = await users.findOne({
         $and: [
@@ -32,4 +42,8 @@ export  async function loginUSerControlerMdb (req, res) {
         ]
     })
     res.json(result)
+}
+
+export function getUsersControlerMdb () {
+
 }

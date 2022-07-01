@@ -1,7 +1,7 @@
 import express from "express";
 import { getUsersControler, loginUSerControler, singupControler, putUserControler} from "./controlers/controlersSqlite.mjs";
 import { config } from "dotenv"
-import { loginUSerControlerMdb, singupControlerMdb } from "./controlers/controlersMongodb.mjs";
+import { getUsersControlerMdb, loginUSerControlerMdb, singupControlerMdb } from "./controlers/controlersMongodb.mjs";
 //import { PORT } from "./models/defines.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
@@ -20,6 +20,8 @@ try{
     //----------User endpoints----------
     app.post("/singup/", jsonParser , singupControlerMdb );
     app.post("/login/", jsonParser, loginUSerControlerMdb);
+
+    app.get("/users/", getUsersControlerMdb);
 
     //----------Listen the port----------
     app.listen( process.env.PORT, ()=> {
