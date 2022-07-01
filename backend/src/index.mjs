@@ -1,7 +1,7 @@
 import express from "express";
 import { getUsersControler, loginUSerControler, singupControler, putUserControler} from "./controlers/controlersSqlite.mjs";
 import { config } from "dotenv"
-import { singupControlerMdb } from "./controlers/controlersMongodb.mjs";
+import { loginUSerControlerMdb, singupControlerMdb } from "./controlers/controlersMongodb.mjs";
 //import { PORT } from "./models/defines.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
