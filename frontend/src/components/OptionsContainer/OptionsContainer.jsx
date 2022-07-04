@@ -1,13 +1,17 @@
 import CircleButton from '../CircleButton/CircleButton';
 import './OptionsContainer.css';
-import back from '../../iconos_app/back_icon.jpg'
+import back from '../../iconos_app/back_icon.jpg';
+import { Link } from 'react-router-dom';
+
 
 function OptionsContainer () {
     return(
         <div className='optionsContainer'>
             <p>this is a component</p>
-            <CircleButton imgSrc={back} path/>
+            <CircleButton imgSrc={back} path={-1}/>
+            <Link to={'/edit-user/'}>
             <button>Perfil</button>
+            </Link>
             <button>Opciones</button>
         </div>
     );

@@ -22,9 +22,6 @@ function PrincipalView () {
             <h1>This is a Principal view</h1>
             <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
             <div className="principalContainer">
-                <Link to={"/edit-user/"}>
-                    <button>Editar</button>
-                </Link>
                 <button onClick={loadUsers}>Carga usuarios</button>
                 {users.map(
                     (user) => <ProfileCard key={user._id} user={user} editable="false" />
