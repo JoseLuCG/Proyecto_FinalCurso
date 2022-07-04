@@ -10,7 +10,7 @@ export function changeValueFactory(setState) {
     }
 }
 
-//--------------------Actions--------------------
+//--------------------Actions of the CircleButton--------------------
 export function optionsClick () {
     console.log("Click in options button")
 }
