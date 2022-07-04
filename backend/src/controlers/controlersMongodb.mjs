@@ -33,3 +33,8 @@ export  async function loginUSerControlerMdb (req, res) {
     })
     res.json(result)
 }
+
+export async function getUsersControlerMdb (req, res) {
+    const cursor = users.find()
+    res.json( await cursor.toArray() )
+}
