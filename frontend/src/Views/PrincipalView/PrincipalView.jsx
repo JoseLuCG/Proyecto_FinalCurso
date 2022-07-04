@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { getUsers } from '../../tools/controlers.mjs';
 import { URL } from '../../tools/defines.mjs';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
-import { filtrerClick, optionsClick } from '../../tools/apptools.mjs';
 import op_icon from '../../iconos_app/options_icon.jpg';
 import fil_icon from '../../iconos_app/filtrer_icon.jpg';
 
@@ -21,7 +20,7 @@ function PrincipalView () {
     return(
         <>
             <h1>This is a Principal view</h1>
-            <NavigationBar actionL={optionsClick} actionR={filtrerClick} imgL={op_icon} imgR={fil_icon}/>
+            <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
             <div className="principalContainer">
                 <Link to={"/edit-user/"}>
                     <button>Editar</button>
