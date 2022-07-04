@@ -10,3 +10,11 @@ export function changeValueFactory(setState) {
     }
 }
 
+//--------------------Actions--------------------
+export function optionsClick () {
+    console.log("Click in options button")
+}
+
+export function filtrerClick () {
+    console.log("Click in the filtrer Button")
+}
