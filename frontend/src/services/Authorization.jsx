@@ -1,7 +1,6 @@
 import { Context } from "./SharedStorage";
 import { useContext } from "react";
 import Login from "../components/Login/Login.jsx";
-import { useEffect } from "react";
 
 function Authorization ({children}) {
     //----------States----------
