@@ -6,6 +6,8 @@ import { getUsers } from '../../tools/controlers.mjs';
 import { URL } from '../../tools/defines.mjs';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import { filtrerClick, optionsClick } from '../../tools/apptools.mjs';
+import op_icon from '../../iconos_app/options_icon.jpg';
+import fil_icon from '../../iconos_app/filtrer_icon.jpg';
 
 function PrincipalView () {
     const [ users, setUSers ] = useState([]);
@@ -19,14 +21,14 @@ function PrincipalView () {
     return(
         <>
             <h1>This is a Principal view</h1>
-            <NavigationBar actionL={optionsClick} actionR={filtrerClick}/>
+            <NavigationBar actionL={optionsClick} actionR={filtrerClick} imgL={op_icon} imgR={fil_icon}/>
             <div className="principalContainer">
                 <Link to={"/edit-user/"}>
                     <button>Editar</button>
                 </Link>
                 <button onClick={loadUsers}>Carga usuarios</button>
                 {users.map(
-                    (user) => <ProfileCard key={user.id} user={user} editable="false" />
+                    (user) => <ProfileCard key={user._id} user={user} editable="false" />
                 )}
             </div>
         </>
