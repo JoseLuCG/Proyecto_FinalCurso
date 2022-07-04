@@ -9,12 +9,3 @@ export function changeValueFactory(setState) {
         setState(ev.target.value)
     }
 }
-
-//--------------------Actions of the CircleButton--------------------
-export function optionsClick () {
-    console.log("Click in options button")
-}
-
-export function filtrerClick () {
-    console.log("Click in the filtrer Button")
-}
