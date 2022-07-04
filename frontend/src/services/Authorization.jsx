@@ -9,7 +9,7 @@ function Authorization ({children}) {
 
     return(
         <>
-        { store.id ? children : <Login/> }
+        { store._id ? children : <Login/> }
         </>
     );
 }
