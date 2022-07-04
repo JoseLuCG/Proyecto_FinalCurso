@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { getUsers } from '../../tools/controlers.mjs';
 import { URL } from '../../tools/defines.mjs';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
+import { filtrerClick, optionsClick } from '../../tools/apptools.mjs';
 
 function PrincipalView () {
     const [ users, setUSers ] = useState([]);
@@ -13,12 +14,12 @@ function PrincipalView () {
     async function loadUsers () {
         const a = await getUsers(URL);
         setUSers(a);
-        //setUSers(JSON.stringify(getUsers(URL)));
     }
+
     return(
         <>
             <h1>This is a Principal view</h1>
-            <NavigationBar/>
+            <NavigationBar actionL={optionsClick} actionR={filtrerClick}/>
             <div className="principalContainer">
                 <Link to={"/edit-user/"}>
                     <button>Editar</button>
