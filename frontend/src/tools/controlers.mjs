@@ -34,7 +34,7 @@ import { URL } from "./defines.mjs"
 export async function postUser(data) {
     const params = dataToString(data);
     const response = await fetch(
-        URL + "/singup/",
+        URL + "singup/",
         params
     );
     return await response.json();
@@ -46,14 +46,14 @@ export async function postUser(data) {
  * @returns The array with the users objects.
  */
 export async function getUsers (url) {
-    const response = await fetch(url+"/users/");
+    const response = await fetch(url+"users/");
     const data = await response.json();
     return data;
 }
 export async function logingUser (data) {
     const params = dataToString(data);
     const response = await fetch(
-        URL+"/login/",
+        URL+"login/",
         params
     );
     return await response.json(); 
