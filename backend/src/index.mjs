@@ -20,7 +20,7 @@ try{
     //----------User endpoints----------
     app.post("/singup/", jsonParser , singupControlerMdb );
     app.post("/login/", jsonParser, loginUSerControlerMdb);
-    app.get("/users/", getUsersControlerMdb)
+    app.get("/users/", getUsersControlerMdb);
     //----------Listen the port----------
     app.listen( process.env.PORT, ()=> {
         console.log(`Listening at ${process.env.PORT}`,"Express Running") 
