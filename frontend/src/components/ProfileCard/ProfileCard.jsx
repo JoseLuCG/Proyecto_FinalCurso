@@ -21,7 +21,6 @@ function ProfileCard ({user, editable}) {
         const [ photo, setPhoto ] = useState("");
         
         //----------Handlers:----------
-    
         const nameProfileChangeHandler = changeValueFactory(setNameProfile);
         const nameChangeHandler = changeValueFactory(setNameUser);
         const passwordChangeHandler = changeValueFactory(setPassword);
@@ -52,7 +51,6 @@ function ProfileCard ({user, editable}) {
             const userID = await postUser(newStore);
             newStore.id = userID.insertedId;
             setStore(newStore);
-
         }
 
 
