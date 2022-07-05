@@ -1,10 +1,10 @@
 import CircleButton from '../../components/CircleButton/CircleButton';
 
-function NavigationBar() {
+function NavigationBar({pathL, pathR, imgL, imgR }) {
     return (
         <div>
-            <CircleButton/>
-            <CircleButton/>
+            <CircleButton imgSrc={imgL} path={pathL}/>
+            <CircleButton imgSrc={imgR} path={pathR}/>
         </div>
     );
 }

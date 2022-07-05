@@ -21,7 +21,6 @@ function ProfileCard ({user, editable}) {
         const [ photo, setPhoto ] = useState("");
         
         //----------Handlers:----------
-    
         const nameProfileChangeHandler = changeValueFactory(setNameProfile);
         const nameChangeHandler = changeValueFactory(setNameUser);
         const passwordChangeHandler = changeValueFactory(setPassword);
@@ -50,9 +49,8 @@ function ProfileCard ({user, editable}) {
             newStore.email = email;
             newStore.photo = photo;
             const userID = await postUser(newStore);
-            newStore.id = userID;
+            newStore.id = userID.insertedId;
             setStore(newStore);
-
         }
 
 
@@ -60,20 +58,20 @@ function ProfileCard ({user, editable}) {
         <div className={styles.profileContainer}>
             <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
-                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} id="age" type="number" placeholder="Edad" />
+                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className="form" type="number" placeholder="Edad" />
             </div>
             <div>
-                <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} id="nameProfile" type="text" placeholder="Nombre de perfil" />
-                <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} id="name" type="text" placeholder="Nombre" />
-                <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} id="location" type="text" placeholder="Ciudad" />
-                <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} id="interests" type="text" placeholder="Intereses" />
+                <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className="form" type="text" placeholder="Nombre de perfil" />
+                <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className="form" type="text" placeholder="Nombre" />
+                <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className="form" type="text" placeholder="Ciudad" />
+                <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className="form" type="text" placeholder="Intereses" />
             </div>
-            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" id="description" cols="" rows="" placeholder="Descripción"></textarea>
+            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className="form" cols="" rows="" placeholder="Descripción"></textarea>
             <button>Mensaje</button>
             <div hidden={editable && "hidden"}>
-                <input onChange={passwordChangeHandler} id="password" type="password" placeholder="Contraseña" />
-                <input onChange={emailChangeHandler} id="email" type="email" placeholder="Correo" />
-                <button id='saveButton' onClick={saveData}>Save</button>
+                <input onChange={passwordChangeHandler} className="form" type="password" placeholder="Contraseña" />
+                <input onChange={emailChangeHandler} className="form" type="email" placeholder="Correo" />
+                <button className="form" onClick={saveData}>Save</button>
             </div>
         </div>
     );

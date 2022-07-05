@@ -9,4 +9,3 @@ export function changeValueFactory(setState) {
         setState(ev.target.value)
     }
 }
-
