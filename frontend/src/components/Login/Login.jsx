@@ -28,11 +28,12 @@ function StartView () {
     
     return (
         <div className='logingContainer'>
-            <h1>Start view</h1>
             <img className='LogoApp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtepaT1fXQVI9_pyOM34JaAx7aASFWzfmyQg&usqp=CAU" alt="Logo imagen" />
-            <input className='logText' onChange={userDataChangeHandler} type="text" placeholder='Nombre de usuario o email' />
-            <input className='logText' onChange={passwordChangeHandler} type="password" placeholder='Contraseña' />
-            <div>
+            <div className='imputContainer'>
+            <input className='dataImput' onChange={userDataChangeHandler} type="text" placeholder='Nombre de usuario o email' />
+            <input className='dataImput' onChange={passwordChangeHandler} type="password" placeholder='Contraseña' />
+            </div>
+            <div className='buttonsStar'>
                 <Link to={"/profiles/"}>
                     <button className='logButton' onClick={sendLogin}>Entrar</button>
                 </Link>
