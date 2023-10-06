@@ -1,5 +1,7 @@
+/* ---------- Container of the component CSS ---------- */
 .registrerContainer {
-    background-color: rgb(43, 168, 226);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
 }

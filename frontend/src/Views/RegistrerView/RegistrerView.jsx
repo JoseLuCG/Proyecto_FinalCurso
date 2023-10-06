@@ -11,7 +11,6 @@ function RegistrerView() {
 
     return (
         <div className='registrerContainer'>
-            <h1>This is the RegistrerView</h1>
             <CircleButton imgSrc={back} path={-1}/>
             <h1>Completa tus datos:</h1>
             <ProfileCard/>
