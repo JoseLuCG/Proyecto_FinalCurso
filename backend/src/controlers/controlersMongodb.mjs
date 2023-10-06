@@ -1,11 +1,13 @@
+/*
 import { ObjectId } from "mongodb";
 import { users } from "../data/mongodb.mjs";
-
+*/
 /**
  * Add a new document in the mongo database.
  * @param {*} req - Param of express.
  * @param {*} res - Param of express.
  */
+/*
 export async function singupControlerMdb (req, res) {
     try{
         const result = await users.insertOne({
@@ -29,6 +31,7 @@ export async function singupControlerMdb (req, res) {
  * @param {*} req - Param of express.
  * @param {*} res - Param of express.
  */
+/*
 export  async function loginUSerControlerMdb (req, res) {
     const result = await users.findOne({
         $and: [
@@ -48,3 +51,4 @@ export async function getUsersControlerMdb (req, res) {
     const cursor = users.find()
     res.json( await cursor.toArray() )
 }
+*/
