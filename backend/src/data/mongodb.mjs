@@ -1,3 +1,4 @@
+/*
 import { MongoClient, ObjectId } from "mongodb";
 import { config } from "dotenv"
 
@@ -11,3 +12,4 @@ const client = new MongoClient(process.env.MONGO_URL);
 client.connect();
 const database = client.db("SocialNetwork");
 export const users = database.collection("users");
+*/
