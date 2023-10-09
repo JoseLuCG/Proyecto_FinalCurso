@@ -1,5 +1,6 @@
 .profileContainer {
-    background-color: rgb(23, 139, 134);
+    background-color: rgb(185, 250, 247);
+    border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
@@ -12,6 +13,16 @@
     min-width: 15rem;
     max-width: 25rem;
 }
+/* ---------- Photo container CSS ----------*/
+.containerPhoto {
+    margin: 30px;
+}
+/*---------- x ---------- x ----------*/
+#age {
+    max-width: 300px;
+    min-width: 200px;
+}
+
 .profileContainer .containerPhoto{
     display: flex;
     flex-direction: column;
