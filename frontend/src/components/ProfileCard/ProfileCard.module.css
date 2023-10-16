@@ -1,5 +1,12 @@
+/*---------- Variables ----------*/
+:root{
+    --background-profileCard: rgb(185, 250, 247);
+    --background-inputStyle: rgb(110, 173, 168);
+    --color-inputStyle: white;
+}
+/* ---------- Container CSS ---------- */
 .profileContainer {
-    background-color: rgb(185, 250, 247);
+    background-color: var(--background-profileCard);
     border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -14,16 +21,7 @@
     max-width: 25rem;
 }
 /* ---------- Photo container CSS ----------*/
-.containerPhoto {
-    margin: 30px;
-}
-/*---------- x ---------- x ----------*/
-#age {
-    max-width: 300px;
-    min-width: 200px;
-}
-
-.profileContainer .containerPhoto{
+.containerPhoto{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,13 +30,18 @@
     align-items: center;
     margin: 10px;
 }
-.profileContainer .nameProfile {
-    grid-column-start: 3;
-    grid-column-end: 2;
+/* ---------- Inputs CSS ---------- */
+.inputData{
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    margin: 2px;
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
+    text-align: center;
 }
-.profileContainer #description {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+/*----- Age input CSS -----*/
+.age{
+    width: 4rem;
+    background-color: black;
 }

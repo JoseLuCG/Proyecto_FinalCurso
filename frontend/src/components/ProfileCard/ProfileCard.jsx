@@ -56,22 +56,22 @@ function ProfileCard ({user, editable}) {
 
     return (
         <div className={styles.profileContainer}>
-            <div className="containerPhoto">
+            <div className={styles.containerPhoto}>
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
-                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className="form" id='age' type="number" placeholder="Edad"/>
+                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className={[styles.inputData, styles.age]} type="number" placeholder="Edad"/>
             </div>
             <div>
-                <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className="form" type="text" placeholder="Nombre de perfil" />
-                <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className="form" type="text" placeholder="Nombre" />
-                <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className="form" type="text" placeholder="Ciudad" />
-                <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className="form" type="text" placeholder="Intereses" />
+                <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className={styles.inputData} type="text" placeholder="Nombre de perfil" />
+                <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className={styles.inputData} type="text" placeholder="Nombre" />
+                <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
+                <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
             </div>
-            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className="form" cols="" rows="" placeholder="Descripción"></textarea>
+            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.inputData} cols="" rows="" placeholder="Descripción"></textarea>
             <button>Mensaje</button>
             <div hidden={editable && "hidden"}>
-                <input onChange={passwordChangeHandler} className="form" type="password" placeholder="Contraseña" />
-                <input onChange={emailChangeHandler} className="form" type="email" placeholder="Correo" />
-                <button className="form" onClick={saveData}>Save</button>
+                <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
+                <input onChange={emailChangeHandler} className={styles.inputData} type="email" placeholder="Correo" />
+                <button className={styles.inputData} onClick={saveData}>Save</button>
             </div>
         </div>
     );
