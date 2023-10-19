@@ -44,4 +44,5 @@
 .age{
     width: 4rem;
     background-color: black;
+    composes: inputData;
 }
