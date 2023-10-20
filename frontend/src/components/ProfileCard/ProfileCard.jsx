@@ -58,7 +58,7 @@ function ProfileCard ({user, editable}) {
         <div className={styles.profileContainer}>
             <div className={styles.containerPhoto}>
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
-                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className={[styles.age, styles.inputData].join(' ')} type="number" placeholder="Edad"/>
+                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className={[styles.age, styles.inputData].join(' ')} type="number" placeholder="Edad" maxLength="2"/>
             </div>
             <div>
                 <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className={styles.inputData} type="text" placeholder="Nombre de perfil" />
@@ -66,8 +66,10 @@ function ProfileCard ({user, editable}) {
                 <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
                 <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
             </div>
-            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.inputData} cols="" rows="" placeholder="Descripción"></textarea>
+            <div className={styles.textareaDescription}>
+            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
             <button>Mensaje</button>
+            </div>
             <div hidden={editable && "hidden"}>
                 <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
                 <input onChange={emailChangeHandler} className={styles.inputData} type="email" placeholder="Correo" />

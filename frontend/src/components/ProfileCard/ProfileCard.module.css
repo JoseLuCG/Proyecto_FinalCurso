@@ -30,6 +30,11 @@
     align-items: center;
     margin: 10px;
 }
+/* ---------- Textarea and mesage Button ----------*/
+.textareaDescription {
+    display: flex;
+    flex-direction: column;
+}
 /* ---------- Inputs CSS ---------- */
 .inputData{
     border-radius: 5px;
@@ -43,5 +48,13 @@
 /*----- Age input CSS -----*/
 .age{
     width: 4rem;
- 
+    
+}
+.description {
+    resize: none;
+    border-radius: 5px;
+    border: none;
+    margin: 2px;
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
 }
