@@ -21,7 +21,7 @@
     max-width: 25rem;
 }
 /* ---------- Photo container CSS ----------*/
-.containerPhoto{
+.containerPhotoAge{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,12 +29,30 @@
     flex-wrap: wrap;
     align-items: center;
     margin: 10px;
+    /* Grid position: */
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+/* ---------- DataInput CSS ---------- */
+.dataInputs {
+    /* Grid position: */
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 /* ---------- Textarea and mesage Button ----------*/
 .textareaDescription {
     margin:10px;
     display: flex;
     flex-direction: column;
+    /* Grid position: */
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 /* ---------- Inputs CSS ---------- */
 .inputData{
