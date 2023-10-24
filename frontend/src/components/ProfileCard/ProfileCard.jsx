@@ -68,7 +68,7 @@ function ProfileCard ({user, editable}) {
             </div>
             <div className={styles.textareaDescription}>
             <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
-            <button>Mensaje</button>
+            <button className={styles.messageButton}>Mensaje</button>
             </div>
             <div hidden={editable && "hidden"}>
                 <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
