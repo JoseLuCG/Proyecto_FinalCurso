@@ -70,10 +70,12 @@ function ProfileCard ({user, editable}) {
             <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
             <button className={styles.messageButton}>Mensaje</button>
             </div>
-            <div hidden={editable && "hidden"}>
-                <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
-                <input onChange={emailChangeHandler} className={styles.inputData} type="email" placeholder="Correo" />
-                <button className={styles.inputData} onClick={saveData}>Save</button>
+            <div hidden={editable && "hidden"} className={styles.userLogin}>
+                <div className={styles.userLogin}>
+                    <input onChange={emailChangeHandler} className={[styles.email, styles.inputData].join(' ')} type="email" placeholder="Correo" />
+                    <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
+                    <button className={styles.inputData} onClick={saveData}>Save</button>
+                </div>
             </div>
         </div>
     );
