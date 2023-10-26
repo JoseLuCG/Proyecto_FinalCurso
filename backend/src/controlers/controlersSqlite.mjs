@@ -197,6 +197,12 @@ export function putUserControler(req, res) {
 }
 
 export function deleteUserControler (req, res) {
-    const {id} = req.body
-    db.run()
+    const {id} = req.params.id;
+    const sqlQuery = `DELETE FROM users WHERE id = ${id}`
+    db.run(sqlQuery, (err)=>{
+        if (err){
+            console.error(err);
+            res.sendStatus(404);
+        } else res.sendStatus(200);
+    });
 }
