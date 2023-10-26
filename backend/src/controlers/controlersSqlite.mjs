@@ -195,3 +195,8 @@ export function putUserControler(req, res) {
         });
 
 }
+
+export function deleteUserControler (req, res) {
+    const {id} = req.body
+    db.run()
+}
