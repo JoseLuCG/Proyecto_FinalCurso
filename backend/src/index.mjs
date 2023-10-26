@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsersControler, loginUSerControler, singupControler, putUserControler} from "./controlers/controlersSqlite.mjs";
+import { getUsersControler, loginUSerControler, singupControler, putUserControler, deleteUserControler} from "./controlers/controlersSqlite.mjs";
 //import { config } from "dotenv"
 //import { getUsersControlerMdb, loginUSerControlerMdb, singupControlerMdb } from "./controlers/controlersMongodb.mjs";
 import { PORT } from "./models/defines.mjs";
@@ -41,7 +41,7 @@ try{
     app.post("/singup/",jsonParser, singupControler);
     app.post("/login/", jsonParser, loginUSerControler);
     app.put("/user-edit/", jsonParser, putUserControler);
-    //app.delete("/user/:id", jsonParser, deleteUserControler);
+    app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);
     
     //----------Listen the port----------
