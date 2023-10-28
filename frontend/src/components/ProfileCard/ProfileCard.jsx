@@ -58,7 +58,7 @@ function ProfileCard ({user, editable}) {
         <div className={styles.profileContainer}>
             <div className="containerPhoto">
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
-                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className="form" type="number" placeholder="Edad" />
+                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className="form" type="number" placeholder="Edad"/>
             </div>
             <div>
                 <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className="form" type="text" placeholder="Nombre de perfil" />
