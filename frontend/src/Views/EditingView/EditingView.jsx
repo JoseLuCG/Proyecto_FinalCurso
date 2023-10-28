@@ -12,10 +12,11 @@ function EditingView() {
 
     return(
         <div className='editContainer'>
-            <h1>This is the EditingView</h1>
             <CircleButton imgSrc={back} path={-1}/>
             <h1>Edita tus datos:</h1>
-           <ProfileCard user={store}/>
+            <div>
+            <ProfileCard user={store}/>    
+            </div>
         </div>
     );
 }
