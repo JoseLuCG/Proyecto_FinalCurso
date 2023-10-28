@@ -1,8 +1,9 @@
+import './NavigationBar.css'
 import CircleButton from '../../components/CircleButton/CircleButton';
 
 function NavigationBar({pathL, pathR, imgL, imgR }) {
     return (
-        <div>
+        <div className='toolBar'>
             <CircleButton imgSrc={imgL} path={pathL}/>
             <CircleButton imgSrc={imgR} path={pathR}/>
         </div>

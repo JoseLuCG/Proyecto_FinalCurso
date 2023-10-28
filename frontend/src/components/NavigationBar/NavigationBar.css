@@ -1,0 +1,7 @@
+.toolBar {
+    background-color: aqua;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}

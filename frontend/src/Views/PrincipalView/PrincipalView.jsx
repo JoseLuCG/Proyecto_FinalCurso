@@ -18,13 +18,14 @@ function PrincipalView () {
 
     return(
         <>
-            <h1>This is a Principal view</h1>
             <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
             <div className="principalContainer">
-                <button onClick={loadUsers}>Carga usuarios</button>
-                {users.map(
-                    (user) => <ProfileCard key={user._id} user={user} editable="false" />
-                )}
+                <button className='buttonUsersLoader' onClick={loadUsers}>Carga usuarios</button>
+                <div className='usersContainer'>
+                    {users.map(
+                        (user) => <ProfileCard key={user._id} user={user} editable="false" />
+                    )}
+                </div>
             </div>
         </>
     );
