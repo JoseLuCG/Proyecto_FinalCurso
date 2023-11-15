@@ -11,14 +11,22 @@
     font-size: 24px;
     cursor: pointer;
 }
-.menuList {
+/* ---------- Menu List CSS ----------*/
+.menuList, .menuList:disabled {
     position: absolute;
     top: 50px;
-    right: ({isOpen})=>(isOpen ? '0' : '-100%');
-    transition: all 0.3s ease-in-out;
-    background-color: #333;
+    background-color: #b36b6b;
     width: 200px;
 }
+.menuList:hidden{
+    left: -100%;
+    background-color: black;
+}
+.menuList{
+    left: 0;
+    background-color: aquamarine;
+}
+/*---------- Menu Item ----------*/
 .menuItem{
     list-style: none;
     margin: 10px 0;
