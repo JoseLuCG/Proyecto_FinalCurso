@@ -23,3 +23,4 @@ function SliderMenu () {
     );
 }
 export default SliderMenu;
+//https://voskan.host/2023/03/31/how-to-build-a-slider-menu-with-react-js/
