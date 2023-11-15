@@ -1,0 +1,25 @@
+.wrapperS {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+}
+.menuButton {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+}
+.menuList {
+    position: absolute;
+    top: 50px;
+    right: ({isOpen})=>(isOpen ? '0' : '-100%');
+    transition: all 0.3s ease-in-out;
+    background-color: #333;
+    width: 200px;
+}
+.menuItem{
+    list-style: none;
+    margin: 10px 0;
+}
