@@ -13,9 +13,9 @@ function SliderMenu () {
     return(
         <div className='wrapper'>
             <button className='menuButton' onClick={handlerMenuState}>
-               o
+               Menu
             </button>
-            <ul className='menuList' deploy={deploy}>
+            <ul className='menuList' hidden={deploy && "hover"}>
                 <li className='menuItem'>Opciones</li>
                 <li className='menuItem'>Perfil</li>
             </ul>
