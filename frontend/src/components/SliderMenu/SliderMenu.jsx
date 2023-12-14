@@ -16,8 +16,12 @@ function SliderMenu () {
                Menu
             </button>
             <ul className='menuList' hidden={deploy && "hidden"}>
-                <li className='menuItem'>Opciones</li>
-                <li className='menuItem'>Perfil</li>
+                <li className='menuItem'>
+                    <button>Opciones</button>
+                </li>
+                <li className='menuItem'>
+                    <button>Perfil</button>
+                </li>
             </ul>
         </div>
     );
