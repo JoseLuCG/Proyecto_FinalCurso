@@ -1,4 +1,5 @@
 import { mySqlConn } from "../connection/connection.mjs";
+import { insertInterests } from "../tools/apiTools.mjs";
 
 function singUpUser(req, res, next) {
     const { nameProfile,
@@ -17,6 +18,7 @@ function singUpUser(req, res, next) {
             console.log(err);
         } else {
             console.log("Correcto");
+            insertInterests(interest);
             res.send();
             next();
         }
