@@ -11,14 +11,18 @@ function singUpUser(req, res, next) {
         interest
     } = req.body;
     let sql = `CALL insertUser("${nameProfile}", "${nameUser}", "${password}", "${location}", ${age}, "${description}", "${email}")`;
+
     mySqlConn.query(sql, function (err) {
-      if (err) {
-        console.log(err);
-    } else {
-        console.log("Correcto");
-        res.send();
-        next();
-    }});
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Correcto");
+            res.send();
+            next();
+        }
+    });
+
+
 }
 
 function logingUserControler (req, res) {
