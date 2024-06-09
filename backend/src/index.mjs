@@ -1,5 +1,5 @@
 import express from "express";
-import { singUpUser } from "./controlers/controlersMySql.mjs";
+import { singUpUser, logingUserControler } from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv"
 import { PORT } from "./models/defines.mjs";
 
@@ -17,7 +17,7 @@ const jsonParser = express.json();
 
 try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}))
-    app.post("/singup/",jsonParser, singUpUser);
+    app.post("/singup/",jsonParser, singUpUser, logingUserControler);
     //app.post("/login/", jsonParser, loginUSerControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
