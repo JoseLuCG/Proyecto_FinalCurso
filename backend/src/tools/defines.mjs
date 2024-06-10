@@ -1,0 +1,1 @@
+export const sqlIDReturn = 'SELECT LAST_INSERT_ID() AS idUser;';
