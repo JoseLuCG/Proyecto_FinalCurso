@@ -15,8 +15,9 @@ CREATE TABLE IF NOT EXISTS users (
 );
     
 CREATE TABLE IF NOT EXISTS interests (
-	idInterest INTEGER PRIMARY KEY,
-	description TEXT NOT NULL
+	idInterest INTEGER NOT NULL AUTO_INCREMENT,
+	description TEXT NOT NULL,
+    PRIMARY KEY (idInterest)
 );
     
 CREATE TABLE IF NOT EXISTS user_interests (

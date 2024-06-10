@@ -21,3 +21,37 @@ BEGIN
 			VALUES (p_profileName, p_userName, p_password, p_location, p_age, p_description, p_email);
 	COMMIT;
 END; $$
+
+/* Procedure that insert a INTEREST in the database: */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertInterest; $$
+CREATE PROCEDURE insertInterest (p_description VARCHAR(1000))
+BEGIN
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SHOW ERRORS;
+        ROLLBACK;
+	END;
+
+	START TRANSACTION;
+		INSERT INTO interests (description)
+			VALUES (p_description);
+	COMMIT;
+END; $$
+
+/* Procedure that insert a INTEREST in the table interest_users database: */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertInterest_user; $$
+CREATE PROCEDURE insertInterest_user ( p_idUser INT, p_idInterest INT)
+BEGIN
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SHOW ERRORS;
+        ROLLBACK;
+	END;
+
+	START TRANSACTION;
+		INSERT INTO user_interests (idUser, idInterest)
+			VALUES (p_idUser, p_idInterest);
+	COMMIT;
+END; $$
