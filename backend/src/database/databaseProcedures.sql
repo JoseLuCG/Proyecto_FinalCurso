@@ -25,8 +25,9 @@ END; $$
 /* Procedure that insert a INTEREST in the database: */
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insertInterest; $$
-CREATE PROCEDURE insertInterest (p_description VARCHAR(1000))
+CREATE PROCEDURE insertInterest (p_description VARCHAR(1000), p_idUser INT)
 BEGIN
+	DECLARE v_idUser INT;
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SHOW ERRORS;
@@ -36,6 +37,12 @@ BEGIN
 	START TRANSACTION;
 		INSERT INTO interests (description)
 			VALUES (p_description);
+            
+		SET v_idUser = (SELECT LAST_INSERT_ID());
+        
+        INSERT INTO user_interests(idUser, idinterest)
+			VALUES(v_idUser,p_idUser);
+            
 	COMMIT;
 END; $$
 
