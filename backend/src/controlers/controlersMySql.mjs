@@ -90,7 +90,6 @@ function getUsersControler (req, res) {
                 console.error(err);
                 res.sendStatus(500);
             } else {
-                //res.jsons(result);
                 res.json(result)
             }
         })
