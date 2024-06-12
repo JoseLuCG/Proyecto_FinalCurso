@@ -17,14 +17,14 @@ CREATE TABLE IF NOT EXISTS users (
 );
     
 CREATE TABLE IF NOT EXISTS interests (
-	description VARCHAR(20) NOT NULL,
-    PRIMARY KEY (description)
+	nameInterest VARCHAR(20) NOT NULL,
+    PRIMARY KEY (nameInterest)
 );
     
 CREATE TABLE IF NOT EXISTS user_interests (
 	idUser INTEGER NOT NULL,
-    description VARCHAR(20) NOT NULL,
-    PRIMARY KEY (idUser, description)
+    nameInterest VARCHAR(20) NOT NULL,
+    PRIMARY KEY (idUser, nameInterest)
 );
 
 CREATE TABLE IF NOT  EXISTS normalized_interests(
