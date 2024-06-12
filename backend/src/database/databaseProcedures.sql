@@ -46,19 +46,18 @@ BEGIN
 	COMMIT;
 END; $$
 
-/* Procedure that insert a INTEREST in the table interest_users database: */
+/* Function that log a user in the app. Returns the user id. */
 DELIMITER $$
-DROP PROCEDURE IF EXISTS insertInterest_user; $$
-CREATE PROCEDURE insertInterest_user ( p_idUser INT, p_idInterest INT)
+DROP FUNCTION IF EXISTS logUser; $$
+CREATE FUNCTION logUserEmail ( p_email VARCHAR(50), password VARCHAR(50)) RETURNS INT
 BEGIN
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION
-	BEGIN
-		SHOW ERRORS;
-        ROLLBACK;
-	END;
-
-	START TRANSACTION;
-		INSERT INTO user_interests (idUser, idInterest)
-			VALUES (p_idUser, p_idInterest);
-	COMMIT;
+	 DECLARE v_idUser INT default 0;
+    SELECT id 
+        INTO v_idUser
+        FROM Users
+        WHERE passwd = p_password
+        and phoneNumber = p_phoneNumber;
+    RETURN (v_idUser);
 END; $$
+
+
