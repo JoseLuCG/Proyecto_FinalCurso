@@ -35,10 +35,10 @@ BEGIN
 	END;
 
 	START TRANSACTION;
-		INSERT INTO interests (description)
+		INSERT INTO interests (nameInterest)
 			VALUES (p_description);
         
-        INSERT INTO user_interests(idUser, description)
+        INSERT INTO user_interests(idUser, nameInterest)
 			VALUES(p_idUser, p_description);
             
 	COMMIT;
@@ -59,4 +59,12 @@ BEGIN
     RETURN (v_idUser);
 END; $$
 */
+
+-- TRIGGERS
+DELIMITER $$
+CREATE TRIGGER toUpperCaseNames BEFORE INSERT ON interests FOR EACH ROW
+BEGIN
+	SET NEW.nameInterest = UPPER(NEW.nameInterest);
+END; $$
+
 
