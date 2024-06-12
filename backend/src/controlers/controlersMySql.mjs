@@ -35,7 +35,7 @@ function singUpUser(req, res, next) {
     });
 }
 
-function logingUserControler (req, res) {
+function logingUserControlerFirstEntry (req, res) {
     const { nameProfile,
         nameUser,
         password,
@@ -45,14 +45,45 @@ function logingUserControler (req, res) {
         email,
         interest
     } = req.body;
+    let sql = `SELECT id FROM users WHERE password = "${password}" AND (nameProfile = "${nameProfile}" OR email = "${email}");`;
 
-    console.log();
-    console.log("================================================================================================");
-    console.log("El usuario introducido en el logingUserControler es: " + nameProfile, nameUser, password, location, age, description, email, interest);
-    console.log("================================================================================================");
+    mySqlConn.query(sql, (error, result) => {
+        if (error) {
+            console.error(error);
+        } else {
+            let data = result[0].id;
+            console.log(data);
+            res.json(data);
+        }
+    });
 } 
+
+function logingUserControler(req, res) {
+    try {
+        const {userData,password} = req.body;
+
+        mySqlConn.query(`
+            SELECT * FROM users
+                WHERE password = "${password}" 
+                AND (nameProfile = "${userData}" 
+                OR email = "${userData}")`,
+            (err,result)=>{
+            if (err){
+                console.error(err);
+                res.sendStatus(201);
+            } else {
+                let data = result[0];
+                res.json(data);
+            }
+        });
+    } catch(err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
 
 export {
     singUpUser,
+    logingUserControlerFirstEntry,
     logingUserControler
 };
