@@ -11,19 +11,20 @@ CREATE TABLE IF NOT EXISTS users (
 	age INTEGER NOT NULL,
 	description VARCHAR(1000),
 	email VARCHAR(50) NOT NULL,
+    UNIQUE (nameProfile),
+    UNIQUE (email),
     CONSTRAINT id_user PRIMARY KEY (id)
 );
     
 CREATE TABLE IF NOT EXISTS interests (
-	idInterest INTEGER NOT NULL AUTO_INCREMENT,
-	description TEXT NOT NULL,
-    PRIMARY KEY (idInterest)
+	description VARCHAR(20) NOT NULL,
+    PRIMARY KEY (description)
 );
     
 CREATE TABLE IF NOT EXISTS user_interests (
 	idUser INTEGER NOT NULL,
-    idInterest INTEGER NOT NULL,
-    PRIMARY KEY (idUser, idInterest)
+    description VARCHAR(20) NOT NULL,
+    PRIMARY KEY (idUser, description)
 );
 
 CREATE TABLE IF NOT  EXISTS normalized_interests(

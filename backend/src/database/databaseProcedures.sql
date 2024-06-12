@@ -1,3 +1,4 @@
+SET GLOBAL log_bin_trust_function_creators = 1;
 /* Procedure that insert a user in the database: */
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insertUser; $$
@@ -25,9 +26,8 @@ END; $$
 /* Procedure that insert a INTEREST in the database: */
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insertInterest; $$
-CREATE PROCEDURE insertInterest (p_description VARCHAR(1000), p_idUser INT)
+CREATE PROCEDURE insertInterest (p_description VARCHAR(20), p_idUser INT)
 BEGIN
-	DECLARE v_idUser INT;
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SHOW ERRORS;
@@ -37,16 +37,15 @@ BEGIN
 	START TRANSACTION;
 		INSERT INTO interests (description)
 			VALUES (p_description);
-            
-		SET v_idUser = (SELECT LAST_INSERT_ID());
         
-        INSERT INTO user_interests(idUser, idinterest)
-			VALUES(v_idUser,p_idUser);
+        INSERT INTO user_interests(idUser, description)
+			VALUES(p_idUser, p_description);
             
 	COMMIT;
 END; $$
 
 /* Function that log a user in the app. Returns the user id. */
+/*
 DELIMITER $$
 DROP FUNCTION IF EXISTS logUser; $$
 CREATE FUNCTION logUserEmail ( p_email VARCHAR(50), password VARCHAR(50)) RETURNS INT
@@ -59,5 +58,5 @@ BEGIN
         and phoneNumber = p_phoneNumber;
     RETURN (v_idUser);
 END; $$
-
+*/
 
