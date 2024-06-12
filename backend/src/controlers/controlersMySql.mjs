@@ -82,8 +82,13 @@ function logingUserControler(req, res) {
     }
 }
 
+function getUsersControler (req, res) {
+
+}
+
 export {
     singUpUser,
     logingUserControlerFirstEntry,
-    logingUserControler
+    logingUserControler,
+    getUsersControler
 };
