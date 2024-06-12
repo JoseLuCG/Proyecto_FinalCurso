@@ -17,7 +17,7 @@ const jsonParser = express.json();
 
 try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}))
-    app.post("/singup/",jsonParser, singUpUser, logingUserControlerFirstEntry);
+    app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
     app.post("/login/", jsonParser, logingUserControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
