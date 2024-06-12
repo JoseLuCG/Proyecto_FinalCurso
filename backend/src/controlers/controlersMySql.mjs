@@ -83,7 +83,21 @@ function logingUserControler(req, res) {
 }
 
 function getUsersControler (req, res) {
-
+    try{
+        const sql = `SELECT * FROM users`;
+        mySqlConn.query(sql, (err,result)=>{
+            if (err){
+                console.error(err);
+                res.sendStatus(500);
+            } else {
+                //res.jsons(result);
+                res.json(result)
+            }
+        })
+    }catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
 }
 
 export {
