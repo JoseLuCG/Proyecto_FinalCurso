@@ -1,5 +1,5 @@
 import express from "express";
-import { singUpUser, logingUserControler, logingUserControlerFirstEntry } from "./controlers/controlersMySql.mjs";
+import { singUpUser, logingUserControler, logingUserControlerFirstEntry, getUsersControler } from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv"
 import { PORT } from "./models/defines.mjs";
 
@@ -13,7 +13,7 @@ if ( process.env.NODE_ENV != "production" ) {
 const app = express();
 const jsonParser = express.json();
 
-// ---------- Endpoints of the API with sqlite3: ----------
+// ---------- Endpoints of the API with MySQL: ----------
 
 try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}))
@@ -21,7 +21,7 @@ try{
     app.post("/login/", jsonParser, logingUserControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
-    //app.get("/users/", getUsersControler);
+    app.get("/users/", getUsersControler);
     
     //----------Listen the port----------
     app.listen( /*process.env.*/PORT, ()=> {
