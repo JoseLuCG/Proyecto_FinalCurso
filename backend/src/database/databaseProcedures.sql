@@ -68,3 +68,8 @@ BEGIN
 END; $$
 
 
+DELIMITER $$
+CREATE TRIGGER toUpperCaseNamesUserInterest BEFORE INSERT ON user_interests FOR EACH ROW
+BEGIN
+	SET NEW.nameInterest = UPPER(NEW.nameInterest);
+END; $$
