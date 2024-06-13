@@ -60,7 +60,7 @@ BEGIN
 END; $$
 */
 
--- TRIGGERS
+-- ========== TRIGGERS ==========
 DELIMITER $$
 CREATE TRIGGER toUpperCaseNames BEFORE INSERT ON interests FOR EACH ROW
 BEGIN
@@ -72,4 +72,13 @@ DELIMITER $$
 CREATE TRIGGER toUpperCaseNamesUserInterest BEFORE INSERT ON user_interests FOR EACH ROW
 BEGIN
 	SET NEW.nameInterest = UPPER(NEW.nameInterest);
+END; $$
+
+DELIMITER $$ 
+DROP TRIGGER IF EXISTS checkInterests; $$
+CREATE TRIGGER checkInterests BEFORE INSERT ON user_interests FOR EACH ROW 
+BEGIN
+	IF (NEW.nameInterest IN (SELECT nameInterest FROM user_interests)) THEN
+        set NEW.nameInterest = NEW.nameInterest AND NEW.idUser = NEW.idUser;
+    END IF;
 END; $$
