@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS interests (
 CREATE TABLE IF NOT EXISTS user_interests (
 	idUser INTEGER NOT NULL,
     nameInterest VARCHAR(20) NOT NULL,
+    CONSTRAINT idUser FOREIGN KEY (idUSer) REFERENCES users (id),
+    CONSTRAINT nameInterest FOREIGN KEY (nameInterest) REFERENCES interests(nameInterest),
     PRIMARY KEY (idUser, nameInterest)
 );
 
