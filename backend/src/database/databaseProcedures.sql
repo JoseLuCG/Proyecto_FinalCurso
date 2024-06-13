@@ -36,10 +36,10 @@ BEGIN
 
 	START TRANSACTION;
 		INSERT INTO interests (nameInterest)
-			VALUES (p_description);
+			VALUES (UPPER(p_description));
         
         INSERT INTO user_interests(idUser, nameInterest)
-			VALUES(p_idUser, p_description);
+			VALUES(p_idUser, UPPER(p_description));
             
 	COMMIT;
 END; $$
@@ -61,24 +61,3 @@ END; $$
 */
 
 -- ========== TRIGGERS ==========
-DELIMITER $$
-CREATE TRIGGER toUpperCaseNames BEFORE INSERT ON interests FOR EACH ROW
-BEGIN
-	SET NEW.nameInterest = UPPER(NEW.nameInterest);
-END; $$
-
-
-DELIMITER $$
-CREATE TRIGGER toUpperCaseNamesUserInterest BEFORE INSERT ON user_interests FOR EACH ROW
-BEGIN
-	SET NEW.nameInterest = UPPER(NEW.nameInterest);
-END; $$
-
-DELIMITER $$ 
-DROP TRIGGER IF EXISTS checkInterests; $$
-CREATE TRIGGER checkInterests BEFORE INSERT ON user_interests FOR EACH ROW 
-BEGIN
-	IF (NEW.nameInterest IN (SELECT nameInterest FROM user_interests)) THEN
-        set NEW.nameInterest = NEW.nameInterest AND NEW.idUser = NEW.idUser;
-    END IF;
-END; $$
