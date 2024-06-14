@@ -28,6 +28,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS insertInterest; $$
 CREATE PROCEDURE insertInterest (p_description VARCHAR(20), p_idUser INT)
 BEGIN
+	DECLARE interestExists INT DEFAULT 0;
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SHOW ERRORS;
@@ -35,11 +36,18 @@ BEGIN
 	END;
 
 	START TRANSACTION;
-		INSERT INTO interests (nameInterest)
-			VALUES (UPPER(p_description));
+		SELECT COUNT(*)
+			INTO interestExists
+			FROM interests
+			WHERE nameInterest = UPPER(p_description);
         
-        INSERT INTO user_interests(idUser, nameInterest)
-			VALUES(p_idUser, UPPER(p_description));
+        IF (interestExists = 0) THEN
+            INSERT INTO interests (nameInterest)
+            VALUES (UPPER(p_description));
+        END IF;
+
+        INSERT INTO user_interests (idUser, nameInterest)
+        VALUES (p_idUser, UPPER(p_description));
             
 	COMMIT;
 END; $$
