@@ -5,7 +5,7 @@ INSERT INTO interests(description)
 CALL insertInterest("Dormir");
 SELECT LAST_INSERT_ID();
 
-CALL insertInterest_user(2, 3);
+CALL insertInterest('GTG', 2);
 
 INSERT INTO user_interests(idUser, nameInterest)
 	VALUES( 2,'COMER');
