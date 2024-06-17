@@ -63,6 +63,17 @@ input::-webkit-outer-spin-button {
     color: var(--color-inputStyle);
     text-align: center;
 }
+
+/* ---------- Interest Button ---------- */
+.deployInterests {
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
+    border-radius: 5px;
+    height: 20px;
+    margin: 2px;
+    width: 68%;    
+}
+
 /* ---------- Textarea and mesage Button ----------*/
 .textareaDescription {
     margin:10px;
