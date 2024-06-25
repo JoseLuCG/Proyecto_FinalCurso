@@ -19,6 +19,7 @@ function ProfileCard ({user, editable}) {
         const [ description, setDescription ] = useState("");
         const [ email, setEmail ] = useState("");
         const [ photo, setPhoto ] = useState("");
+        const [ showInterests, setShowInterests] = useState(true);
         
         //----------Handlers:----------
         const nameProfileChangeHandler = changeValueFactory(setNameProfile);
@@ -41,18 +42,33 @@ function ProfileCard ({user, editable}) {
             newStore.nameUser = nameUser;
             newStore.password = password;
             newStore.location = location;
-            newStore.interest = interest.split(",").map(
-                tag => tag.trim(" ").toLowerCase()
-            );
             newStore.age = parseInt(age, 10);
             newStore.description = description;
             newStore.email = email;
             newStore.photo = photo;
             const userID = await postUser(newStore);
             newStore.id = userID.insertedId;
+
+            newStore.interest = interest.split(",").map(
+                tag => tag.trim(" ").toLowerCase()
+            );
+            /*
+            if (editable == false) {
+                setInterest(user.interest);
+            } else {
+                newStore.interest = interest.split(",").map(
+                    tag => tag.trim(" ").toLowerCase()
+                );
+            }*/
+
             setStore(newStore);
         }
 
+        async function loadInterests () {
+            if (showInterests) setShowInterests(false);    
+            else setShowInterests(true);
+            console.log(user.interest);
+        }
 
     return (
         <div className={styles.profileContainer}>
@@ -65,7 +81,19 @@ function ProfileCard ({user, editable}) {
                 <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className={styles.inputData} type="text" placeholder="Nombre" />
                 <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
                 <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
-                <button className={styles.deployInterests}>display interests</button>
+                <button className={styles.deployInterestsButton} onClick={loadInterests}>display interests</button>
+                <div className={styles.interestsContainer} hidden={showInterests && "hidden"}>
+                    <ul>
+                        <li>Hola</li>
+                        {/*
+                            interest.map(
+                                (i) => {
+                                    <li>{i}</li>
+                                }
+                            )
+                            */}
+                    </ul>
+                </div>
             </div>
             <div className={styles.textareaDescription}>
             <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>

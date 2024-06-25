@@ -65,13 +65,28 @@ input::-webkit-outer-spin-button {
 }
 
 /* ---------- Interest Button ---------- */
-.deployInterests {
+.deployInterestsButton {
     background-color: var(--background-inputStyle);
     color: var(--color-inputStyle);
     border-radius: 5px;
     height: 20px;
     margin: 2px;
     width: 68%;    
+}
+
+/* ---------- Interests Container ---------- */
+.interestsContainer {
+    width: 68%;
+    color: red;
+}
+
+.interestsContainer ul {
+    list-style: none;
+    display: flex;
+}
+
+.interestsContainer ul li {
+    margin-right: 10px;
 }
 
 /* ---------- Textarea and mesage Button ----------*/

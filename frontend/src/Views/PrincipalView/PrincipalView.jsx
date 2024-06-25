@@ -14,6 +14,22 @@ function PrincipalView () {
     async function loadUsers () {
         const a = await getUsers(URL);
         setUSers(a);
+        setInterest();
+        console.log(users);
+    }
+
+    function setInterest() {
+        const usersWithInterest = [];
+        
+        usersWithInterest = users.map(
+            (u) => {
+                Object.defineProperty(u, "interest", {
+                    value: ["Hola", "Mundo"]
+                });
+            }
+        )
+
+        setUSers(usersWithInterest);
     }
 
     return(
