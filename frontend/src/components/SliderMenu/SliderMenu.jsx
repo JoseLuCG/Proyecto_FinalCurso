@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './SliderMenu.css';
 import settings from '../../assets/icons/settings.png';
 import CircleButton from '../CircleButton/CircleButton';
+import op_icon from '../../assets/icons/options_icon.jpg';
 
 
 function SliderMenu () {
@@ -16,7 +17,7 @@ function SliderMenu () {
     return(
         <div className='wrapper'>
             <button className='menuButton' onClick={handlerMenuState}>
-               Menu
+               <img className='im-menu' src={op_icon} alt="" />
             </button>
             <ul className='menuList' hidden={deploy && "hidden"}>
                 <li className='menuItem'>
