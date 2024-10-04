@@ -4,13 +4,20 @@
     align-items: center;
     height: 50px;
 }
+
+
+
 .menuButton {
     background-color: transparent;
     border: none;
-    color: #000;
-    font-size: 24px;
     cursor: pointer;
+    border-radius: 50%;
+    height: 3em;
+    width: 5em;
 }
+
+
+
 /* ---------- Menu List CSS ----------*/
 .menuList, .menuList:disabled {
     position: absolute;
