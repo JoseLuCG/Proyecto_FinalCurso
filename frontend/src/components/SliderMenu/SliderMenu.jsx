@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './SliderMenu.css';
+import settings from '../../assets/icons/settings.png';
+import CircleButton from '../CircleButton/CircleButton';
+
 
 function SliderMenu () {
     // ---------- States ----------
@@ -20,7 +23,8 @@ function SliderMenu () {
                     <button>Opciones</button>
                 </li>
                 <li className='menuItem'>
-                    <button>Perfil</button>
+                    <CircleButton imgSrc={settings} path={'/edit-user/'}/>
+                    Perfil
                 </li>
             </ul>
         </div>
