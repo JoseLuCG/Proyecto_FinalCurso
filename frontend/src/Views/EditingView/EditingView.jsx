@@ -1,7 +1,7 @@
 import CircleButton from '../../components/CircleButton/CircleButton';
 import './EditingView.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
-import back from '../../iconos_app/back_icon.jpg';
+import back from './../../assets/icons//back_icon.jpg';
 import { useContext } from "react";
 import { Context } from '../../services/SharedStorage';
 

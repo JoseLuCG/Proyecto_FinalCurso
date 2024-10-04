@@ -2,7 +2,7 @@ import CircleButton from '../../components/CircleButton/CircleButton';
 import './RegistrerView.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
 import { Link } from 'react-router-dom';
-import back from '../../iconos_app/back_icon.jpg';
+import back from '../../assets/icons/back_icon.jpg';
 
 function RegistrerView() {
     //----------States:----------
