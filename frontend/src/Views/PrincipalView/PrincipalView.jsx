@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { getUsers } from '../../tools/controlers.mjs';
 import { URL } from '../../tools/defines.mjs';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
-import op_icon from '../../iconos_app/options_icon.jpg';
-import fil_icon from '../../iconos_app/filtrer_icon.jpg';
+import op_icon from '../../assets/icons/options_icon.jpg';
+import fil_icon from '../../assets/icons/filtrer_icon.jpg';
 
 function PrincipalView () {
     const [ users, setUSers ] = useState([]);

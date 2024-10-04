@@ -1,6 +1,6 @@
 import CircleButton from '../CircleButton/CircleButton';
 import './OptionsContainer.css';
-import back from '../../iconos_app/back_icon.jpg';
+import back from '../../assets/icons/back_icon.jpg';
 import { Link } from 'react-router-dom';
 
 
