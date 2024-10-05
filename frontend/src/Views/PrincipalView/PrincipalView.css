@@ -8,11 +8,6 @@ main.mn-bd {
     align-items: center;
 }
 
-/* ---------- Header-Main CSS ---------- */
-header.hd {
-    width: 100%;
-}
-
 /* ---------- Button-Main CSS ---------- */
 .buttonUsersLoader {
     margin: 5px;
