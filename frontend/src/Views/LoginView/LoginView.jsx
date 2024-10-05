@@ -5,7 +5,7 @@ function LoginView() {
  
     //----------Handlers:----------
     return (
-        <main>
+        <main className='mn-container'>
             <Login/>
         </main>
     );
