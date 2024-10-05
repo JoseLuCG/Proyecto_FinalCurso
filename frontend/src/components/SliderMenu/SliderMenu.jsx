@@ -17,7 +17,7 @@ function SliderMenu () {
     return(
         <div className='wrapper'>
             <button className='menuButton' onClick={handlerMenuState}>
-               <img className='im-menu' src={op_icon} alt="" />
+               
             </button>
             <ul className='menuList' hidden={deploy && "hidden"}>
                 <li className='menuItem'>
