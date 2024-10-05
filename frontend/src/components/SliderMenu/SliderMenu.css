@@ -4,16 +4,14 @@
     align-items: center;
     height: 50px;
 }
-
-
-
+/* ---------- Menu Button ---------- */
 .menuButton {
-    background-color: transparent;
-    border: none;
+    background: url("./../../assets/icons/options_icon.jpg") center;
+    background-size: cover;
     cursor: pointer;
     border-radius: 50%;
-    height: 3em;
-    width: 5em;
+    height: 3rem;
+    width: 3rem;
 }
 
 
