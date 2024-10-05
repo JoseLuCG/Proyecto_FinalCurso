@@ -1,6 +1,6 @@
 import './Header.css';
 
-function Hedaer() {
+function Header() {
     //----------States:----------
  
     //----------Handlers:----------
@@ -10,4 +10,4 @@ function Hedaer() {
         </header>
     );
 }
-export default Hedaer;
+export default Header;
