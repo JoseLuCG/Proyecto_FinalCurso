@@ -27,7 +27,7 @@ function StartView () {
     }
     
     return (
-        <div className='logingContainer'>
+        <main className='log-cont'>
             <img className='LogoApp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtepaT1fXQVI9_pyOM34JaAx7aASFWzfmyQg&usqp=CAU" alt="Logo imagen" />
             <div className='imputContainer'>
             <input className='dataImput' onChange={userDataChangeHandler} type="text" placeholder='Nombre de usuario o email' />
@@ -41,7 +41,7 @@ function StartView () {
                     <button className='logButton' >Registrarse</button>
                 </Link>
             </div>
-        </div>
+        </main>
     );
 }
 export default StartView;
