@@ -7,7 +7,7 @@ import op_icon from '../../assets/icons/options_icon.jpg';
 
 function SliderMenu () {
     // ---------- States ----------
-    const [deploy, setDeploy] = useState(false);
+    const [deploy, setDeploy] = useState(true);
     
     // ---------- Handlers ----------
     function handlerMenuState(){
