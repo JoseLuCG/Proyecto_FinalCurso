@@ -37,9 +37,7 @@ function PrincipalView () {
         <>
             <Header></Header>
             <main className="mn-bd">
-                <header className='hd'>
-                    <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
-                </header>
+                <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
                 <button className='buttonUsersLoader' onClick={loadUsers}>Carga usuarios</button>
                 <div className='usersContainer'>
                     {users.map(
