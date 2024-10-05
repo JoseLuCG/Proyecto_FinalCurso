@@ -1,4 +1,5 @@
 import './PrincipalView.css';
+import Header from '../../components/Header/Header';
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import { useState } from 'react';
 import { getUsers } from '../../tools/controlers.mjs';
@@ -34,15 +35,18 @@ function PrincipalView () {
 
     return(
         <>
-            <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
-            <div className="principalContainer">
+            <Header></Header>
+            <main className="mn-bd">
+                <header className='hd'>
+                    <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
+                </header>
                 <button className='buttonUsersLoader' onClick={loadUsers}>Carga usuarios</button>
                 <div className='usersContainer'>
                     {users.map(
                         (user) => <ProfileCard key={user._id} user={user} editable="false" />
                     )}
                 </div>
-            </div>
+            </main>
         </>
     );
 }
