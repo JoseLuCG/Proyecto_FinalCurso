@@ -1,4 +1,5 @@
-.toolBar {
+header.hd {
+    width: 100%;
     background-color: aqua;
     border-radius: 30px;
     display: flex;
