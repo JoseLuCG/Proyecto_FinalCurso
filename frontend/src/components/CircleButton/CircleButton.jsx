@@ -15,7 +15,7 @@ function CircleButton ({imgSrc, path}) {
    }
     return(
         <button id='circleButton' onClick={go}>
-            <img src={imgSrc}/>
+            <img className='cb-img' src={imgSrc}/>
         </button>
     );
 }
