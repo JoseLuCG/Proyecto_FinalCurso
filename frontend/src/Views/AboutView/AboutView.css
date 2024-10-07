@@ -1,0 +1,13 @@
+/* ---------- Main CSS ---------- */
+.mn-abt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
+aside.asd {
+    width: 30%;
+    margin: 2%;
+}
