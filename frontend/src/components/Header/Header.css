@@ -1,8 +1,65 @@
-header.h-bd {
-    background-color: #212E3F;
-}
-
-header.h-bd > h1 {
+/* ---------- MARGIN STYLE ---------- */
+header.h-bd > aside > h1, li, ul {
     padding: 0px;
     margin: 0px;
 }
+
+/* ---------- HEADER CONTAINER ---------- */
+header.h-bd {
+    background-color: #212E3F;
+    width: 100%;
+}
+
+/* ---------- Logo Container ---------- */
+.lg-ctnr {
+    float: left;
+    margin-right: 40px;
+    height: 100%;
+    width: 15%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.img-ctnr {
+    height: 100px;
+    width: 100px;
+    background: url('../../assets/logo.png') center;
+    background-size: 160px 160px;
+    border-radius: 50%;
+    border: 5px black solid;
+    
+}
+
+/* ---------- SECTION HEADER ---------- */
+section.sctn-ctnr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 150px;
+}
+
+/* ----- NAV ----- */
+/*
+nav.nv {
+    
+}
+*/
+/* ----- UL NAV ----- */
+ul.lst {
+    width: 25rem;
+    padding: 30px;
+}
+
+
+/* ----- LI UL NAV ----- */
+li.h-li {
+    display: inline;
+    margin: 2%;
+    padding: 25px;
+    list-style: none;
+}
+
+/*
+https://www.falconmasters.com/jquery/header-dinamico-html-css-javascript/
+*/
