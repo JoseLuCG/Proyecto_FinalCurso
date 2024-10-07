@@ -1,4 +1,5 @@
 import './Header.css';
+import logo from '../../assets/logo.png';
 
 function Header() {
     //----------States:----------
@@ -7,7 +8,9 @@ function Header() {
     return (
         <header className='h-bd'>
             <aside className='lg-ctnr'>
-                <img src="" alt="Logo"/>
+                <div className='img-ctnr'>
+                </div>
+                <h1 className='appname'>BLOOMLY</h1>
             </aside>
             <section className='sctn-ctnr'>
                 <nav className='nv'>

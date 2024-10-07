@@ -1,5 +1,5 @@
 /* ---------- MARGIN STYLE ---------- */
-header.h-bd > h1, li, ul {
+header.h-bd > aside > h1, li, ul {
     padding: 0px;
     margin: 0px;
 }
@@ -10,11 +10,24 @@ header.h-bd {
     width: 100%;
 }
 
+/* ---------- Logo Container ---------- */
 .lg-ctnr {
     float: left;
     margin-right: 40px;
     height: 100%;
     width: 15%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.img-ctnr {
+    height: 100px;
+    width: 100px;
+    background: url('../../assets/logo.png') center;
+    background-size: 160px 160px;
+    border-radius: 50%;
+    border: 5px black solid;
+    
 }
 
 /* ---------- SECTION HEADER ---------- */
@@ -23,6 +36,7 @@ section.sctn-ctnr {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    height: 150px;
 }
 
 /* ----- NAV ----- */
