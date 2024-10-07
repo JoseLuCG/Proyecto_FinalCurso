@@ -1,3 +1,8 @@
+/* ---------- VARIABLES ---------- */
+:root {
+    --hdr-bkgrnd-color: #212E3F;
+}
+
 /* ---------- MARGIN STYLE ---------- */
 header.h-bd > aside > h1, li, ul {
     padding: 0px;
@@ -6,7 +11,7 @@ header.h-bd > aside > h1, li, ul {
 
 /* ---------- HEADER CONTAINER ---------- */
 header.h-bd {
-    background-color: #212E3F;
+    background-color: var(--hdr-bkgrnd-color);
     width: 100%;
 }
 
@@ -47,7 +52,7 @@ nav.nv {
 */
 /* ----- UL NAV ----- */
 ul.lst {
-    width: 25rem;
+    width: 26rem;
     padding: 30px;
 }
 
@@ -58,6 +63,9 @@ li.h-li {
     margin: 2%;
     padding: 25px;
     list-style: none;
+    background-color: #142234;
+    color: #9aa2ac;
+    border-radius: 10%;
 }
 
 /*

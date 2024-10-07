@@ -15,9 +15,9 @@ function Header() {
             <section className='sctn-ctnr'>
                 <nav className='nv'>
                     <ul className='lst'>
-                        <li className='h-li'>opcion 1</li>
-                        <li className='h-li'>opcion 2</li>
-                        <li className='h-li'>opcion 3</li>
+                        <li className='h-li'>OPCION 1</li>
+                        <li className='h-li'>OPCION 2</li>
+                        <li className='h-li'>OPCION 3</li>
                     </ul>
                 </nav>
                 <div>
