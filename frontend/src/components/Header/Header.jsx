@@ -21,13 +21,19 @@ function Header() {
                                 SOBRE BLOOMLY
                             </Link>
                         </li>
-                        <li className='h-li'>SUGERENCIAS</li>
-                        <li className='h-li'>OPCION 3</li>
+                        <li className='h-li'>
+                            <Link to={"/suggestions/"} className='li-link'>
+                                SUGERENCIAS
+                            </Link>
+                        </li>
+                        <li className='h-li'>NORMAS</li>
                     </ul>
                 </nav>
                 <div>
-                    <button>Iniciar sesión</button>
-                    <button>Registrarse</button>
+                    <div className='circle-logButton'>
+                        <button className='crcl-l'>I S</button>
+                        <button className='crcl-r'>R T</button>
+                    </div>
                 </div>
             </section>
         </header>

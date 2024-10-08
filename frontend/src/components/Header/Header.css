@@ -80,6 +80,18 @@ li.h-li {
     background-color: #374556;
 }
 
+
+/* ---------- Circular Buttons CSS ---------- */
+button.crcl-l {
+    border-radius: 50% 0% 0% 50%;
+    padding: 20px;
+}
+
+button.crcl-r {
+    border-radius: 0% 50% 50% 0%;
+    padding: 20px;
+}
+
 /*
 https://www.falconmasters.com/jquery/header-dinamico-html-css-javascript/
 */
