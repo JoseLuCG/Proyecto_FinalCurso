@@ -35,7 +35,11 @@ function Header() {
                 </nav>
                 <div>
                     <div className='circle-logButton'>
-                        <button className='crcl-l'>I S</button>
+                        <button className='crcl-l'>
+                            <Link to={"/"} className='li-link'>
+                                I S
+                            </Link>
+                        </button>
                         <button className='crcl-r'>R T</button>
                     </div>
                 </div>

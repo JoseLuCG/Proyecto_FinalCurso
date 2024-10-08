@@ -85,7 +85,15 @@ li.h-li {
 button.crcl-l {
     border-radius: 50% 0% 0% 50%;
     padding: 20px;
+    background-color: #142234;
 }
+
+button.crcl-l:hover {
+    text-decoration: none;
+    color: #2979db;
+    background-color: #374556;
+}
+
 
 button.crcl-r {
     border-radius: 0% 50% 50% 0%;
