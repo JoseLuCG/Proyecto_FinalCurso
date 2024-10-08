@@ -1,5 +1,6 @@
 import './Header.css';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 function Header() {
     //----------States:----------
@@ -15,7 +16,11 @@ function Header() {
             <section className='sctn-ctnr'>
                 <nav className='nv'>
                     <ul className='lst'>
-                        <li className='h-li'>SOBRE BLOOMLY</li>
+                        <li className='h-li'>
+                            <Link to={"/about/"} className='li-link'>
+                                SOBRE BLOOMLY
+                            </Link>
+                        </li>
                         <li className='h-li'>OPCION 2</li>
                         <li className='h-li'>OPCION 3</li>
                     </ul>

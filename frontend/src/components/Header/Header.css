@@ -68,6 +68,12 @@ li.h-li {
     border-radius: 10%;
 }
 
+/* ---------- Link li ---------- */
+.li-link {
+    text-decoration: none;
+    color: #9aa2ac;
+}
+
 /*
 https://www.falconmasters.com/jquery/header-dinamico-html-css-javascript/
 */
