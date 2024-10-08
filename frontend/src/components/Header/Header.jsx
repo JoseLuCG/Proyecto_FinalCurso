@@ -26,7 +26,11 @@ function Header() {
                                 SUGERENCIAS
                             </Link>
                         </li>
-                        <li className='h-li'>NORMAS</li>
+                        <li className='h-li'>
+                            <Link to={"/rules-of-conduct/"} className='li-link'>
+                                NORMAS
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
                 <div>
