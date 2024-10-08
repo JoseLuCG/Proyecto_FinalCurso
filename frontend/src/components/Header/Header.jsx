@@ -15,15 +15,15 @@ function Header() {
             <section className='sctn-ctnr'>
                 <nav className='nv'>
                     <ul className='lst'>
-                        <li className='h-li'>OPCION 1</li>
+                        <li className='h-li'>SOBRE BLOOMLY</li>
                         <li className='h-li'>OPCION 2</li>
                         <li className='h-li'>OPCION 3</li>
                     </ul>
                 </nav>
                 <div>
-                        <button>Iniciar sesión</button>
-                        <button>Registrarse</button>
-                    </div>
+                    <button>Iniciar sesión</button>
+                    <button>Registrarse</button>
+                </div>
             </section>
         </header>
     );
