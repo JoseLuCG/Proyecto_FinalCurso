@@ -21,7 +21,7 @@ function Header() {
                                 SOBRE BLOOMLY
                             </Link>
                         </li>
-                        <li className='h-li'>OPCION 2</li>
+                        <li className='h-li'>SUGERENCIAS</li>
                         <li className='h-li'>OPCION 3</li>
                     </ul>
                 </nav>
