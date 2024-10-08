@@ -74,6 +74,12 @@ li.h-li {
     color: #9aa2ac;
 }
 
+.li-link:hover, li:hover {
+    text-decoration: none;
+    color: #2979db;
+    background-color: #374556;
+}
+
 /*
 https://www.falconmasters.com/jquery/header-dinamico-html-css-javascript/
 */
