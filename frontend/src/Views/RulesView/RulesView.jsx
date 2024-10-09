@@ -6,6 +6,11 @@ function RulesView() {
     return(
         <>
             <Header/>
+            <main>
+                <section>
+                   <h2>Esta es la zona de normas de la comunidad</h2>
+                </section>
+            </main>
         </>
     );
 }
