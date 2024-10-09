@@ -21,9 +21,13 @@ function StartView () {
             password,
             userData
         }
-       const response = await logingUser(user);
-       setStore(response);
-       
+
+        try {
+            const response = await logingUser(user);
+            setStore(response);
+        } catch (error) {
+            
+        }
     }
     
     return (
