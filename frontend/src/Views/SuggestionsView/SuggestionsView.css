@@ -1,0 +1,17 @@
+main.mn-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /*
+    background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
+    background-size: cover;
+    */
+}
+
+section.cont-form {
+    /*background-color: #FB8778;*/
+    background-color: rgb(251, 135, 120, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
