@@ -5,7 +5,6 @@
     flex-grow: 1;
     width: 100vw;
     height: 100vh;
-    align-items: center;
     background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
     background-size: cover;
 }
