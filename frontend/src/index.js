@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ContextProvider } from './services/SharedStorage';
+import { UsersProvider } from './services/UsersStorage'
+import { OwnUserProvider } from './services/OwnUserStorage';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <ContextProvider>
-        <App />
-      </ContextProvider>
+      <UsersProvider>
+        <OwnUserProvider>
+          <App />
+        </OwnUserProvider>
+      </UsersProvider>
     </React.StrictMode>
   </BrowserRouter>
 );

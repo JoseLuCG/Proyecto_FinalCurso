@@ -1,22 +1,22 @@
 import { useState, createContext } from "react";
 
-export const Context = createContext();
+export const OwnUser = createContext();
 
-export function ContextProvider ( {children} ) {
-    const store = useState({
+export function OwnUserProvider ( {children} ) {
+    const ownUser = useState({
         nameProfile: "",
         nameUser: "",
         password: "",
         location:"",
-        interest: [],
+        interest: [""],
         age: 0,
         description: "",
         email: "",
         photo:""
     });
     return (
-        <Context.Provider value={store}>
+        <OwnUser.Provider value={ownUser}>
             {children}
-        </Context.Provider>
+        </OwnUser.Provider>
     );
 }
