@@ -3,7 +3,8 @@ import { sqlIDReturn } from "../tools/defines.mjs";
 import { insertInterests } from "../tools/apiTools.mjs";
 
 function singUpUser(req, res, next) {
-    const { nameProfile,
+    const { 
+        nameProfile,
         nameUser,
         password,
         location,
@@ -12,25 +13,39 @@ function singUpUser(req, res, next) {
         email,
         interest
     } = req.body;
-    let sql = `CALL insertUser("${nameProfile}", "${nameUser}", "${password}", "${location}", ${age}, "${description}", "${email}")`;
+    let sql = `
+        CALL insertUser(
+        "${nameProfile}",
+        "${nameUser}",
+        "${password}",
+        "${location}", 
+         ${age}, 
+        "${description}", 
+        "${email}")
+    `;
     var registeredUserId;
 
     mySqlConn.query(sql, function (err) {
         if (err) {
             console.log(err);
+            //throw new Error("El usuario no ha sido introducido en la base de datos.");
+            
         } else {
             console.log("Correcto");
             mySqlConn.query(sqlIDReturn, (error, resultId) => {
                 if (error) {
                     console.log(error);
+                    //throw new Error("Error al insertar intereses en la base de datos.");
+                    
                 } else {
                     registeredUserId = resultId[0].idUser;
                     insertInterests(interest, registeredUserId);
-                    res.send();
-                    next();
-                    mySqlConn.end();
+                    res.json("success");
+                    //next();
+                    //mySqlConn.end();
                 }
             });
+            mySqlConn.end();
         }
     });
 }
@@ -50,6 +65,9 @@ function logingUserControlerFirstEntry (req, res) {
     mySqlConn.query(sql, (error, result) => {
         if (error) {
             console.error(error);
+            //throw new Error("No se ha encontrado el usuario");
+            console.log("Error");
+            
         } else {
             let data = result[0].id;
             console.log(data);
@@ -99,9 +117,27 @@ function getUsersControler (req, res) {
     }
 }
 
+function getInterestControler(req, res) {
+    try {
+        const sql = `SELECT * FROM user_interests`;
+        mySqlConn.query(sql, (error,result) => {
+            if (error) {
+                console.error(error);
+                throw new Error("Error al obtener los intereses.");
+            } else {
+                res.json(result);
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
+    }
+}
+
 export {
     singUpUser,
     logingUserControlerFirstEntry,
     logingUserControler,
-    getUsersControler
+    getUsersControler,
+    getInterestControler
 };
