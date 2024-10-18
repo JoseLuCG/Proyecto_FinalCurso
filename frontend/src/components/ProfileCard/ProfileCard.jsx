@@ -7,104 +7,71 @@ import styles from './ProfileCard.module.css';
 
 
 function ProfileCard ({user, editable}) {
-        //----------States:----------
-        const [ ownUser, setOwnUser ] = useContext(OwnUser);
-
-        const [ nameProfile, setNameProfile ] = useState("");
-        const [ nameUser, setNameUser ] = useState("");
-        const [ password, setPassword ] = useState("");
-        const [ location, setLocation ] = useState("");
-        const [ interest, setInterest ] = useState([]);
-        const [ age , setAge ] = useState (0);
-        const [ description, setDescription ] = useState("");
-        const [ email, setEmail ] = useState("");
-        const [ photo, setPhoto ] = useState("");
-        const [ showInterests, setShowInterests] = useState(true);
-        
-        //----------Handlers:----------
-        const nameProfileChangeHandler = changeValueFactory(setNameProfile);
-        const nameChangeHandler = changeValueFactory(setNameUser);
-        const passwordChangeHandler = changeValueFactory(setPassword);
-        const locationChangeHandler = changeValueFactory(setLocation);
-        const interestChangeHandler = changeValueFactory(setInterest);
-        const ageChangeHandler = changeValueFactory(setAge);
-        const descriptionChangeHandler = changeValueFactory(setDescription);
-        const emailChangeHandler = changeValueFactory(setEmail);
-        const photoChangeHandler = changeValueFactory(setPhoto);
+    //----------States:----------
+    const [ ownUser, setOwnUser ] = useContext(OwnUser);
+    const [ nameProfile, setNameProfile ] = useState("");
+    const [ nameUser, setNameUser ] = useState("");
+    const [ password, setPassword ] = useState("");
+    const [ location, setLocation ] = useState("");
+    const [ interest, setInterest ] = useState([]);
+    const [ age , setAge ] = useState (0);
+    const [ description, setDescription ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ photo, setPhoto ] = useState("");
+    const [ showInterests, setShowInterests] = useState(true);
     
-        //----------Functions:----------
+    //----------Handlers:----------
+    const nameProfileChangeHandler = changeValueFactory(setNameProfile);
+    const nameChangeHandler = changeValueFactory(setNameUser);
+    const passwordChangeHandler = changeValueFactory(setPassword);
+    const locationChangeHandler = changeValueFactory(setLocation);
+    const interestChangeHandler = changeValueFactory(setInterest);
+    const ageChangeHandler = changeValueFactory(setAge);
+    const descriptionChangeHandler = changeValueFactory(setDescription);
+    const emailChangeHandler = changeValueFactory(setEmail);
+    const photoChangeHandler = changeValueFactory(setPhoto);
 
-        /**
-         * Builds a user that will be introduced in the context.
-         */
-        function userbuilder() {
-            let user = {...ownUser};
-            
-            user = {
-                nameProfile : nameProfile,
-                nameUser : nameUser,
-                location : location,
-                interest : interest.split(",").map(
+    //----------Functions:----------
+    
+    /**
+     * Builds a user that will be introduced in the context.
+     */
+    function userbuilder() {
+        let user = {...ownUser};
+        
+        user = {
+            nameProfile : nameProfile,
+            nameUser : nameUser,
+            location : location,
+            interest : interest.split(",").map(
                     (tag) => {
                         return tag.trim(" ").toLowerCase();
                     }),
-                password : password,
-                age : age,
-                description : description,
-                email : email,
-                photo :  photo
-            };
-            setOwnUser(user);
-        }
-        
-        async function checkSendData() {
-            const response = await postUser(ownUser);
-            //console.log(response);
-            
-        }
-        /**
-         * This function save the data of states in the context.
-         */
-        async function dataHandler () {
-            userbuilder();
-            checkSendData();
-            /*
-            const newStore = {...ownUser};
-            newStore.nameProfile = nameProfile;
-            newStore.nameUser = nameUser;
-            newStore.password = password;
-            newStore.location = location;
-            newStore.age = parseInt(age, 10);
-            newStore.description = description;
-            newStore.email = email;
-            newStore.photo = photo;
-            const userID = await postUser(newStore);
-            newStore.id = userID.insertedId;
-            newStore.interest = interest.split(",").map(
-                (tag) => {
-                    return tag.trim(" ").toLowerCase();
-                });
-            /*
-            if (editable == false) {
-                setInterest(user.interest);
-            } else {
-                newStore.interest = interest.split(",").map(
-                    tag => tag.trim(" ").toLowerCase()
-                );
-            }*/
-            /*
-            setOwnUser(newStore);
-            */
-        }     
-        
-        async function loadInterests () {
-            if (showInterests) setShowInterests(false);    
-            else setShowInterests(true);
-        }
-        
-        console.log(user);
-        
-        
+            password : password,
+            age : age,
+            description : description,
+            email : email,
+            photo :  photo
+        };
+        setOwnUser(user);
+    }
+    
+    async function checkSendData() {
+        const response = await postUser(ownUser);
+    }
+    
+    /**
+     * This function save the data of states in the context.
+     */
+    async function dataHandler () {
+        userbuilder();
+        checkSendData();
+    }     
+    
+    async function loadInterests () {
+        if (showInterests) setShowInterests(false);    
+        else setShowInterests(true);
+    }
 
     return (
         <div className={styles.profileContainer}>
