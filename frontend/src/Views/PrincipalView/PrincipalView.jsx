@@ -17,9 +17,21 @@ function PrincipalView () {
         const backendUsers = await getUsers(URL);
         const backendInterest = await getInterests(URL);
 
+        console.log(backendInterest);
+        console.log(backendUsers);
         
-        
-        
+        for (let user of backendUsers) {
+            // For each user fetch the interesets:
+            for (let interest of backendInterest) {
+                if(user.id == interest.idUser) {
+                    if (user.interest) {
+                        user.interest.push(interest.nameInterest);
+                    } else {
+                        user.interest = [interest.nameInterest];
+                    }
+                }
+            }
+        }
     }
 
     // ---------- Handlers ----------
@@ -30,6 +42,8 @@ function PrincipalView () {
         setUsers(backendUsers);
     }
 
+    console.log(users);
+    
     return(
         <>
             <Header></Header>
