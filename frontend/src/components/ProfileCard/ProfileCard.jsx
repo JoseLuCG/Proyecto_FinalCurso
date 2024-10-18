@@ -1,14 +1,14 @@
 import { useState, useContext } from 'react';
-import { Context } from '../../services/SharedStorage.jsx';
+import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
-import { postUser } from '../../tools/controlers.mjs';
+import { postUser } from '../../tools/connectors/conections.mjs';
 import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
 
 
 function ProfileCard ({user, editable}) {
         //----------States:----------
-        const [ store, setStore ] = useContext(Context);
+        const [ ownUser, setOwnUser ] = useContext(OwnUser);
 
         const [ nameProfile, setNameProfile ] = useState("");
         const [ nameUser, setNameUser ] = useState("");
@@ -33,11 +33,43 @@ function ProfileCard ({user, editable}) {
         const photoChangeHandler = changeValueFactory(setPhoto);
     
         //----------Functions:----------
+
+        /**
+         * Builds a user that will be introduced in the context.
+         */
+        function userbuilder() {
+            let user = {...ownUser};
+            
+            user = {
+                nameProfile : nameProfile,
+                nameUser : nameUser,
+                location : location,
+                interest : interest.split(",").map(
+                    (tag) => {
+                        return tag.trim(" ").toLowerCase();
+                    }),
+                password : password,
+                age : age,
+                description : description,
+                email : email,
+                photo :  photo
+            };
+            setOwnUser(user);
+        }
+        
+        async function checkSendData() {
+            const response = await postUser(ownUser);
+            //console.log(response);
+            
+        }
         /**
          * This function save the data of states in the context.
          */
-        async function saveData () {
-            const newStore = {...store};
+        async function dataHandler () {
+            userbuilder();
+            checkSendData();
+            /*
+            const newStore = {...ownUser};
             newStore.nameProfile = nameProfile;
             newStore.nameUser = nameUser;
             newStore.password = password;
@@ -48,10 +80,10 @@ function ProfileCard ({user, editable}) {
             newStore.photo = photo;
             const userID = await postUser(newStore);
             newStore.id = userID.insertedId;
-
             newStore.interest = interest.split(",").map(
-                tag => tag.trim(" ").toLowerCase()
-            );
+                (tag) => {
+                    return tag.trim(" ").toLowerCase();
+                });
             /*
             if (editable == false) {
                 setInterest(user.interest);
@@ -60,15 +92,18 @@ function ProfileCard ({user, editable}) {
                     tag => tag.trim(" ").toLowerCase()
                 );
             }*/
-
-            setStore(newStore);
-        }
-
+            /*
+            setOwnUser(newStore);
+            */
+        }     
+        
+        /*
         async function loadInterests () {
             if (showInterests) setShowInterests(false);    
             else setShowInterests(true);
             console.log(user.interest);
         }
+        */
 
     return (
         <div className={styles.profileContainer}>
@@ -81,7 +116,7 @@ function ProfileCard ({user, editable}) {
                 <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className={styles.inputData} type="text" placeholder="Nombre" />
                 <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
                 <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
-                <button className={styles.deployInterestsButton} onClick={loadInterests}>display interests</button>
+                <button className={styles.deployInterestsButton} /*onClick={loadInterests}*/>display interests</button>
                 <div className={styles.interestsContainer} hidden={showInterests && "hidden"}>
                     <ul>
                         <li>Hola</li>
@@ -103,7 +138,7 @@ function ProfileCard ({user, editable}) {
                 <div className={styles.userLogin}>
                     <input onChange={emailChangeHandler} className={[styles.email, styles.inputData].join(' ')} type="email" placeholder="Correo" />
                     <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
-                    <button className={styles.inputData} onClick={saveData}>Save</button>
+                    <button className={styles.inputData} onClick={dataHandler}>Save</button>
                 </div>
             </div>
         </div>
