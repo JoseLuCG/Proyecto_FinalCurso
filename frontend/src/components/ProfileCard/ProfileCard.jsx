@@ -97,13 +97,14 @@ function ProfileCard ({user, editable}) {
             */
         }     
         
-        /*
         async function loadInterests () {
             if (showInterests) setShowInterests(false);    
             else setShowInterests(true);
-            console.log(user.interest);
         }
-        */
+        
+        console.log(user);
+        
+        
 
     return (
         <div className={styles.profileContainer}>
@@ -115,18 +116,11 @@ function ProfileCard ({user, editable}) {
                 <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className={styles.inputData} type="text" placeholder="Nombre de perfil" />
                 <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className={styles.inputData} type="text" placeholder="Nombre" />
                 <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
-                <input disabled={editable && "disabled"} value={user && user.interest} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
-                <button className={styles.deployInterestsButton} /*onClick={loadInterests}*/>display interests</button>
+                <input disabled={editable && "disabled"} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
+                <button className={styles.deployInterestsButton} onClick={loadInterests}>display interests</button>
                 <div className={styles.interestsContainer} hidden={showInterests && "hidden"}>
                     <ul>
-                        <li>Hola</li>
-                        {/*
-                            interest.map(
-                                (i) => {
-                                    <li>{i}</li>
-                                }
-                            )
-                            */}
+                        <li>{user.interest?user.interest:""}</li>
                     </ul>
                 </div>
             </div>
