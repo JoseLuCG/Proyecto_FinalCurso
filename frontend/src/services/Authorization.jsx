@@ -1,15 +1,15 @@
-import { Context } from "./SharedStorage";
+import { OwnUser } from "./OwnUserStorage.jsx";
 import { useContext } from "react";
 import Login from "../components/Login/Login.jsx";
 
 function Authorization ({children}) {
     //----------States----------
     //In mongodb the id will be _id. In SQLite is 'id'.
-    const [ store ] = useContext(Context);
+    const [ user ] = useContext(OwnUser);
 
     return(
         <>
-        { store.id ? children : <Login/> }
+        { user.id ? children : <Login/> }
         </>
     );
 }
