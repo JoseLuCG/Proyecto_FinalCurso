@@ -16,9 +16,6 @@ function PrincipalView () {
     async function loadUserData() {
         const backendUsers = await getUsers(URL);
         const backendInterest = await getInterests(URL);
-
-        console.log(backendInterest);
-        console.log(backendUsers);
         
         for (let user of backendUsers) {
             // For each user fetch the interesets:
@@ -32,17 +29,15 @@ function PrincipalView () {
                 }
             }
         }
+        return backendUsers;
     }
 
     // ---------- Handlers ----------
     
     async function loadUsersHandler () {
-        loadUserData();
-        const backendUsers = await getUsers(URL);
+        const backendUsers = await loadUserData();
         setUsers(backendUsers);
     }
-
-    console.log(users);
     
     return(
         <>
@@ -51,9 +46,11 @@ function PrincipalView () {
                 <NavigationBar pathL={'/settings/'} pathR={'/filter/'} imgL={op_icon} imgR={fil_icon}/>
                 <button className='buttonUsersLoader' onClick={loadUsersHandler}>Carga usuarios</button>
                 <div className='usersContainer'>
-                    {users.map(
-                        (user) => <ProfileCard key={user._id} user={user} editable="false" />
-                    )}
+                    {
+                        users.map(
+                            (user) => <ProfileCard key={user._id} user={user} editable="false" />
+                        )
+                    }
                 </div>
             </main>
         </>
