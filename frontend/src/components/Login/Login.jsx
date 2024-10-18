@@ -1,13 +1,13 @@
 import { useState,useContext } from 'react';
-import { Context } from '../../services/SharedStorage.jsx';
+import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
-import { logingUser } from '../../tools/controlers.mjs';
+import { logingUser } from '../../tools/connectors/conections.mjs';
 import './Login.css';
 
-function StartView () {
+function Login () {
     //States:
-    const [ store, setStore ] = useContext(Context);
+    const [ user, setUser ] = useContext(OwnUser);
 
     const [ userData , setuserData ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -24,11 +24,12 @@ function StartView () {
 
         try {
             const response = await logingUser(user);
-            setStore(response);
+            setUser(response);
         } catch (error) {
             
         }
     }
+    
     
     return (
         <main className='log-cont'>
@@ -48,4 +49,4 @@ function StartView () {
         </main>
     );
 }
-export default StartView;
+export default Login;
