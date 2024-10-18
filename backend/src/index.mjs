@@ -1,5 +1,5 @@
 import express from "express";
-import { singUpUser, logingUserControler, logingUserControlerFirstEntry, getUsersControler } from "./controlers/controlersMySql.mjs";
+import { singUpUser, logingUserControler, getInterestControler, logingUserControlerFirstEntry, getUsersControler } from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv"
 import { PORT } from "./models/defines.mjs";
 
@@ -22,6 +22,7 @@ try{
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);
+    app.get("/interests", getInterestControler);
     
     //----------Listen the port----------
     app.listen( /*process.env.*/PORT, ()=> {
