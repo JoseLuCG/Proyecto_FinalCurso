@@ -85,7 +85,7 @@ input::-webkit-outer-spin-button {
 }
 
 .interestsContainer ul li {
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 /* ---------- Textarea and mesage Button ----------*/
