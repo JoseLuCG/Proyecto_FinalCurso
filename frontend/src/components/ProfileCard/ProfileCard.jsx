@@ -87,7 +87,13 @@ function ProfileCard ({user, editable}) {
                 <button className={styles.deployInterestsButton} onClick={loadInterests}>display interests</button>
                 <div className={styles.interestsContainer} hidden={showInterests && "hidden"}>
                     <ul>
-                        <li>{user.interest?user.interest:""}</li>
+                        {
+                            user.interest? 
+                                user.interest.map(
+                                    (interest) => { return (<li>{interest}</li>)}
+                                )
+                                : ""
+                        }
                     </ul>
                 </div>
             </div>
