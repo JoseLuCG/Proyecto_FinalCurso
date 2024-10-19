@@ -1,6 +1,10 @@
 li.item-interest {
     color: #ECC0D3;
     margin: 2px;
+    background-color: #374556;
+    border-radius: 15px;
+    padding: 2px;
+    font-family: cursive;
 }
 
 li.item-interest::before {

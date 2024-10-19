@@ -82,10 +82,9 @@ input::-webkit-outer-spin-button {
 .interestsContainer ul {
     list-style: none;
     display: flex;
-}
-
-.interestsContainer ul li {
-    /*margin-right: 10px;*/
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 /* ---------- Textarea and mesage Button ----------*/
