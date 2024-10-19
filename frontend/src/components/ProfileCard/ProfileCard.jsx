@@ -4,6 +4,7 @@ import { changeValueFactory } from '../../tools/apptools.mjs';
 import { postUser } from '../../tools/connectors/conections.mjs';
 import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
+import InterestItem from '../InterestItem/InterestItem.jsx';
 
 
 function ProfileCard ({user, editable}) {
@@ -77,20 +78,65 @@ function ProfileCard ({user, editable}) {
         <div className={styles.profileContainer}>
             <div className={styles.containerPhotoAge}>
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
-                <input disabled={editable && "disabled"} value={user && user.age} onChange={ageChangeHandler} className={[styles.age, styles.inputData].join(' ')} type="number" placeholder="Edad" min="10" max="100"/>
+                <input 
+                    disabled={editable && "disabled"} 
+                    value={user && user.age} 
+                    onChange={ageChangeHandler} 
+                    className={[styles.age, styles.inputData].join(' ')} 
+                    type="number" 
+                    placeholder="Edad" 
+                    min="10" 
+                    max="100"
+                />
             </div>
             <div className={styles.dataInputs}>
-                <input disabled={editable && "disabled"} value={user && user.nameProfile} onChange={nameProfileChangeHandler} className={styles.inputData} type="text" placeholder="Nombre de perfil" />
-                <input disabled={editable && "disabled"} value={user && user.nameUser} onChange={nameChangeHandler} className={styles.inputData} type="text" placeholder="Nombre" />
-                <input disabled={editable && "disabled"} value={user && user.location} onChange={locationChangeHandler} className={styles.inputData} type="text" placeholder="Ciudad" />
-                <input disabled={editable && "disabled"} onChange={interestChangeHandler} className={styles.inputData} placeholder="Intereses" />
-                <button className={styles.deployInterestsButton} onClick={loadInterests}>display interests</button>
-                <div className={styles.interestsContainer} hidden={showInterests && "hidden"}>
+                <input 
+                  disabled={editable && "disabled"} 
+                  value={user && user.nameProfile} 
+                  onChange={nameProfileChangeHandler} 
+                  className={styles.inputData} 
+                  type="text" 
+                  placeholder="Nombre de perfil" 
+                />
+                <input 
+                  disabled={editable && "disabled"} 
+                  value={user && user.nameUser} 
+                  onChange={nameChangeHandler} 
+                  className={styles.inputData} 
+                  type="text" 
+                  placeholder="Nombre" 
+                />
+                <input 
+                  disabled={editable && "disabled"} 
+                  value={user && user.location} 
+                  onChange={locationChangeHandler} 
+                  className={styles.inputData} 
+                  type="text" 
+                  placeholder="Ciudad" 
+                />
+                <input 
+                  disabled={editable && "disabled"}
+                  hidden={editable && "hidden"} 
+                  onChange={interestChangeHandler} 
+                  className={styles.inputData}
+                  type="text"
+                  placeholder="Intereses" 
+                />
+                <button 
+                  className={styles.deployInterestsButton} 
+                  onClick={loadInterests}
+                >
+                    display interests
+                </button>
+                <div 
+                  className={styles.interestsContainer} 
+                  hidden={showInterests && "hidden"}
+                >
                     <ul>
                         {
                             user.interest? 
                                 user.interest.map(
-                                    (interest) => { return (<li>{interest}</li>)}
+                                    (interest) => { return (<InterestItem interest={interest}/>)}
                                 )
                                 : ""
                         }
