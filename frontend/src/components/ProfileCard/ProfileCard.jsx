@@ -14,7 +14,7 @@ function ProfileCard ({user, editable}) {
     const [ nameUser, setNameUser ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ location, setLocation ] = useState("");
-    const [ interest, setInterest ] = useState([]);
+    const [ interest, setInterest ] = useState("");
     const [ age , setAge ] = useState (0);
     const [ description, setDescription ] = useState("");
     const [ email, setEmail ] = useState("");
@@ -54,6 +54,12 @@ function ProfileCard ({user, editable}) {
             email : email,
             photo :  photo
         };
+
+        if (!user.interest) {
+            user.interest = [""];
+        } else {
+            
+        }
         setOwnUser(user);
     }
     
@@ -134,11 +140,11 @@ function ProfileCard ({user, editable}) {
                 >
                     <ul>
                         {
-                            user.interest? 
+                            user? 
                                 user.interest.map(
                                     (interest) => { return (<InterestItem interest={interest}/>)}
                                 )
-                                : ""
+                                : "None"
                         }
                     </ul>
                 </div>
