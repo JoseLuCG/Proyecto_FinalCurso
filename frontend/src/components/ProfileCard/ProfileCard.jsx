@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { postUser } from '../../tools/connectors/conections.mjs';
@@ -54,28 +54,28 @@ function ProfileCard ({user, editable}) {
             email : email,
             photo :  photo
         };
-
-        if (!user.interest) {
-            user.interest = [""];
-        } else {
-            
-        }
+        
         setOwnUser(user);
     }
     
-    async function checkSendData() {
+    function checkSendData() {
+        console.log(ownUser);
+    }
+
+    async function sendData() {
         const response = await postUser(ownUser);
     }
     
     /**
      * This function save the data of states in the context.
      */
-    async function dataHandler () {
+    function dataHandler () {
         userbuilder();
         checkSendData();
+        //sendData();
     }     
     
-    async function loadInterests () {
+    function loadInterests () {
         if (showInterests) setShowInterests(false);    
         else setShowInterests(true);
     }
@@ -102,7 +102,8 @@ function ProfileCard ({user, editable}) {
                   onChange={nameProfileChangeHandler} 
                   className={styles.inputData} 
                   type="text" 
-                  placeholder="Nombre de perfil" 
+                  placeholder="Nombre de perfil"
+                  title='Debes introducir un nombre de perfil válido'
                 />
                 <input 
                   disabled={editable && "disabled"} 
@@ -142,22 +143,48 @@ function ProfileCard ({user, editable}) {
                         {
                             user? 
                                 user.interest.map(
-                                    (interest) => { return (<InterestItem interest={interest}/>)}
-                                )
+                                    (interest) => { 
+                                        return (
+                                            <InterestItem 
+                                            interest={interest}
+                                            />)})
                                 : "None"
                         }
                     </ul>
                 </div>
             </div>
             <div className={styles.textareaDescription}>
-            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
-            <button className={styles.messageButton}>Mensaje</button>
+                <textarea 
+                disabled={editable && "disabled"} 
+                value={user && user.description} 
+                onChange={descriptionChangeHandler} 
+                name="description" 
+                className={styles.description} 
+                cols="20" 
+                rows="6" 
+                placeholder="Descripción">
+                </textarea>
+                <button className={styles.messageButton}>Mensaje</button>
             </div>
-            <div hidden={editable && "hidden"} className={styles.userLogin}>
+            <div 
+            hidden={editable && "hidden"} 
+            className={styles.userLogin}>
                 <div className={styles.userLogin}>
-                    <input onChange={emailChangeHandler} className={[styles.email, styles.inputData].join(' ')} type="email" placeholder="Correo" />
-                    <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
-                    <button className={styles.inputData} onClick={dataHandler}>Save</button>
+                    <input 
+                    onChange={emailChangeHandler} 
+                    className={[styles.email, styles.inputData].join(' ')} 
+                    type="email" 
+                    placeholder="Correo" />
+                    <input 
+                    onChange={passwordChangeHandler} 
+                    className={styles.inputData} 
+                    type="password" 
+                    placeholder="Contraseña" />
+                    <button 
+                    className={styles.inputData} 
+                    onClick={dataHandler}>
+                        Save
+                    </button>
                 </div>
             </div>
         </div>
