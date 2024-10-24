@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { postUser } from '../../tools/connectors/conections.mjs';
@@ -20,7 +20,9 @@ function ProfileCard ({user, editable}) {
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
     const [ showInterests, setShowInterests] = useState(true);
-    
+
+    const prevUserRef = useRef(ownUser);
+
     //----------Handlers:----------
     const nameProfileChangeHandler = changeValueFactory(setNameProfile);
     const nameChangeHandler = changeValueFactory(setNameUser);
@@ -65,7 +67,17 @@ function ProfileCard ({user, editable}) {
     }
     
     function checkSendData(user) {
-        console.log(user);
+      let counter = 0;
+
+      if (user.nameProfile != "") counter++;
+      if (user.email != "") counter ++;
+      
+      if (counter == 2) {
+        //console.log(user);
+        return true;
+      }
+
+      return false;
     }
     
 
@@ -74,19 +86,31 @@ function ProfileCard ({user, editable}) {
         else setShowInterests(true);
     }
 
-    function handleSubmit (event) {
-        event.preventDefault();
-        checkSendData(userBuilder());
-        setOwnUser(userBuilder());    
+    /**
+     * 
+     * @param {*} event 
+     */
+    function handleSubmit (event) {   
+      const user = userBuilder();
+
+      event.preventDefault();
+      if (checkSendData(user)) {
+        setOwnUser(user);
+      }
     }
 
     async function sendData() {
         const response = await postUser(ownUser);
+        console.log("Datos enviados:",ownUser);
+        
     }
 
     useEffect(() => {
+      if (prevUserRef.current !== ownUser) {
         sendData();
-      }, [ownUser]);
+        prevUserRef.current = ownUser;
+      }
+    });
     
     return (
         <form className={styles.profileContainer} onSubmit={handleSubmit}>
