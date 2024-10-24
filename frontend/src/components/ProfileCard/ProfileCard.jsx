@@ -37,7 +37,7 @@ function ProfileCard ({user, editable}) {
     /**
      * Builds a user that will be introduced in the context.
      */
-    function userbuilder() {
+    function userBuilder() {
         let user = {...ownUser};
         
         user = {
@@ -54,45 +54,53 @@ function ProfileCard ({user, editable}) {
             email : email,
             photo :  photo
         };
-        
-        setOwnUser(user);
-    }
-    
-    function checkSendData() {
-        console.log(ownUser);
-    }
 
-    async function sendData() {
-        const response = await postUser(ownUser);
+        if (!user.interest) {
+            user.interest = [""];
+        } else {
+            
+        }
+
+        return user;
     }
     
-    /**
-     * This function save the data of states in the context.
-     */
-    function dataHandler () {
-        userbuilder();
-        checkSendData();
-        //sendData();
-    }     
+    function checkSendData(user) {
+        console.log(user);
+    }
     
+
     function loadInterests () {
         if (showInterests) setShowInterests(false);    
         else setShowInterests(true);
     }
 
+    function handleSubmit (event) {
+        event.preventDefault();
+        checkSendData(userBuilder());
+        setOwnUser(userBuilder());    
+    }
+
+    async function sendData() {
+        const response = await postUser(ownUser);
+    }
+
+    useEffect(() => {
+        sendData();
+      }, [ownUser]);
+    
     return (
-        <div className={styles.profileContainer}>
-            <div className={styles.containerPhotoAge}>
+        <form className={styles.profileContainer} onSubmit={handleSubmit}>
+             <div className={styles.containerPhotoAge}>
                 <PicIcon img="https://s.ws.pho.to/img/index/ai/source.jpg" />
                 <input 
-                    disabled={editable && "disabled"} 
-                    value={user && user.age} 
-                    onChange={ageChangeHandler} 
-                    className={[styles.age, styles.inputData].join(' ')} 
-                    type="number" 
-                    placeholder="Edad" 
-                    min="10" 
-                    max="100"
+                  disabled={editable && "disabled"} 
+                  value={user && user.age} 
+                  onChange={ageChangeHandler} 
+                  className={[styles.age, styles.inputData].join(' ')} 
+                  type="number" 
+                  placeholder="Edad" 
+                  min="10" 
+                  max="100"
                 />
             </div>
             <div className={styles.dataInputs}>
@@ -102,8 +110,7 @@ function ProfileCard ({user, editable}) {
                   onChange={nameProfileChangeHandler} 
                   className={styles.inputData} 
                   type="text" 
-                  placeholder="Nombre de perfil"
-                  title='Debes introducir un nombre de perfil válido'
+                  placeholder="Nombre de perfil" 
                 />
                 <input 
                   disabled={editable && "disabled"} 
@@ -143,51 +150,25 @@ function ProfileCard ({user, editable}) {
                         {
                             user? 
                                 user.interest.map(
-                                    (interest) => { 
-                                        return (
-                                            <InterestItem 
-                                            interest={interest}
-                                            />)})
+                                    (interest) => { return (<InterestItem interest={interest}/>)}
+                                )
                                 : "None"
                         }
                     </ul>
                 </div>
             </div>
             <div className={styles.textareaDescription}>
-                <textarea 
-                disabled={editable && "disabled"} 
-                value={user && user.description} 
-                onChange={descriptionChangeHandler} 
-                name="description" 
-                className={styles.description} 
-                cols="20" 
-                rows="6" 
-                placeholder="Descripción">
-                </textarea>
-                <button className={styles.messageButton}>Mensaje</button>
+            <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
+            <button className={styles.messageButton}>Mensaje</button>
             </div>
-            <div 
-            hidden={editable && "hidden"} 
-            className={styles.userLogin}>
+            <div hidden={editable && "hidden"} className={styles.userLogin}>
                 <div className={styles.userLogin}>
-                    <input 
-                    onChange={emailChangeHandler} 
-                    className={[styles.email, styles.inputData].join(' ')} 
-                    type="email" 
-                    placeholder="Correo" />
-                    <input 
-                    onChange={passwordChangeHandler} 
-                    className={styles.inputData} 
-                    type="password" 
-                    placeholder="Contraseña" />
-                    <button 
-                    className={styles.inputData} 
-                    onClick={dataHandler}>
-                        Save
-                    </button>
+                    <input onChange={emailChangeHandler} className={[styles.email, styles.inputData].join(' ')} type="email" placeholder="Correo" />
+                    <input onChange={passwordChangeHandler} className={styles.inputData} type="password" placeholder="Contraseña" />
+                    <button type="submit" className={styles.inputData}>Save</button>
                 </div>
             </div>
-        </div>
+        </form>
     );
 }
 export default ProfileCard;
