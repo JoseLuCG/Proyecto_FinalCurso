@@ -13,6 +13,9 @@ function singUpUser(req, res, next) {
         email,
         interest
     } = req.body;
+
+    console.log(req.body);
+    
     let sql = `
         CALL insertUser(
         "${nameProfile}",
@@ -31,7 +34,6 @@ function singUpUser(req, res, next) {
             //throw new Error("El usuario no ha sido introducido en la base de datos.");
             
         } else {
-            console.log("Correcto");
             mySqlConn.query(sqlIDReturn, (error, resultId) => {
                 if (error) {
                     console.log(error);
@@ -42,10 +44,11 @@ function singUpUser(req, res, next) {
                     insertInterests(interest, registeredUserId);
                     res.json("success");
                     //next();
-                    //mySqlConn.end();
+                    mySqlConn.end();
+                    console.log("El usuario se ha introducido correctamente:");
+                    
                 }
             });
-            mySqlConn.end();
         }
     });
 }
