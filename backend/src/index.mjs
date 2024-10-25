@@ -19,7 +19,7 @@ try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}))
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
     app.post("/login/", jsonParser, logingUserControler);
-    app.post("/send-message", jsonParser, sendMessage);
+    app.post("/send-message/", jsonParser, sendMessage);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
     app.get("/users/", getUsersControler);

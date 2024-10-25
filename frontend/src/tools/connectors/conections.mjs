@@ -59,3 +59,13 @@ export async function logingUser (data) {
 
     return await response.json(); 
 }
+
+export async function postMessage(data) {
+    const params = dataToString(data);
+    const response = await fetch(
+        URL + "send-message",
+        params
+    );
+
+    return await response.json();
+}
