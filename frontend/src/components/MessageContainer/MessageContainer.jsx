@@ -10,11 +10,7 @@ function MessageContainer ({hiddeMessages}) {
 
    function sendMessageHandler(event) {
         console.log(message);
-        if (wasSent.current) {
-            wasSent.current = false;   
-        } else {
-            wasSent.current = true;
-        }
+        setMessage("");
     }
 
     useEffect(
@@ -36,7 +32,7 @@ function MessageContainer ({hiddeMessages}) {
             name="msg" 
             id="msg" 
             onChange={messageHandler}
-            value={wasSent && ""}
+            value={message}
             ></textarea>
             <button className='snd-bttn' type="submit" onClick={sendMessageHandler}></button>
         </div>
