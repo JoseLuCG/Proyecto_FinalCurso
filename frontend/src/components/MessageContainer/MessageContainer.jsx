@@ -1,16 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import './MessageContainer.css';
 import { changeValueFactory } from '../../tools/apptools.mjs';
+import { useContext } from 'react';
+import { OwnUser } from '../../services/OwnUserStorage';
 
-function MessageContainer ({hiddeMessages}) {
+function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
-    const [messagesArray, setMessagesArray] = useState(["Default message"]);
+    const [messagesArray, setMessagesArray] = useState([]);
+    const ownUser = useContext(OwnUser);
     const wasSent = useRef(false);
+    const ownUserID = ownUser[0].id;
 
     const messageHandler = changeValueFactory(setMessage);
 
-   function sendMessageHandler() {
-        setMessagesArray(prevMessages => [...prevMessages, message]);
+    function messageConstruct(msg) {
+        let message = {
+            idUserEmisor: ownUserID,
+            idUserReceptor: idUser,
+            messageBody: msg
+        };
+        return message;
+    }
+
+
+    function sendMessageHandler() {
+        setMessagesArray(prevMessages => [...prevMessages, messageConstruct(message)]);
         setMessage("");
 
     }
@@ -18,6 +32,10 @@ function MessageContainer ({hiddeMessages}) {
     useEffect(
         ()=> {
             console.log(messagesArray);
+            console.log(ownUserID);
+            console.log("a enviar "+idUser);
+            
+            
         }, [messagesArray]
     );
     
@@ -29,7 +47,7 @@ function MessageContainer ({hiddeMessages}) {
         {
             messagesArray && messagesArray.map(
                 (msg) => {
-                    return(<p>{msg}</p>)
+                    return(<p>{msg.messageBody}</p>)
                 }
             )
         }
