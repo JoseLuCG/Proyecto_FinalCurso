@@ -20,4 +20,5 @@ main.mn-bd {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 }
