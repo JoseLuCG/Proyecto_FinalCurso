@@ -139,7 +139,29 @@ function getInterestControler(req, res) {
 
 function sendMessage(request, response) {
     console.log(request.body);
-    response.json(request.body);
+    const {
+        idUserEmisor,
+        idUserReceptor,
+        messageBody
+    } = request.body;
+    try {
+        let sql = `
+        INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+            VALUES (${idUserEmisor},${idUserReceptor},"${messageBody}");`;
+        mySqlConn.query(sql,(error, result) => {
+            if (error) {
+                console.error(error);
+            } else {
+                //response.json(result);
+                response.sendStatus(200);
+                console.log("Mensaje guardado con exito");
+                
+            }
+        });
+    } catch (error) {
+        
+    }
+
     
 }
 
