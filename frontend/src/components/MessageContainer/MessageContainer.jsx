@@ -3,6 +3,7 @@ import './MessageContainer.css';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
+import { postMessage } from '../../tools/connectors/conections.mjs';
 
 function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
@@ -29,13 +30,14 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     }
 
+    async function sendData() {
+        const response = await postMessage(messagesArray[messagesArray.length-1]);
+    }
+
     useEffect(
         ()=> {
-            console.log(messagesArray);
-            console.log(ownUserID);
-            console.log("a enviar "+idUser);
-            
-            
+            sendData();
+            console.log("Datos enviados: ", messagesArray[messagesArray.length-1]);
         }, [messagesArray]
     );
     
@@ -44,13 +46,14 @@ function MessageContainer ({hiddeMessages, idUser}) {
         hidden={ hiddeMessages && "hidden"}
         className='msg-cntr'
         >
-        {
-            messagesArray && messagesArray.map(
-                (msg) => {
-                    return(<p>{msg.messageBody}</p>)
-                }
-            )
-        }
+            <button>LOAD MESSAGES</button>
+            {
+                messagesArray && messagesArray.map(
+                    (msg) => {
+                        return(<p>{msg.messageBody}</p>)
+                    }
+                )
+            }
         <div>
             <textarea 
             className='msg-inpt' 
