@@ -172,11 +172,11 @@ function ProfileCard ({user, editable}) {
                 >
                     <ul>
                         {
-                            user? 
-                                user.interest.map(
-                                    (interest) => { return (<InterestItem interest={interest}/>)}
-                                )
-                                : "None"
+                          user? 
+                            user.interest.map(
+                              (interest) => { return (<InterestItem interest={interest}/>)}
+                              )
+                              : "None"
                         }
                     </ul>
                 </div>
