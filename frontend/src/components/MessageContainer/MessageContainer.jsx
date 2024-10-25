@@ -4,19 +4,21 @@ import { changeValueFactory } from '../../tools/apptools.mjs';
 
 function MessageContainer ({hiddeMessages}) {
     const [message, setMessage] = useState("");
+    const [messagesArray, setMessagesArray] = useState(["Default message"]);
     const wasSent = useRef(false);
 
     const messageHandler = changeValueFactory(setMessage);
 
-   function sendMessageHandler(event) {
-        console.log(message);
+   function sendMessageHandler() {
+        setMessagesArray(prevMessages => [...prevMessages, message]);
         setMessage("");
+
     }
 
     useEffect(
         ()=> {
-            console.log(wasSent);
-        }, [wasSent]
+            console.log(messagesArray);
+        }, [messagesArray]
     );
     
     return (
@@ -24,8 +26,13 @@ function MessageContainer ({hiddeMessages}) {
         hidden={ hiddeMessages && "hidden"}
         className='msg-cntr'
         >
-        <p>This is the component message</p>
-        <p className='message'>This is a message</p>
+        {
+            messagesArray && messagesArray.map(
+                (msg) => {
+                    return(<p>{msg}</p>)
+                }
+            )
+        }
         <div>
             <textarea 
             className='msg-inpt' 
