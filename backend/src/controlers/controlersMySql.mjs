@@ -137,10 +137,17 @@ function getInterestControler(req, res) {
     }
 }
 
+function sendMessage(request, response) {
+    console.log(request.body);
+    response.json(request.body);
+    
+}
+
 export {
     singUpUser,
     logingUserControlerFirstEntry,
     logingUserControler,
     getUsersControler,
-    getInterestControler
+    getInterestControler,
+    sendMessage
 };

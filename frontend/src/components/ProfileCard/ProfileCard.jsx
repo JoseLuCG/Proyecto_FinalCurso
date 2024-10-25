@@ -5,6 +5,7 @@ import { postUser } from '../../tools/connectors/conections.mjs';
 import PicIcon from "../PicIcon/PicIcon";
 import styles from './ProfileCard.module.css';
 import InterestItem from '../InterestItem/InterestItem.jsx';
+import MessageContainer from '../MessageContainer/MessageContainer.jsx';
 
 
 function ProfileCard ({user, editable}) {
@@ -20,6 +21,7 @@ function ProfileCard ({user, editable}) {
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
     const [ showInterests, setShowInterests] = useState(true);
+    const [ hiddeMessages, setHiddeMessages ] = useState(false);
 
     const prevUserRef = useRef(ownUser);
 
@@ -84,6 +86,14 @@ function ProfileCard ({user, editable}) {
     function loadInterests () {
         if (showInterests) setShowInterests(false);    
         else setShowInterests(true);
+    }
+
+    function showMessagesHandler() {
+      if (!hiddeMessages) {
+        setHiddeMessages(true);
+      } else {
+        setHiddeMessages(false);
+      }
     }
 
     /**
@@ -172,18 +182,19 @@ function ProfileCard ({user, editable}) {
                 >
                     <ul>
                         {
-                            user? 
-                                user.interest.map(
-                                    (interest) => { return (<InterestItem interest={interest}/>)}
-                                )
-                                : "None"
+                          user? 
+                            user.interest.map(
+                              (interest) => { return (<InterestItem interest={interest}/>)}
+                              )
+                              : "None"
                         }
                     </ul>
                 </div>
             </div>
             <div className={styles.textareaDescription}>
             <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
-            <button className={styles.messageButton}>Mensaje</button>
+            <button className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
+            <MessageContainer hiddeMessages={hiddeMessages}></MessageContainer>
             </div>
             <div hidden={editable && "hidden"} className={styles.userLogin}>
                 <div className={styles.userLogin}>
