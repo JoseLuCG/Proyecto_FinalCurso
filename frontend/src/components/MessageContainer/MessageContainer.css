@@ -1,3 +1,20 @@
+/* ---------- Container ---------- */
+div.msg-cntr {
+    margin-top: 2px;
+    background-color: rgb(72, 150, 20);
+    border-radius: 0px 0px 20px 20px;
+}
+
+
+button.snd-bttn {
+    background: url("./../../assets/icons/snd-msg.png") center;
+    background-color: aqua;
+    background-size: cover;
+    height: 34px;
+    width: 34px;
+    border-radius: 0px 0px 10px 0px;
+}
+
 .message {
     background-color: violet;
 }
