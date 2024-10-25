@@ -44,3 +44,11 @@ CREATE TABLE IF NOT EXISTS messages (
 	messageType INTEGER NOT NULL,
     PRIMARY KEY (messageTime, emisorUser, receptorUser)
 );
+
+CREATE TABLE IF NOT EXISTS message_proves_v1 (
+	id_emisor_user INTEGER NOT NULL,
+    id_receptor_user INTEGER NOT NULL,
+    message_body VARCHAR(1000) NOT NULL,
+    message_id INTEGER NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (message_id)
+);
