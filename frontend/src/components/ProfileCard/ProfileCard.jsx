@@ -194,7 +194,7 @@ function ProfileCard ({user, editable}) {
             <div className={styles.textareaDescription}>
             <textarea disabled={editable && "disabled"} value={user && user.description} onChange={descriptionChangeHandler} name="description" className={styles.description} cols="20" rows="6" placeholder="Descripción"></textarea>
             <button className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
-            <MessageContainer hiddeMessages={hiddeMessages}></MessageContainer>
+            <MessageContainer hiddeMessages={hiddeMessages} idUser={user.id}></MessageContainer>
             </div>
             <div hidden={editable && "hidden"} className={styles.userLogin}>
                 <div className={styles.userLogin}>
