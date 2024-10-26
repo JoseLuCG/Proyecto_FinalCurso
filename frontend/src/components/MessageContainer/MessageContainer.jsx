@@ -3,7 +3,7 @@ import './MessageContainer.css';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
-import { postMessage } from '../../tools/connectors/conections.mjs';
+import { getUserMessages, postMessage } from '../../tools/connectors/conections.mjs';
 
 function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
@@ -11,6 +11,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
     const ownUser = useContext(OwnUser);
     const wasSent = useRef(false);
     const ownUserID = ownUser[0].id;
+    const previousMessagesRef = useRef(messagesArray);
 
     const messageHandler = changeValueFactory(setMessage);
 
@@ -18,16 +19,31 @@ function MessageContainer ({hiddeMessages, idUser}) {
         let message = {
             idUserEmisor: ownUserID,
             idUserReceptor: idUser,
-            messageBody: msg
+            message_body: msg
         };
         return message;
     }
 
 
     function sendMessageHandler() {
-        setMessagesArray(prevMessages => [...prevMessages, messageConstruct(message)]);
-        setMessage("");
-
+        if (message !== "") {
+            setMessagesArray(prevMessages => [...prevMessages, messageConstruct(message)]);
+            setMessage("");   
+        }
+    }
+    // ---------- Async Functions ----------
+    async function getMessagesData() {
+        const backendMessages = [];
+        const dataParameters = {
+            idEmisor : ownUserID,
+            idReceptor : idUser
+        }
+        const response = await getUserMessages(dataParameters);
+    
+        for (const msg in response) {
+            backendMessages.push(response[msg]);
+        }
+        setMessagesArray(backendMessages);    
     }
 
     async function sendData() {
@@ -36,9 +52,16 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     useEffect(
         ()=> {
-            sendData();
-            console.log("Datos enviados: ", messagesArray[messagesArray.length-1]);
-        }, [messagesArray]
+            console.log(messagesArray);
+            
+            /*
+            if (previousMessagesRef.current !== messagesArray) {
+                sendData();
+                previousMessagesRef.current = messagesArray;
+                return;
+            }
+            */
+        },[messagesArray]
     );
     
     return (
@@ -46,11 +69,11 @@ function MessageContainer ({hiddeMessages, idUser}) {
         hidden={ hiddeMessages && "hidden"}
         className='msg-cntr'
         >
-            <button>LOAD MESSAGES</button>
+            <button onClick={getMessagesData}>LOAD MESSAGES</button>
             {
-                messagesArray && messagesArray.map(
+                messagesArray.map(
                     (msg) => {
-                        return(<p>{msg.messageBody}</p>)
+                        return(<p>{msg.message_body}</p>)
                     }
                 )
             }
