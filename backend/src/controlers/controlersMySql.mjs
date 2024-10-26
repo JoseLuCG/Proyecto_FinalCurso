@@ -137,8 +137,7 @@ function getInterestControler(req, res) {
     }
 }
 
-function sendMessage(request, response) {
-    console.log(request.body);
+function sendMessageControler(request, response) {
     const {
         idUserEmisor,
         idUserReceptor,
@@ -154,14 +153,46 @@ function sendMessage(request, response) {
             } else {
                 //response.json(result);
                 response.sendStatus(200);
-                console.log("Mensaje guardado con exito");
-                
+                //console.log("Mensaje guardado con exito",request.body);
             }
         });
     } catch (error) {
-        
-    }
+        console.error(error);
+        response.sendStatus(500);
+    }    
+}
 
+function getUserMessagesControler(request, response) {
+    const {
+        idEmisor,
+        idReceptor,
+    } = request.body;
+
+    try {
+        let sql = `
+        SELECT *
+            FROM message_proves_v1
+            WHERE 
+                (id_emisor_user = ${idEmisor}
+                AND id_receptor_user = ${idReceptor})
+            OR
+                (id_emisor_user = ${idReceptor}
+                AND id_receptor_user = ${idEmisor})
+        ;`;
+        mySqlConn.query(sql, (err, result) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(201);
+            } else {
+                let data = result;
+                response.json(data);
+            }
+        });
+        
+    } catch (error) {
+        console.error(error);
+        sendStatus(500);
+    }
     
 }
 
@@ -171,5 +202,6 @@ export {
     logingUserControler,
     getUsersControler,
     getInterestControler,
-    sendMessage
+    sendMessageControler,
+    getUserMessagesControler
 };
