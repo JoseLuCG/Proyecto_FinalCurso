@@ -25,3 +25,9 @@ SELECT *
 		JOIN user_interests ON users.id = user_interests.idUser
 ORDER BY users.id
 ;
+
+SELECT *
+FROM message_proves_v1;
+
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+            VALUES (2,1,"Hola, ¿cómo estás");
