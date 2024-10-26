@@ -1,9 +1,16 @@
 /* ---------- Container ---------- */
 div.msg-cntr {
     margin-top: 2px;
-    background-color: rgb(72, 150, 20);
+    background-color: blue;
     border-radius: 0px 0px 20px 20px;
 }
+
+
+div.wallpaper {
+    background: url("https://img.freepik.com/premium-vector/bubble-text-vector-seamless-pattern_547110-1100.jpg?semt=ais_hybrid") center;
+    background-size: cover;
+}
+
 
 textarea.msg-inpt {
     width: 89%;
@@ -22,6 +29,6 @@ button.snd-bttn {
 }
 
 .myMessage {
+    display: inline-block;
     background-color: violet;
-    text-align: right;
 }

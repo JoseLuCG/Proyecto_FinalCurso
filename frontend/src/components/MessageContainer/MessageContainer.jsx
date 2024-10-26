@@ -69,7 +69,10 @@ function MessageContainer ({hiddeMessages, idUser}) {
         hidden={ hiddeMessages && "hidden"}
         className='msg-cntr'
         >
-            <button onClick={getMessagesData}>LOAD MESSAGES</button>
+            <div>
+                <button onClick={getMessagesData}>LOAD MESSAGES</button>
+            </div>
+            <div className='wallpaper'>
             {
                 messagesArray.map(
                     (msg) => {
@@ -82,6 +85,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
                     )}
                 )
             }
+            </div>
         <div>
             <textarea 
             className='msg-inpt' 
