@@ -1,5 +1,13 @@
 import express from "express";
-import { singUpUser, logingUserControler, getInterestControler, logingUserControlerFirstEntry, getUsersControler, sendMessage } from "./controlers/controlersMySql.mjs";
+import { 
+    singUpUser, 
+    logingUserControler, 
+    getInterestControler, 
+    logingUserControlerFirstEntry, 
+    getUsersControler, 
+    sendMessageControler, 
+    getUserMessagesControler 
+} from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv"
 import { PORT } from "./models/defines.mjs";
 
@@ -17,13 +25,19 @@ const jsonParser = express.json();
 
 try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}))
+    // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
     app.post("/login/", jsonParser, logingUserControler);
-    app.post("/send-message/", jsonParser, sendMessage);
+    app.get("/users/", getUsersControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
-    app.get("/users/", getUsersControler);
+
+    // ----- Interests Endpoints -----
     app.get("/interests", getInterestControler);
+
+    // ----- Messages Endpoints -----
+    app.post("/send-message/", jsonParser, sendMessageControler);
+    app.post("/messages/",jsonParser, getUserMessagesControler);
     
     //----------Listen the port----------
     app.listen( /*process.env.*/PORT, ()=> {
