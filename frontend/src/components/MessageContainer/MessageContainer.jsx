@@ -73,8 +73,13 @@ function MessageContainer ({hiddeMessages, idUser}) {
             {
                 messagesArray.map(
                     (msg) => {
-                        return(<p>{msg.message_body}</p>)
-                    }
+                        return(
+                        <p 
+                        className={(msg.id_emisor_user == ownUserID) && "myMessage"}
+                        >
+                            {msg.message_body}
+                        </p>
+                    )}
                 )
             }
         <div>

@@ -21,6 +21,7 @@ button.snd-bttn {
     border-radius: 0px 0px 20px 0px;
 }
 
-.message {
+.myMessage {
     background-color: violet;
+    text-align: right;
 }
