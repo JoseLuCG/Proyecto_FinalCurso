@@ -11,6 +11,20 @@ import MessageContainer from '../MessageContainer/MessageContainer.jsx';
 function ProfileCard ({user, editable}) {
     //----------States:----------
     const [ ownUser, setOwnUser ] = useContext(OwnUser);
+
+    const [ userForm, setUserForm ] = useState({
+      nameProfile: "",
+      nameUser: "",
+      password: "",
+      location: "",
+      interest: "", // TODO: funcion que retorne un array
+      age: 0,
+      description: "",
+      email: "",
+    });
+    // https://search.brave.com/search?q=manejo+de+useState+con+objetos&source=desktop&summary=1&summary_og=116d200a65c72bad55c100
+
+    /*
     const [ nameProfile, setNameProfile ] = useState("");
     const [ nameUser, setNameUser ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -20,6 +34,8 @@ function ProfileCard ({user, editable}) {
     const [ description, setDescription ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ photo, setPhoto ] = useState("");
+    */
+
     const [ showInterests, setShowInterests] = useState(true);
     const [ hiddeMessages, setHiddeMessages ] = useState(false);
 

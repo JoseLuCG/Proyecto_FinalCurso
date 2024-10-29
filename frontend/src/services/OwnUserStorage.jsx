@@ -3,7 +3,7 @@ import { useState, createContext } from "react";
 export const OwnUser = createContext();
 
 export function OwnUserProvider ( {children} ) {
-    const ownUser = useState({
+    const [ownUser, setOwnUser] = useState({
         nameProfile: "",
         nameUser: "",
         password: "",
@@ -15,7 +15,7 @@ export function OwnUserProvider ( {children} ) {
         photo:""
     });
     return (
-        <OwnUser.Provider value={ownUser}>
+        <OwnUser.Provider value={[ownUser, setOwnUser]}>
             {children}
         </OwnUser.Provider>
     );
