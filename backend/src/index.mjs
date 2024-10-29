@@ -25,7 +25,7 @@ try{
     app.get("/users/", getUsersControler);
     app.get("/interests", getInterestControler);
     
-    //----------Listen the port----------
+    //---------- Listen the port ----------
     app.listen( /*process.env.*/PORT, ()=> {
         console.log(`Listening at ${/*process.env.*/PORT}`,"Express Running") 
     });

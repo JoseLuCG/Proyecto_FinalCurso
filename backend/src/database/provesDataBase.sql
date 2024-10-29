@@ -22,6 +22,6 @@ SELECT * FROM users;
 
 SELECT * 
 	FROM users
-		JOIN user_interests ON users.id = user_interests.idUser
+		RIGHT JOIN user_interests ON users.id = user_interests.idUser
 ORDER BY users.id
 ;
