@@ -29,6 +29,15 @@ export async function getInterests(url) {
     return data;
 }
 
+export async function getUserMessages(data) {
+    const params = dataToString(data);
+    const response = await fetch(
+        URL + "messages/",
+        params
+    );
+    return await response.json();
+}
+
 // ---------- Fetch to send data ----------
 
 /**
@@ -58,4 +67,14 @@ export async function logingUser (data) {
     );
 
     return await response.json(); 
+}
+
+export async function postMessage(data) {
+    const params = dataToString(data);
+    const response = await fetch(
+        URL + "send-message",
+        params
+    );
+
+    return await response.json();
 }

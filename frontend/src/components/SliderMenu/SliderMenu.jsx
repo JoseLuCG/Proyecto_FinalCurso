@@ -18,17 +18,16 @@ function SliderMenu () {
     return(
         <div className='wpr'>
             <button className='mn-btn' onClick={handlerMenuState}></button>
-            
             {/* ----- Hidden content ----- */}
             <nav className='nv-cnt' hidden={deploy && "hidden"}>
                 <ul className='nv-ul'>
                     <li className='mn-itm'>
                         <CircleButton imgSrc={settings}/>
-                        Opciones
+                        <p>Opciones</p>
                     </li>
                     <li className='mn-itm'>
                         <CircleButton imgSrc={prfileOptions} path={'/edit-user/'}/>
-                        Perfil
+                        <p>Perfil</p>
                     </li>
                 </ul>
             </nav>
