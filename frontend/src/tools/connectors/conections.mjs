@@ -72,7 +72,7 @@ export async function logingUser (data) {
 export async function postMessage(data) {
     const params = dataToString(data);
     const response = await fetch(
-        URL + "send-message",
+        URL + "send-message/",
         params
     );
 
