@@ -53,14 +53,12 @@ function MessageContainer ({hiddeMessages, idUser}) {
     useEffect(
         ()=> {
             console.log(messagesArray);
-            
-            /*
             if (previousMessagesRef.current !== messagesArray) {
                 sendData();
                 previousMessagesRef.current = messagesArray;
                 return;
             }
-            */
+
         },[messagesArray]
     );
     
