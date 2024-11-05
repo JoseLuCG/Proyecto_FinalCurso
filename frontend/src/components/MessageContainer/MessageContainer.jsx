@@ -28,7 +28,8 @@ function MessageContainer ({hiddeMessages, idUser}) {
     function sendMessageHandler() {
         if (message !== "") {
             setMessagesArray(prevMessages => [...prevMessages, messageConstruct(message)]);
-            setMessage("");   
+            setMessage("");
+            wasSent.current = true;   
         }
     }
     // ---------- Async Functions ----------
@@ -54,7 +55,10 @@ function MessageContainer ({hiddeMessages, idUser}) {
         ()=> {
             console.log(messagesArray);
             if (previousMessagesRef.current !== messagesArray) {
-                sendData();
+                if (wasSent.current) {
+                    sendData();
+                    wasSent.current = false;   
+                }
                 previousMessagesRef.current = messagesArray;
                 return;
             }
