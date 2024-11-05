@@ -1,4 +1,3 @@
-import express from "express";
 import { 
     singUpUser, 
     logingUserControler, 
@@ -8,9 +7,12 @@ import {
     sendMessageControler, 
     getUserMessagesControler 
 } from "./controlers/controlersMySql.mjs";
-//import { config } from "dotenv"
+//import { config } from "dotenv";
+import express from "express";
+import session from "express-session";
+import connectSessionSequelize from "connect-session-sequelize" ;
+import { sequelize } from "./connection/sequelizeConn.mjs";
 import { PORT } from "./models/defines.mjs";
-
 /*
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -20,11 +22,27 @@ if ( process.env.NODE_ENV != "production" ) {
 // ---------- Create the instances of express: ----------
 const app = express();
 const jsonParser = express.json();
+const cookieDuration = 1000 * 60 * 5; // 5 minutes
+const SequelizeStore = connectSessionSequelize(session.Store);
+
 
 // ---------- Endpoints of the API with MySQL: ----------
 
 try{
-    app.use("/",express.static("../frontend/build/", {index: "index.html"}))
+    app.use("/",express.static("../frontend/build/", {index: "index.html"}));
+
+    app.use(
+        session({
+            secret: "penguinsarebeautiful",
+            resave: false,
+            saveUninitialized: true,
+            store: new SequelizeStore({
+                db: sequelize,
+                table: "sessions"
+            }),
+            cookie: { maxAge: cookieDuration },
+    }));
+
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
     app.post("/login/", jsonParser, logingUserControler);
@@ -47,7 +65,15 @@ try{
     app.use((err, req, res, next)=>{
         console.error(err);
         next()
+    });
+    /*
+    sequelize.sync().then(()=> {
+        app.listen( PORT, ()=> {
+            console.log(`Listening at ${PORT}`,"Express Running") 
+        }); 
     })
+    */
+
 }catch (err){
     console.log(err);
 }
