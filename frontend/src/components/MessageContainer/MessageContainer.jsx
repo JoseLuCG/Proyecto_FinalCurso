@@ -70,7 +70,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
         className='msg-cntr'
         >
             <div>
-                <button onClick={getMessagesData}>LOAD MESSAGES</button>
+                <button type="button" onClick={getMessagesData}>LOAD MESSAGES</button>
             </div>
             <div className='wallpaper'>
             {
@@ -94,7 +94,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             onChange={messageHandler}
             value={message}
             ></textarea>
-            <button className='snd-bttn' type="submit" onClick={sendMessageHandler}></button>
+            <button className='snd-bttn' type="button" onClick={sendMessageHandler}></button>
         </div>
         </div>
     );
