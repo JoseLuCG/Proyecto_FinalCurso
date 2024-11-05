@@ -141,19 +141,19 @@ function sendMessageControler(request, response) {
     const {
         idUserEmisor,
         idUserReceptor,
-        messageBody
+        message_body
     } = request.body;
     try {
         let sql = `
         INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
-            VALUES (${idUserEmisor},${idUserReceptor},"${messageBody}");`;
+            VALUES (${idUserEmisor},${idUserReceptor},"${message_body}");`;
         mySqlConn.query(sql,(error, result) => {
             if (error) {
                 console.error(error);
             } else {
-                //response.json(result);
+                console.log(request.body);
                 response.sendStatus(200);
-                //console.log("Mensaje guardado con exito",request.body);
+                console.log("Mensaje guardado con exito",request.body);
             }
         });
     } catch (error) {
