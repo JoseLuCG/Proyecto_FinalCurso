@@ -52,3 +52,9 @@ CREATE TABLE IF NOT EXISTS message_proves_v1 (
     message_id INTEGER NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (message_id)
 );
+
+CREATE TABLE sessions (
+	id VARCHAR(255) PRIMARY KEY,
+    data_session JSON,
+    expires DATETIME
+);
