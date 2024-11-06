@@ -36,11 +36,10 @@ try{
         session({
             secret: "penguinsarebeautiful",
             resave: false,
-            saveUninitialized: true,
+            saveUninitialized: false,
             store: new SequelizeStore({
                 db: sequelize,
-                table: SessionTable,
-                tableName: "sessions"
+                table: "sessions",
             }),
             cookie: { maxAge: cookieDuration },
     }));
@@ -66,7 +65,7 @@ try{
     });
     */
 
-    sequelize.sync().then(()=> {
+    sequelize.sync({force:false}).then(()=> {
         console.log("Sessions table synced.");
         app.listen(PORT, () => {
             console.log(`Listening at ${PORT}`,"Express Running");
