@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../connection/sequelizeConn.mjs";
 
-const Session = sequelize.define("Session",{
+const SessionTable = sequelize.define("Session",{
     id: {
         type: DataTypes.STRING(255),
         primaryKey: true,
@@ -21,5 +21,5 @@ const Session = sequelize.define("Session",{
 });
 
 export {
-    Session
+    SessionTable
 };
