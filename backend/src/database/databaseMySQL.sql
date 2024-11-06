@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS message_proves_v1 (
 );
 
 CREATE TABLE sessions (
-	id VARCHAR(255) PRIMARY KEY,
+	sid VARCHAR(255) PRIMARY KEY,
     data_session JSON,
     expires DATETIME
 );
