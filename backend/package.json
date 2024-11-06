@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.mjs"
+    "start": "node ./src/index.mjs",
+    "dev": "node --env-file=development.env  ./src/index.mjs"
   },
   "keywords": [],
   "author": "",
