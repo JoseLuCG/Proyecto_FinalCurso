@@ -31,22 +31,21 @@ function singUpUser(req, res, next) {
     mySqlConn.query(sql, function (err) {
         if (err) {
             console.log(err);
-            //throw new Error("El usuario no ha sido introducido en la base de datos.");
-            
+            res.status(500).json({ message: "Error inserting user into database." });
         } else {
             mySqlConn.query(sqlIDReturn, (error, resultId) => {
                 if (error) {
                     console.log(error);
-                    //throw new Error("Error al insertar intereses en la base de datos.");
-                    
+                    res.status(500).json({ message: "Error getting registered user ID." });
                 } else {
                     registeredUserId = resultId[0].idUser;
                     insertInterests(interest, registeredUserId);
-                    res.json("success");
-                    //next();
+
+                    req.session.userId = registeredUserId;
+                    //req.session.username = nameProfile;
                     mySqlConn.end();
-                    console.log("El usuario se ha introducido correctamente:");
-                    
+                    res.status(201).json({ message: "User created and session started successfully." });
+                    console.log("The user has been entered correctly and the session has been created.");
                 }
             });
         }
