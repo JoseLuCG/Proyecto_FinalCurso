@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../connection/sequelizeConn.mjs";
 
-const SessionTable = sequelize.define("Session",{
-    id: {
+const SessionTable = sequelize.define("sessions",{
+    sid: {
         type: DataTypes.STRING(255),
         primaryKey: true,
         allowNull: false
