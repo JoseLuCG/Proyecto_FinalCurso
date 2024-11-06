@@ -9,10 +9,11 @@ import {
 } from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv";
 import express from "express";
-import session from "express-session";
+import session, { Store } from "express-session";
 import connectSessionSequelize from "connect-session-sequelize" ;
 import { sequelize } from "./connection/sequelizeConn.mjs";
 import { PORT } from "./models/defines.mjs";
+import { SessionTable } from "./models/sessionModel.mjs";
 /*
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -38,7 +39,8 @@ try{
             saveUninitialized: true,
             store: new SequelizeStore({
                 db: sequelize,
-                table: "sessions"
+                table: SessionTable,
+                tableName: "sessions"
             }),
             cookie: { maxAge: cookieDuration },
     }));
@@ -58,21 +60,27 @@ try{
     app.post("/messages/",jsonParser, getUserMessagesControler);
     
     //---------- Listen the port ----------
-    app.listen( /*process.env.*/PORT, ()=> {
-        console.log(`Listening at ${/*process.env.*/PORT}`,"Express Running") 
+    /*
+    app.listen( / process.env. /PORT, ()=> {
+        console.log(`Listening at ${/ process.env. /PORT}`,"Express Running") 
+    });
+    */
+
+    sequelize.sync().then(()=> {
+        console.log("Sessions table synced.");
+        app.listen(PORT, () => {
+            console.log(`Listening at ${PORT}`,"Express Running");
+            
+        });  
+    }).catch((error)=> {
+        console.error('Error syncing the sessions table',error);
+        
     });
 
     app.use((err, req, res, next)=>{
         console.error(err);
         next()
     });
-    /*
-    sequelize.sync().then(()=> {
-        app.listen( PORT, ()=> {
-            console.log(`Listening at ${PORT}`,"Express Running") 
-        }); 
-    })
-    */
 
 }catch (err){
     console.log(err);
