@@ -1,6 +1,7 @@
 import './Header.css';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import LoginButtons from '../LoginButtons/LoginButtons';
 
 function Header() {
     //----------States:----------
@@ -34,14 +35,7 @@ function Header() {
                     </ul>
                 </nav>
                 <div>
-                    <div className='circle-logButton'>
-                        <button className='crcl-l'>
-                            <Link to={"/"} className='li-link'>
-                                I S
-                            </Link>
-                        </button>
-                        <button className='crcl-r'>R T</button>
-                    </div>
+                    <LoginButtons/>
                 </div>
             </section>
         </header>
