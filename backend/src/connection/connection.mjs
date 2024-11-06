@@ -1,11 +1,11 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 var connection = mysql.createConnection({
-    host: "localhost",
+    host: process.env.DATABASE_HOST,
     port: 3306,
-    database: "social",
-    user: "root",
-    password: "abc123.",
+    database: process.env.DATABASE_DBNAME,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
     dateStrings: true
 });
 
