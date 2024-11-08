@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+
   mysqldb:
     image: mysql
     environment:
@@ -30,6 +31,11 @@ services:
       - mysqldb
     ports:
       - 4000:4000
+    volumes:
+      - ./backend/src:/usr/src/app/backend/src
+      - /usr/src/app/backend/node_modules
+    command: npm run dev 
+
 
   phpmyadmin:
     depends_on:
