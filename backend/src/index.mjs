@@ -14,6 +14,8 @@ import connectSessionSequelize from "connect-session-sequelize" ;
 import { sequelize } from "./connection/sequelizeConn.mjs";
 import { PORT } from "./models/defines.mjs";
 import { SessionTable } from "./models/sessionModel.mjs";
+import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
+import cors from 'cors'
 /*
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -32,16 +34,24 @@ const SequelizeStore = connectSessionSequelize(session.Store);
 try{
     app.use("/",express.static("../frontend/build/", {index: "index.html"}));
 
+    app.use(cors({
+        origin: 'http://localhost:3000',
+        credentials: true
+    }));
+
     app.use(
         session({
+            key: "cookie_session",
             secret: "penguinsarebeautiful",
             resave: false,
             saveUninitialized: false,
-            store: new SequelizeStore({
-                db: sequelize,
-                table: "sessions",
-            }),
-            cookie: { maxAge: cookieDuration },
+            store: sessionStore,
+            cookie: { 
+                maxAge: cookieDuration,
+                httpOnly: true,
+                sameSite: false
+            },
+            expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
     }));
 
     // ----- User Endpoints -----
@@ -65,8 +75,8 @@ try{
     });
     */
 
-    sequelize.sync({force:false}).then(()=> {
-        console.log("Sessions table synced.");
+    sessionStore.onReady().then(()=> {
+        console.log("MySQLStore ready.");
         app.listen(PORT, () => {
             console.log(`Listening at ${PORT}`,"Express Running");
             
