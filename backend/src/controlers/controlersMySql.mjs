@@ -38,13 +38,11 @@ function singUpUser(req, res, next) {
                 } else {
                     registeredUserId = resultId[0].idUser;
                     insertInterests(interest, registeredUserId);
-                    
                     const sessionData = {
                         userId : registeredUserId,
                         name_profile : nameProfile,
                         userType : "new User"
                     };
-
                     req.session.userId = registeredUserId;
                     req.session.nameProfile = nameProfile;
                     req.session.data_session = JSON.stringify(sessionData);
@@ -96,10 +94,19 @@ function logingUserControler(req, res) {
             (err,result)=>{
             if (err){
                 console.error(err);
-                res.sendStatus(201);
+                res.status(500).json({ message: "Error loging user into database." });
             } else {
                 let data = result[0];
-                res.json(data);
+                req.session.userId = data.id;
+                req.session.nameProfile = data.nameProfile;
+                const sessionData = {
+                    userId : data.id,
+                    name_profile : data.nameProfile,
+                    userType : "user acount"
+                }
+                req.session.data_session = JSON.stringify(sessionData);
+                res.status(201).json(data);
+                console.log(req.session);
             }
         });
     } catch(err) {
