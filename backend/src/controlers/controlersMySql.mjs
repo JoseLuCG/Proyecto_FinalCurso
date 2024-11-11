@@ -1,6 +1,7 @@
 import { mySqlConn } from "../connection/connection.mjs";
 import { sqlIDReturn } from "../tools/defines.mjs";
 import { insertInterests } from "../tools/apiTools.mjs";
+import { json } from "sequelize";
 
 function singUpUser(req, res, next) {
     const { 
@@ -13,9 +14,6 @@ function singUpUser(req, res, next) {
         email,
         interest
     } = req.body;
-
-    console.log(req.body);
-    
     let sql = `
         CALL insertUser(
         "${nameProfile}",
@@ -40,12 +38,20 @@ function singUpUser(req, res, next) {
                 } else {
                     registeredUserId = resultId[0].idUser;
                     insertInterests(interest, registeredUserId);
+                    
+                    const sessionData = {
+                        userId : registeredUserId,
+                        name_profile : nameProfile,
+                        userType : "new User"
+                    };
 
                     req.session.userId = registeredUserId;
-                    //req.session.username = nameProfile;
-                    mySqlConn.end();
+                    req.session.nameProfile = nameProfile;
+                    req.session.data_session = JSON.stringify(sessionData);
                     res.status(201).json({ message: "User created and session started successfully." });
                     console.log("The user has been entered correctly and the session has been created.");
+                    console.log(req.session);
+                    //mySqlConn.end();
                 }
             });
         }
