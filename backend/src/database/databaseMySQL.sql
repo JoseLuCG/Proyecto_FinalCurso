@@ -58,3 +58,5 @@ CREATE TABLE sessions (
     data_session JSON,
     expires DATETIME
 );
+
+ALTER TABLE sessions MODIFY COLUMN expires BIGINT;
