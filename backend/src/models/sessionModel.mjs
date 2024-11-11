@@ -8,7 +8,7 @@ const SessionTable = sequelize.define("sessions",{
         allowNull: false
     },
     data_session: {
-        type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull:false
     },
     expires: {
