@@ -22,10 +22,11 @@ export function dataToString (dataToTransfer) {
     const jsonData = JSON.stringify(dataToTransfer);
     const params = {
         method: 'POST',
-        body: jsonData,
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        credentials:'include',
+        body: jsonData,
     };
     return params;
 }
