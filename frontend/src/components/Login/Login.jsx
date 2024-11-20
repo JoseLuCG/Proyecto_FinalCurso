@@ -1,4 +1,4 @@
-import { useState,useContext } from 'react';
+import { useState,useContext, useEffect, useRef } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
@@ -11,10 +11,15 @@ function Login () {
 
     const [ userData , setuserData ] = useState("");
     const [ password, setPassword ] = useState("");
+    const prevUserRef = useRef(user);
 
     //Handlers:
     const userDataChangeHandler = changeValueFactory(setuserData);
     const passwordChangeHandler = changeValueFactory(setPassword);
+
+    function setLocalSotore() {
+        localStorage.setItem("User", JSON.stringify(user));
+    }
     
     async function sendLogin() {
         const user = {
@@ -25,12 +30,20 @@ function Login () {
         try {
             const response = await logingUser(user);
             setUser(response);
+            setLocalSotore();
         } catch (error) {
             
         }
     }
     
-    
+    useEffect(() => {
+        if ((prevUserRef.current !== user) && user.id) {
+            setLocalSotore();
+            prevUserRef.current = user;
+        }
+    },[user]
+    );
+
     return (
         <main className='log-cont'>
             <img className='LogoApp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtepaT1fXQVI9_pyOM34JaAx7aASFWzfmyQg&usqp=CAU" alt="Logo imagen" />
