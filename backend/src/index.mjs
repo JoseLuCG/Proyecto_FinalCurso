@@ -48,7 +48,7 @@ try{
             store: sessionStore,
             cookie: { 
                 maxAge: cookieDuration,
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: false
             },
             expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
