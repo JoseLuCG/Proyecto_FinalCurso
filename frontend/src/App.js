@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={[<Header/>,<LoginView/>]} />
+        <Route path='/' element={<LoginView/>} />
         <Route path='/suggestions/' element={<SuggestionsView/>} />
         <Route path='/about/' element={<AboutView/>} />
         <Route path='/rules-of-conduct/' element={<RulesView/>} />
