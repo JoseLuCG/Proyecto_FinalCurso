@@ -1,6 +1,6 @@
 import { OwnUser } from "./OwnUserStorage.jsx";
 import { useContext } from "react";
-import Login from "../components/Login/Login.jsx";
+import LoginView from "../Views/LoginView/LoginView.jsx";
 
 function Authorization ({children}) {
     //----------States----------
@@ -9,7 +9,7 @@ function Authorization ({children}) {
 
     return(
         <>
-        { user.id ? children : <Login/> }
+        { user.id ? children : <LoginView/> }
         </>
     );
 }
