@@ -21,8 +21,8 @@ function App() {
         <Route path='/rules-of-conduct/' element={<RulesView/>} />
         <Route path='/sing-up/' element={<RegistrerView/>}/>
         <Route path='/profiles/' element={<Authorization><PrincipalView/></Authorization>}/>
-        <Route path='/edit-user/' element={<EditingView/>}/>
-        <Route path='/settings/' element={<OptionsContainer/>}/>
+        <Route path='/edit-user/' element={<Authorization><EditingView/></Authorization>}/>
+        <Route path='/settings/' element={<Authorization><OptionsContainer/></Authorization>}/>
       </Routes>
     </>
   );

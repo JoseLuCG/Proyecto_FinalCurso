@@ -98,7 +98,6 @@ function ProfileCard ({user, editable}) {
     async function sendData() {
         const response = await postUser(ownUser);
         console.log("Datos enviados:",ownUser);
-        
     }
 
     useEffect(() => {
