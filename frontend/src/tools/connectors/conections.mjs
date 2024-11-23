@@ -78,3 +78,9 @@ export async function postMessage(data) {
 
     return await response.json();
 }
+
+export async function cookieProve() {
+    const response = await fetch(
+        URL + "/cookie-sent"
+    );
+}
