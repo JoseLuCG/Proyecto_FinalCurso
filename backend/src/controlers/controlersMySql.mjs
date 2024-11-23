@@ -38,6 +38,8 @@ function singUpUser(req, res, next) {
                 } else {
                     registeredUserId = resultId[0].idUser;
                     insertInterests(interest, registeredUserId);
+                    res.status(201).json({ message: "User created and session started successfully." });
+                    /*
                     const sessionData = {
                         userId : registeredUserId,
                         name_profile : nameProfile,
@@ -46,10 +48,10 @@ function singUpUser(req, res, next) {
                     req.session.userId = registeredUserId;
                     req.session.nameProfile = nameProfile;
                     req.session.data_session = JSON.stringify(sessionData);
-                    res.status(201).json({ message: "User created and session started successfully." });
                     console.log("The user has been entered correctly and the session has been created.");
                     console.log(req.session);
                     //mySqlConn.end();
+                    */
                 }
             });
         }
@@ -95,18 +97,23 @@ function logingUserControler(req, res) {
             if (err){
                 console.error(err);
                 res.status(500).json({ message: "Error loging user into database." });
+                
             } else {
                 let data = result[0];
-                req.session.userId = data.id;
-                req.session.nameProfile = data.nameProfile;
-                const sessionData = {
-                    userId : data.id,
-                    name_profile : data.nameProfile,
-                    userType : "user acount"
+                if (data) {
+                    req.session.userId = data.id;
+                    req.session.nameProfile = data.nameProfile;
+                    const sessionData = {
+                        userId : data.id,
+                        name_profile : data.nameProfile,
+                        userType : "user acount"
+                    }
+                    req.session.data_session = JSON.stringify(sessionData);
+                    res.status(201).json(data);
+                    console.log(req.session);   
+                } else {
+                    res.sendStatus(401).json({ message: "Error. Authorization is required." });
                 }
-                req.session.data_session = JSON.stringify(sessionData);
-                res.status(201).json(data);
-                console.log(req.session);
             }
         });
     } catch(err) {
@@ -205,7 +212,10 @@ function getUserMessagesControler(request, response) {
         console.error(error);
         sendStatus(500);
     }
-    
+}
+
+function cookieProve(request, response) {
+    console.log(request.session);
 }
 
 export {
@@ -215,5 +225,6 @@ export {
     getUsersControler,
     getInterestControler,
     sendMessageControler,
-    getUserMessagesControler
+    getUserMessagesControler,
+    cookieProve
 };
