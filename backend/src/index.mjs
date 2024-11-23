@@ -5,7 +5,8 @@ import {
     logingUserControlerFirstEntry, 
     getUsersControler, 
     sendMessageControler, 
-    getUserMessagesControler 
+    getUserMessagesControler, 
+    cookieProve
 } from "./controlers/controlersMySql.mjs";
 //import { config } from "dotenv";
 import express from "express";
@@ -67,6 +68,9 @@ try{
     // ----- Messages Endpoints -----
     app.post("/send-message/", jsonParser, sendMessageControler);
     app.post("/messages/",jsonParser, getUserMessagesControler);
+
+    // recuperar la cookie.
+    app.get("/cookie-sent", cookieProve);
     
     //---------- Listen the port ----------
     /*
