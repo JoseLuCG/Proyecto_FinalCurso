@@ -1,17 +1,14 @@
 import { OwnUser } from "./OwnUserStorage.jsx";
 import { useContext } from "react";
 import LoginView from "../Views/LoginView/LoginView.jsx";
+import { sessionCookie } from "../tools/defines.mjs";
 
 function Authorization ({children}) {
     //----------States----------
     //In mongodb the id will be _id. In SQLite is 'id'.
     const [ user ] = useContext(OwnUser);
-    const sessionCookie = document.cookie.split('; ').some(
-        cookie => cookie.startsWith('cookie_session=')
-    );
 
     console.log(sessionCookie);
-    
 
     return(
         <>
@@ -19,8 +16,5 @@ function Authorization ({children}) {
         </>
     );
 }
-export default Authorization;
 
-/*
-    { user.id ? children : <LoginView/> }
-*/
+export default Authorization;

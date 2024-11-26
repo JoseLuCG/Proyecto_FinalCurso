@@ -13,3 +13,7 @@ switch (window.location.hostname) {
       URL="/"
       break;
 }
+
+export const sessionCookie = document.cookie.split('; ').some(
+  cookie => cookie.startsWith('cookie_session=')
+);
