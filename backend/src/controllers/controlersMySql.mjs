@@ -214,7 +214,7 @@ function getUserMessagesControler(request, response) {
     }
 }
 
-function cookieProve(request, response) {
+function sessionManager(request, response) {
     console.log(request.session);
 }
 
@@ -226,5 +226,5 @@ export {
     getInterestControler,
     sendMessageControler,
     getUserMessagesControler,
-    cookieProve
+    sessionManager
 };
