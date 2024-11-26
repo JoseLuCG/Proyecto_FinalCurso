@@ -81,6 +81,6 @@ export async function postMessage(data) {
 
 export async function cookieProve() {
     const response = await fetch(
-        URL + "/cookie-sent"
+        URL + "/session-control"
     );
 }
