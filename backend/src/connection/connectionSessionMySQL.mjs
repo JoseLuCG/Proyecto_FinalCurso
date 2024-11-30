@@ -1,18 +1,12 @@
 import session from "express-session";
-import mysql from "mysql2";
 import {createRequire} from 'module';
-import { format } from "path";
+import { mySqlConn } from "./connection.mjs";
+import { error } from "console";
 
 const require = createRequire(import.meta.url);
 const MySQLStore = require('express-mysql-session')(session);
 
 const options = {
-    host: "localhost",
-    port: 3306,
-    database: "social",
-    user: "root",
-    password: "abc123.",
-    dateStrings: true,
     creaateDatabase: false,
     schema: {
         tableName: "sessions",
@@ -24,7 +18,25 @@ const options = {
     }
 };
 
-const sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore(options, mySqlConn);
+
+sessionStore.deleteSession = function (sessionId) {
+    const sql = `
+        SELECT *
+        FROM sessions
+        WHERE sid = "${sessionId}";
+    `;
+    mySqlConn.query(sql, (error, result) => {
+        if (error) {
+            console.error(error);
+        } else {
+            let data = result[0];
+
+            return data;
+        }
+    });
+}
+
 
 export {
     sessionStore
