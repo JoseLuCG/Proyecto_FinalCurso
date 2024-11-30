@@ -2,6 +2,8 @@ import { mySqlConn } from "../connection/connection.mjs";
 import { sqlIDReturn } from "../tools/defines.mjs";
 import { insertInterests } from "../tools/apiTools.mjs";
 import { json } from "sequelize";
+import session, { Session, Store } from "express-session";
+import { sessionStore } from "../connection/connectionSessionMySQL.mjs";
 
 function singUpUser(req, res, next) {
     const { 
@@ -110,7 +112,7 @@ function logingUserControler(req, res) {
                     }
                     req.session.data_session = JSON.stringify(sessionData);
                     res.status(201).json(data);
-                    console.log(req.session);   
+                    //console.log(req.session);   
                 } else {
                     res.sendStatus(401).json({ message: "Error. Authorization is required." });
                 }
@@ -218,6 +220,25 @@ function sessionManager(request, response) {
     console.log(request.session);
 }
 
+function logOut(request, response) {
+    console.log(request.sessionID);
+    
+    request.session.destroy((error) =>{
+        if (error) {
+            console.log("Error destroying session on server.");
+            console.error(error);
+            
+            response.status(500).send("Error logging out.")
+        } else {
+            console.log("Session closed successfully on the server.");
+            
+            const connection = sessionStore.deleteSession(request.sessionID);
+            console.log(connection);
+            
+        }
+    });
+}
+
 export {
     singUpUser,
     logingUserControlerFirstEntry,
@@ -226,5 +247,6 @@ export {
     getInterestControler,
     sendMessageControler,
     getUserMessagesControler,
-    sessionManager
+    sessionManager,
+    logOut
 };
