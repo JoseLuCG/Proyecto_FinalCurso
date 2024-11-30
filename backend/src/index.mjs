@@ -6,7 +6,8 @@ import {
     getUsersControler, 
     sendMessageControler, 
     getUserMessagesControler, 
-    sessionManager
+    sessionManager,
+    logOut
 } from "./controllers/controlersMySql.mjs";
 //import { config } from "dotenv";
 import express from "express";
@@ -17,6 +18,7 @@ import { PORT } from "./models/defines.mjs";
 import { SessionTable } from "./models/sessionModel.mjs";
 import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
+import authorizationMiddleware from "./middleware/authorization.mjs";
 /*
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -57,7 +59,7 @@ try{
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
-    app.post("/login/", jsonParser, logingUserControler);
+    app.post("/login/", jsonParser, authorizationMiddleware,logingUserControler);
     app.get("/users/", getUsersControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
@@ -71,6 +73,8 @@ try{
 
     // ----- Session Management -----
     app.get("/session-control", sessionManager);
+    app.get("/session-log-out", logOut);
+
     
     //---------- Listen the port ----------
     /*
