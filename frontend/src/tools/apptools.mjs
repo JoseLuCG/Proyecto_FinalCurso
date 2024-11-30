@@ -30,3 +30,4 @@ export function dataToString (dataToTransfer) {
     };
     return params;
 }
+

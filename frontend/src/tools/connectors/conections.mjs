@@ -84,3 +84,9 @@ export async function cookieProve() {
         URL + "/session-control"
     );
 }
+
+export async function logOut() {
+    const response = await fetch(
+        URL + "session-log-out"
+    );
+}
