@@ -2,6 +2,8 @@ import './Header.css';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import LoginButtons from '../LoginButtons/LoginButtons';
+import LoggedButton from '../LoggedButton/LoggedButton';
+import { sessionCookie } from '../../tools/defines.mjs';
 
 function Header() {
     //----------States:----------
@@ -35,7 +37,11 @@ function Header() {
                     </ul>
                 </nav>
                 <div>
-                    <LoginButtons/>
+                    {
+                        sessionCookie ?
+                        <LoggedButton/>:
+                        <LoginButtons/>
+                    }
                 </div>
             </section>
         </header>
