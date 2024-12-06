@@ -2,8 +2,8 @@ import { mySqlConn } from "../connection/connection.mjs";
 import { sqlIDReturn } from "../tools/defines.mjs";
 import { insertInterests } from "../tools/apiTools.mjs";
 import { json } from "sequelize";
-import session, { Session, Store } from "express-session";
-import { sessionStore } from "../connection/connectionSessionMySQL.mjs";
+//import session, { Session, Store } from "express-session";
+//import { sessionStore } from "../connection/connectionSessionMySQL.mjs";
 
 function singUpUser(req, res, next) {
     const { 
@@ -230,11 +230,32 @@ function logOut(request, response) {
             
             response.status(500).send("Error logging out.")
         } else {
-            console.log("Session closed successfully on the server.");
-            
-            const connection = sessionStore.deleteSession(request.sessionID);
-            console.log(connection);
-            
+            //console.log("Session closed successfully on the server.");
+
+            request.sessionStore.destroy(request.sessionID, (error)=>{
+                if (error) {
+                    console.log("No se ha cerrado correctamente la sesión");
+                } else {
+                    console.log("Se ha cerrado la sesión correctamente");
+                    
+                }
+            })
+            /*
+            const sessionsOpen = request.sessionStore.all((error, sessions)=>{
+                if (error) {
+                    console.log("Ha habido un error.");
+                    
+                } 
+
+                if (sessions) {
+                    return sessions;
+                }
+            });
+
+            const promise = promiseResolve(sessionsOpen);
+            //request.sessionStore.destroy()
+            //console.log(session);
+            */
         }
     });
 }
