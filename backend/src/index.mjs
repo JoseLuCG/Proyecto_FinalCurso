@@ -19,11 +19,12 @@ import { SessionTable } from "./models/sessionModel.mjs";
 import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
 import authorizationMiddleware from "./middleware/authorization.mjs";
-/*
+import { config } from "dotenv";
+import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
+
 if ( process.env.NODE_ENV != "production" ) {
     config()
 }
-*/
 
 // ---------- Create the instances of express: ----------
 const app = express();
@@ -59,7 +60,7 @@ try{
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
-    app.post("/login/", jsonParser, authorizationMiddleware,logingUserControler);
+    app.post("/login/", jsonParser, authorizationMiddleware,logingUserAuthorizerControler);
     app.get("/users/", getUsersControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
@@ -85,8 +86,8 @@ try{
 
     sessionStore.onReady().then(()=> {
         console.log("MySQLStore ready.");
-        app.listen(PORT, () => {
-            console.log(`Listening at ${PORT}`,"Express Running");
+        app.listen(process.env.PORT, () => {
+            console.log(`Listening at ${process.env.PORT}`,"Express Running");
             
         });  
     }).catch((error)=> {
