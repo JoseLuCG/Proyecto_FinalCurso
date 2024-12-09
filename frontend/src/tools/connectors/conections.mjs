@@ -86,7 +86,12 @@ export async function cookieProve() {
 }
 
 export async function logOut() {
+    const options = {
+        credentials: 'include'
+    };
+
     const response = await fetch(
-        URL + "session-log-out"
+        URL + "session-log-out",
+        options
     );
 }
