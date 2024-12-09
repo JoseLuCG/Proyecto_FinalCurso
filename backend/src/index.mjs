@@ -53,14 +53,15 @@ try{
             cookie: { 
                 maxAge: cookieDuration,
                 httpOnly: false,
-                sameSite: false
+                sameSite: true,
+                secure: false
             },
             expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
     }));
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
-    app.post("/login/", jsonParser, authorizationMiddleware,logingUserAuthorizerControler);
+    app.post("/login/", jsonParser, authorizationMiddleware,logingUserControler);
     app.get("/users/", getUsersControler);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
