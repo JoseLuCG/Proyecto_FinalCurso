@@ -221,28 +221,6 @@ function sessionManager(request, response) {
 }
 
 function logOut(request, response) {
-    console.log(request.sessionID);
-    /*
-    request.sessionStore.destroy(request.sessionID,(error)=> {
-        if (error) {
-            console.log("Error destroying session in the database.");
-            console.error(error);
-            response.status(500).send("Error logging out in database.");
-        } else {
-            request.session.destroy((error) =>{
-                if (error) {
-                    console.log("Error destroying session on server.");
-                    console.error(error);
-                    response.status(500).send("Error logging out.");    
-                } else {
-                    response.status(200).send("Sesión cerrada.");
-                    console.log("Sesion cerrada correctamente");
-                    
-                }
-            });        
-        }
-    });
-    */
     request.session.destroy((error) =>{
         if (error) {
             console.log("Error destroying session on server.");
@@ -255,7 +233,7 @@ function logOut(request, response) {
                     console.log("No se ha cerrado correctamente la sesión");
                 } else {
                     console.log("Se ha cerrado la sesión correctamente");
-                    response.status(200).send("Sesión cerrada.")
+                    response.clearCookie('cookie_session').status(200).send("Sesión cerrada.");
                 }
             })
         }
@@ -271,5 +249,5 @@ export {
     sendMessageControler,
     getUserMessagesControler,
     sessionManager,
-    logOut
+    logOut,
 };
