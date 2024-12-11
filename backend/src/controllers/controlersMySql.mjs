@@ -233,7 +233,7 @@ function logOut(request, response) {
                     console.log("No se ha cerrado correctamente la sesión");
                 } else {
                     console.log("Se ha cerrado la sesión correctamente");
-                    response.clearCookie('cookie_session').status(200).send("Sesión cerrada.");
+                    response.clearCookie('cookie_session').status(200).json({ success: true });
                 }
             })
         }
