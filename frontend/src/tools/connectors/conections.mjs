@@ -94,4 +94,7 @@ export async function logOut() {
         URL + "session-log-out",
         options
     );
+
+    const data = await response.json();
+    return data;
 }
