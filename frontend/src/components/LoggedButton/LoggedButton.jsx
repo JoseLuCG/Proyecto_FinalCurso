@@ -9,8 +9,10 @@ function LoggedButton() {
 
     async function closeSession() {
         const redirectResponse = await logOut();
+        console.log(redirectResponse);
+        
 
-        if (redirectResponse == 'ok') {
+        if (redirectResponse.success) {
             navigate("/");
         }
     }
