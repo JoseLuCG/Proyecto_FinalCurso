@@ -11,8 +11,19 @@ import Authorization from './services/Authorization';
 import OptionsContainer from './components/OptionsContainer/OptionsContainer';
 import SuggestionsView from './Views/SuggestionsView/SuggestionsView';
 import { sessionCookie } from './tools/defines.mjs';
+import { useContext, useEffect } from 'react';
+import { OwnUser } from './services/OwnUserStorage';
 
 function App() {
+  const [ user, setUser ] = useContext(OwnUser);
+
+  useEffect(
+    ()=> {
+      const userData = JSON.parse(localStorage.getItem("User"));
+      setUser(userData);
+      
+    },[]
+  );
 
   return (
     <>
