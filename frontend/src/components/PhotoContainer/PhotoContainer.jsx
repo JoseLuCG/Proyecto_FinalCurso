@@ -5,8 +5,6 @@ import defaultImg from './../../assets/default-img.jpg';
 
 function PhotoContainer({user, editable, userForm, userFormHandler}) {
     
-    console.log(userForm);
-    
     return(
         <div className='containerPhotoAge'>
         <PicIcon img={defaultImg} />
