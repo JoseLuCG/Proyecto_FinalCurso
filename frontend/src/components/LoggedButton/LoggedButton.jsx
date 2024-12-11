@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import './LoggedButton.css';
 import { logOut } from '../../tools/connectors/conections.mjs';
+import { useNavigate } from 'react-router-dom';
 
 function LoggedButton() {
     //----------States:----------
+    const navigate = useNavigate();
 
-    function closeSession() {
-        logOut();
+    async function closeSession() {
+        const redirectResponse = await logOut();
+
+        if (redirectResponse == 'ok') {
+            navigate("/");
+        }
     }
     //----------Handlers:----------
     return (
