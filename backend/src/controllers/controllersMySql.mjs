@@ -184,24 +184,6 @@ function sendMessageControler(request, response) {
     }    
 }
 
-async function getUserMessagesControler(request, response) {
-    // TODO: Implement `socket.io` for manage the connection of messages
-    const {
-        idEmisor,
-        idReceptor,
-    } = request.body;
-
-    try {
-        const messages = await getMessagesData(idEmisor, idReceptor);
-        console.log(messages);
-        
-        response.json(messages);
-    } catch (error) {
-        console.error(error);
-        sendStatus(500);
-    }
-}
-
 function sessionManager(request, response) {
     console.log(request.session);
 }
@@ -233,7 +215,6 @@ export {
     getUsersControler,
     getInterestControler,
     sendMessageControler,
-    getUserMessagesControler,
     sessionManager,
     logOut,
 };
