@@ -16,7 +16,7 @@ function ProfileCard ({user, editable}) {
       nameUser: "",
       password: "",
       location: "",
-      interest: "", // TODO: funcion que retorne un array
+      interest: "",
       age: 0,
       description: "",
       email: "",
@@ -29,17 +29,6 @@ function ProfileCard ({user, editable}) {
     const prevUserRef = useRef(ownUser);
 
     //----------Handlers:----------
-    /*
-    const nameProfileChangeHandler = changeValueFactory(setNameProfile);
-    const nameChangeHandler = changeValueFactory(setNameUser);
-    const passwordChangeHandler = changeValueFactory(setPassword);
-    const locationChangeHandler = changeValueFactory(setLocation);
-    const interestChangeHandler = changeValueFactory(setInterest);
-    const ageChangeHandler = changeValueFactory(setAge);
-    const descriptionChangeHandler = changeValueFactory(setDescription);
-    const emailChangeHandler = changeValueFactory(setEmail);
-    const photoChangeHandler = changeValueFactory(setPhoto);
-    */
 
     function userFormHandler(event) {
       const { name, value } = event.target;
