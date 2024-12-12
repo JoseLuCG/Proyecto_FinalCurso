@@ -17,3 +17,7 @@ switch (window.location.hostname) {
 export const sessionCookie = document.cookie.split('; ').some(
   cookie => cookie.startsWith('cookie_session=')
 );
+
+export const messsage = {
+  sessionError : "No se ha podido iniciar la sesión."
+};
