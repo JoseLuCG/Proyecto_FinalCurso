@@ -2,6 +2,7 @@ import { mySqlConn } from "../connection/connection.mjs";
 import { sqlIDReturn } from "../tools/defines.mjs";
 import { insertInterests } from "../tools/apiTools.mjs";
 import { json } from "sequelize";
+import getMessagesData from "./messagesControllers/dataHandlers/getMessagesDataHandler.mjs";
 //import session, { Session, Store } from "express-session";
 //import { sessionStore } from "../connection/connectionSessionMySQL.mjs";
 
@@ -183,7 +184,7 @@ function sendMessageControler(request, response) {
     }    
 }
 
-function getUserMessagesControler(request, response) {
+async function getUserMessagesControler(request, response) {
     // TODO: Implement `socket.io` for manage the connection of messages
     const {
         idEmisor,
@@ -191,26 +192,10 @@ function getUserMessagesControler(request, response) {
     } = request.body;
 
     try {
-        let sql = `
-        SELECT *
-            FROM message_proves_v1
-            WHERE 
-                (id_emisor_user = ${idEmisor}
-                AND id_receptor_user = ${idReceptor})
-            OR
-                (id_emisor_user = ${idReceptor}
-                AND id_receptor_user = ${idEmisor})
-        ;`;
-        mySqlConn.query(sql, (err, result) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(201);
-            } else {
-                let data = result;
-                response.json(data);
-            }
-        });
+        const messages = await getMessagesData(idEmisor, idReceptor);
+        console.log(messages);
         
+        response.json(messages);
     } catch (error) {
         console.error(error);
         sendStatus(500);
