@@ -8,7 +8,7 @@ import {
     getUserMessagesControler, 
     sessionManager,
     logOut
-} from "./controllers/controlersMySql.mjs";
+} from "./controllers/controllersMySql.mjs";
 //import { config } from "dotenv";
 import express from "express";
 import session, { Store } from "express-session";
@@ -20,7 +20,7 @@ import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
 import authorizationMiddleware from "./middleware/authorization.mjs";
 import { config } from "dotenv";
-import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
+//import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
