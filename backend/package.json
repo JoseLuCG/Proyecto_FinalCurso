@@ -1,14 +1,14 @@
 {
   "name": "bloomly-backend",
   "version": "0.1.0",
-  "description": "",
+  "description": "This is the API back-end from Bloomly fron-end application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "JoseLuCG",
   "license": "ISC",
   "dependencies": {
     "connect-session-sequelize": "^7.1.7",
