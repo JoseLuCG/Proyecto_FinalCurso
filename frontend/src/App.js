@@ -21,7 +21,6 @@ function App() {
     ()=> {
       const userData = JSON.parse(localStorage.getItem("User"));
       setUser(userData);
-      
     },[]
   );
 
