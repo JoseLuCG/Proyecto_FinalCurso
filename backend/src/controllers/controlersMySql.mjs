@@ -184,6 +184,7 @@ function sendMessageControler(request, response) {
 }
 
 function getUserMessagesControler(request, response) {
+    // TODO: Implement `socket.io` for manage the connection of messages
     const {
         idEmisor,
         idReceptor,

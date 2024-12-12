@@ -14,6 +14,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
     const previousMessagesRef = useRef(messagesArray);
 
     const messageHandler = changeValueFactory(setMessage);
+    // TODO: Implement `socket.io-client` for manage the connection of messages
 
     function messageConstruct(msg) {
         let message = {
