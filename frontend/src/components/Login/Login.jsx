@@ -2,8 +2,9 @@ import { useState,useContext, useEffect, useRef } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { Link } from 'react-router-dom';
 import { changeValueFactory } from '../../tools/apptools.mjs';
-import { cookieProve, logingUser } from '../../tools/connectors/conections.mjs';
+import { logingUser } from '../../tools/connectors/conections.mjs';
 import './Login.css';
+import { messsage } from '../../tools/defines.mjs';
 
 function Login () {
     //States:
@@ -31,9 +32,8 @@ function Login () {
             const response = await logingUser(user);
             setUser(response);
             setLocalSotore();
-            cookieProve();
         } catch (error) {
-            
+            alert(messsage.sessionError)
         }
     }
     
