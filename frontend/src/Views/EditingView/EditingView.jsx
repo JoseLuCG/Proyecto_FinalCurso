@@ -11,13 +11,15 @@ function EditingView() {
     //----------Handlers:----------
 
     return(
-        <div className='editContainer'>
-            <CircleButton imgSrc={back} path={-1}/>
-            <h1>Edita tus datos:</h1>
-            <div>
-            <ProfileCard user={user}/>    
-            </div>
-        </div>
+        <>
+            <main className='editContainer'>
+                <CircleButton imgSrc={back} path={-1}/>
+                <h1>Edita tus datos:</h1>
+                <div>
+                    <ProfileCard user={user}/>    
+                </div>
+            </main>
+        </>
     );
 }
 export default EditingView;
