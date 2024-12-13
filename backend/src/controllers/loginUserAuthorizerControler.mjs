@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { mySqlConn } from "../../connection/connection.mjs";
+import { mySqlConn } from "../connection/connection.mjs";
 
 function callbackError (req, res, error) {
     console.error(error);
