@@ -20,4 +20,5 @@ export const sessionCookie = document.cookie.split('; ').some(
 
 export const messsage = {
   sessionError : "No se ha podido iniciar la sesión."
+  // TODO: Add more message templates
 };
