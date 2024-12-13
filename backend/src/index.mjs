@@ -19,8 +19,8 @@ import cors from 'cors'
 import authorizationMiddleware from "./middleware/authorization.mjs";
 import { config } from "dotenv";
 import { 
-    getUserMessagesControler,
-    sendMessageControler
+    getUserMessagesController,
+    sendMessageController
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 //import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
 
@@ -72,8 +72,8 @@ try{
     app.get("/interests", getInterestControler);
 
     // ----- Messages Endpoints -----
-    app.post("/send-message/", jsonParser, sendMessageControler);
-    app.post("/messages/",jsonParser, getUserMessagesControler);
+    app.post("/send-message/", jsonParser, sendMessageController);
+    app.post("/messages/",jsonParser, getUserMessagesController);
 
     // ----- Session Management -----
     app.get("/session-control", sessionManager);
