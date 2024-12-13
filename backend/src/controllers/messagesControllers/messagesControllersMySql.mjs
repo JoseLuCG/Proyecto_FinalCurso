@@ -24,8 +24,8 @@ async function sendMessageController(request, response) {
         message_body
     } = request.body;
     try {
-        const error = await setNewMessageHandler(idUserEmisor,idUserReceptor, message_body);        
-        if (error == 'OK' ) {
+        const promise = await setNewMessageHandler(idUserEmisor,idUserReceptor, message_body);        
+        if (promise == 'OK' ) {
             response.sendStatus(200);
         }
     } catch (error) {
