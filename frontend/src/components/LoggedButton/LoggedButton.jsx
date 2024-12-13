@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './LoggedButton.css';
 import { logOut } from '../../tools/connectors/conections.mjs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function LoggedButton() {
     //----------States:----------
@@ -17,6 +17,9 @@ function LoggedButton() {
     return (
         <div className='circle-logButton'>
             <button onClick={closeSession}>Cerrar Sesión</button>
+            <Link to={"/profiles/"}>
+                    <button className='' >Back</button>
+            </Link>
         </div>
     );
 }
