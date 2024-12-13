@@ -5,7 +5,6 @@ import {
     logingUserControlerFirstEntry, 
     getUsersControler,
     sessionManager,
-    logOut
 } from "./controllers/controllersMySql.mjs";
 //import { config } from "dotenv";
 import express from "express";
@@ -22,7 +21,7 @@ import {
     getUserMessagesController,
     sendMessageController
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
-//import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
+import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
