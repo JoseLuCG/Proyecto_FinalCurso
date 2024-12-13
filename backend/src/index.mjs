@@ -3,8 +3,7 @@ import {
     logingUserControler, 
     getInterestControler, 
     logingUserControlerFirstEntry, 
-    getUsersControler, 
-    sendMessageControler,  
+    getUsersControler,
     sessionManager,
     logOut
 } from "./controllers/controllersMySql.mjs";
@@ -19,7 +18,10 @@ import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
 import authorizationMiddleware from "./middleware/authorization.mjs";
 import { config } from "dotenv";
-import { getUserMessagesControler } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
+import { 
+    getUserMessagesControler,
+    sendMessageControler
+} from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 //import logingUserAuthorizerControler from "./controllers/userControlers/loginUserAuthorizerControler.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
