@@ -49,6 +49,7 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
           />
           <button
             className='deployInterestsButton'
+            type='button'
             onClick={loadInterests}
           >
             display interests
