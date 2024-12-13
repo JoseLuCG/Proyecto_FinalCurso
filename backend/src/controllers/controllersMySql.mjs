@@ -159,31 +159,6 @@ function getInterestControler(req, res) {
     }
 }
 
-function sendMessageControler(request, response) {
-    const {
-        idUserEmisor,
-        idUserReceptor,
-        message_body
-    } = request.body;
-    try {
-        let sql = `
-        INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
-            VALUES (${idUserEmisor},${idUserReceptor},"${message_body}");`;
-        mySqlConn.query(sql,(error, result) => {
-            if (error) {
-                console.error(error);
-            } else {
-                console.log(request.body);
-                response.sendStatus(200);
-                console.log("Mensaje guardado con exito",request.body);
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        response.sendStatus(500);
-    }    
-}
-
 function sessionManager(request, response) {
     console.log(request.session);
 }
@@ -214,7 +189,6 @@ export {
     logingUserControler,
     getUsersControler,
     getInterestControler,
-    sendMessageControler,
     sessionManager,
     logOut,
 };
