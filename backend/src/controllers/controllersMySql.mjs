@@ -87,44 +87,6 @@ function logingUserControlerFirstEntry (req, res) {
             res.json(data);
         }
     });
-} 
-
-function logingUserControler(req, res) {
-    try {
-        const {userData,password} = req.body;
-
-        mySqlConn.query(`
-            SELECT * FROM users
-                WHERE password = "${password}" 
-                AND (nameProfile = "${userData}" 
-                OR email = "${userData}")`,
-            (err,result)=>{
-            if (err){
-                console.error(err);
-                res.status(500).json({ message: "Error loging user into database." });
-                
-            } else {
-                let data = result[0];
-                if (data) {
-                    req.session.userId = data.id;
-                    req.session.nameProfile = data.nameProfile;
-                    const sessionData = {
-                        userId : data.id,
-                        name_profile : data.nameProfile,
-                        userType : "user acount"
-                    }
-                    req.session.data_session = JSON.stringify(sessionData);
-                    res.status(201).json(data);
-                    //console.log(req.session);   
-                } else {
-                    res.sendStatus(401).json({ message: "Error. Authorization is required." });
-                }
-            }
-        });
-    } catch(err) {
-        console.error(err);
-        res.sendStatus(500);
-    }
 }
 
 function getUsersControler (req, res) {
@@ -168,7 +130,6 @@ function sessionManager(request, response) {
 export {
     singUpUser,
     logingUserControlerFirstEntry,
-    logingUserControler,
     getUsersControler,
     getInterestControler,
     sessionManager,
