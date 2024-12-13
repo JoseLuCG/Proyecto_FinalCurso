@@ -1,8 +1,6 @@
 import { 
-    singUpUser, 
-    logingUserControler, 
+    singUpUser,  
     getInterestControler, 
-    logingUserControlerFirstEntry, 
     getUsersControler,
     sessionManager,
 } from "./controllers/controllersMySql.mjs";
@@ -22,6 +20,7 @@ import {
     sendMessageController
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
+import { logingUserControler } from "./controllers/userControllers/userControllersMySql.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -30,7 +29,7 @@ if ( process.env.NODE_ENV != "production" ) {
 // ---------- Create the instances of express: ----------
 const app = express();
 const jsonParser = express.json();
-const cookieDuration = 1000 * 60 * 5; // 5 minutes
+const cookieDuration = 1000 * 60 * 15; // * Will linger 15 minutes
 const SequelizeStore = connectSessionSequelize(session.Store);
 
 
