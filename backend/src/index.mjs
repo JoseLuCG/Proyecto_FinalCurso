@@ -1,6 +1,3 @@
-import {
-    sessionManager,
-} from "./controllers/controllersMySql.mjs";
 import express from "express";
 import session, { Store } from "express-session";
 import connectSessionSequelize from "connect-session-sequelize" ;
@@ -72,7 +69,6 @@ try{
     app.post("/messages/",jsonParser, getUserMessagesController);
 
     // ----- Session Management -----
-    app.get("/session-control", sessionManager);
     app.get("/session-log-out", logOut);
 
     
