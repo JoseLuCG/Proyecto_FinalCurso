@@ -1,5 +1,4 @@
 import {
-    getInterestControler, 
     sessionManager,
 } from "./controllers/controllersMySql.mjs";
 import express from "express";
@@ -14,6 +13,7 @@ import {
     singUpUser,
     getUsersController
 } from "./controllers/userControllers/userControllersMySql.mjs";
+import getInterestsController from "./controllers/interestsControllers/interestsControllersMySql.mjs";
 import { 
     getUserMessagesController,
     sendMessageController
@@ -65,7 +65,7 @@ try{
     //app.delete("/user/:id", jsonParser, deleteUserControler);
 
     // ----- Interests Endpoints -----
-    app.get("/interests", getInterestControler);
+    app.get("/interests", getInterestsController);
 
     // ----- Messages Endpoints -----
     app.post("/send-message/", jsonParser, sendMessageController);
