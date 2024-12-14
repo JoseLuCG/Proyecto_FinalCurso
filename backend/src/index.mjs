@@ -1,5 +1,4 @@
-import { 
-    singUpUser,  
+import {
     getInterestControler, 
     getUsersControler,
     sessionManager,
@@ -20,7 +19,10 @@ import {
     sendMessageController
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
-import { logingUserControler } from "./controllers/userControllers/userControllersMySql.mjs";
+import { 
+    logingUserControler,
+    singUpUser
+} from "./controllers/userControllers/userControllersMySql.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
