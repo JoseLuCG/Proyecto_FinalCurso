@@ -5,7 +5,19 @@ function HomeView() {
     return(
         <>
             <Header/>
-            <h1>Esta es la pagina de inicio</h1>
+            <main className='mn-cntnr'>
+                <section className='stSection'>
+                    <h1>¡Bienvenido a Bloomly!</h1>
+                </section>
+                <section className='ndSection'>
+                    <section>
+                        <h2>¿Eres nuevo? ¡Regístrate!</h2>
+                    </section>
+                    <section>
+                        <h2>¿Tienes una cuenta? ¡Inicia sesión!</h2>
+                    </section>
+                </section>
+            </main>
         </>
     );
 }

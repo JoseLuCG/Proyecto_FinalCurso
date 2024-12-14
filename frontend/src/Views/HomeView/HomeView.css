@@ -1,3 +1,24 @@
+/*
+background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
+background-size: cover;
+*/
+main.mn-cntnr {
+    background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
 h1 {
-    color: red;
+    margin-top: 0px;
+}
+
+.stSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ndSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
