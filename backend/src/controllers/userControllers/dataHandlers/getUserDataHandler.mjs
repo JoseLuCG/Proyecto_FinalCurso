@@ -1,5 +1,11 @@
 import { mySqlConn } from "../../../connection/connection.mjs";
 
+/**
+ * Gets user data from the database.
+ * @param {*} userData The `email` or `nameProfile` of the user who logs in.
+ * @param {*} password The `password` of the user who logs in.
+ * @returns A promise with the user's data or an error from the database.
+ */
 function getUserData( userData, password ) {
     const sqlQuery = `
         SELECT * FROM users
