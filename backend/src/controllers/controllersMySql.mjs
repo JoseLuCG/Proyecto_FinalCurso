@@ -1,67 +1,6 @@
 import { mySqlConn } from "../connection/connection.mjs";
-import { sqlIDReturn } from "../tools/defines.mjs";
-import { insertInterests } from "../tools/apiTools.mjs";
-import { json } from "sequelize";
-import getMessagesData from "./messagesControllers/dataHandlers/getMessagesDataHandler.mjs";
-//import session, { Session, Store } from "express-session";
-//import { sessionStore } from "../connection/connectionSessionMySQL.mjs";
 
 // ! Delete this file when everything is refactored
-
-function singUpUser(req, res, next) {
-    const { 
-        nameProfile,
-        nameUser,
-        password,
-        location,
-        age,
-        description,
-        email,
-        interest
-    } = req.body;
-    let sql = `
-        CALL insertUser(
-        "${nameProfile}",
-        "${nameUser}",
-        "${password}",
-        "${location}", 
-         ${age}, 
-        "${description}", 
-        "${email}")
-    `;
-    var registeredUserId;
-
-    mySqlConn.query(sql, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(500).json({ message: "Error inserting user into database." });
-        } else {
-            mySqlConn.query(sqlIDReturn, (error, resultId) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).json({ message: "Error getting registered user ID." });
-                } else {
-                    registeredUserId = resultId[0].idUser;
-                    insertInterests(interest, registeredUserId);
-                    res.status(201).json({ message: "User created and session started successfully." });
-                    /*
-                    const sessionData = {
-                        userId : registeredUserId,
-                        name_profile : nameProfile,
-                        userType : "new User"
-                    };
-                    req.session.userId = registeredUserId;
-                    req.session.nameProfile = nameProfile;
-                    req.session.data_session = JSON.stringify(sessionData);
-                    console.log("The user has been entered correctly and the session has been created.");
-                    console.log(req.session);
-                    //mySqlConn.end();
-                    */
-                }
-            });
-        }
-    });
-}
 
 function logingUserControlerFirstEntry (req, res) {
     const { nameProfile,
@@ -128,7 +67,6 @@ function sessionManager(request, response) {
 }
 
 export {
-    singUpUser,
     logingUserControlerFirstEntry,
     getUsersControler,
     getInterestControler,
