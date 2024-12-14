@@ -1,7 +1,8 @@
 /* ---------- Container of the component CSS ---------- */
 .registrerContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
     background-size: cover;

@@ -14,12 +14,23 @@ function RegistrerView() {
         <>
             <Header></Header>
             <main className='registrerContainer'>
-                <CircleButton imgSrc={back} path={-1}/>
-                <h1>Completa tus datos:</h1>
-                <ProfileCard/>
-                <Link to={"/profiles/"}>
-                    <button >Entrar</button>
-                </Link>
+                <section>
+                    <h1>¿Eres nuevo? ¡Únete a nuestra comunidad!</h1>
+                    <p>
+                        Completa nuestro formulario de registro y 
+                        participa con más personas en esta gran
+                        comunidad.
+                    </p>
+                    <ul>
+                        <li>Connecta con más  personas</li>
+                        <li>Comparte los mismos intereses</li>
+                        <li>Haz amigos</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Completa tus datos:</h1>
+                    <ProfileCard />
+                </section>
             </main>
         </>
     );
