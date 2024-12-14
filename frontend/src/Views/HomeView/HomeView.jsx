@@ -1,5 +1,6 @@
-import Header from '../../components/Header/Header';
 import './HomeView.css';
+import Header from '../../components/Header/Header';
+import { Link } from 'react-router-dom';
 
 function HomeView() {
     return(
@@ -20,13 +21,17 @@ function HomeView() {
                     <section className='ndS-left'>
                         <div className='l-dv'>
                             <h2>¿Eres nuevo? ¡Regístrate!</h2>
-                            <button>Registro</button>
+                            <Link to={"/sing-up/"}>
+                                <button>Registro</button>
+                            </Link>
                         </div>
                     </section>
                     <section className='ndS-right'>
                         <div className='r-dv'>
                             <h2>¿Tienes una cuenta? ¡Inicia sesión!</h2>
-                            <button>Inicio Sesión</button>
+                            <Link to={"/login"}>
+                                <button>Inicio Sesión</button>
+                            </Link>
                         </div>
                     </section>
                 </section>
