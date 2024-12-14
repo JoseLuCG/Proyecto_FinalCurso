@@ -10,11 +10,15 @@ function LoginButtons() {
     return (
         <div className='circle-logButton'>
             <button className='crcl-l'>
-                <Link to={"/"} className='li-link'>
+                <Link to={"/login"} className='li-link'>
                     I S
                 </Link>
             </button>
-            <button className='crcl-r'>R T</button>
+            <button className='crcl-r'>
+                <Link to={"/sing-up/"}>
+                    R T
+                </Link>
+            </button>
         </div>
     );
 }
