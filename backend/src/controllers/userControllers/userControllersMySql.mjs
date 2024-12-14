@@ -1,5 +1,6 @@
 import { getUserData } from "./dataHandlers/getUserDataHandler.mjs";
 import { getInterestData } from "./dataHandlers/getUserInterestHandler.mjs";
+import getUsersHandler from "./dataHandlers/getUsersDataHandler.mjs";
 import setUserData from "./dataHandlers/setUserDataHandler.mjs";
 import insertUserInterests from "./dataHandlers/setUserInterests.mjs";
 import { userMolder } from "./tools/userMold.mjs";
@@ -9,7 +10,7 @@ import { userMolder } from "./tools/userMold.mjs";
  * @param {*} request Object represents the HTTP request query string. 
  * @param {*} response Object represents the HTTP response that an Express app sends when it gets an HTTP request.
  */
-async function logingUserControler(request, response) {
+async function logingUserController(request, response) {
     const {userData,password} = request.body;
     
     try {
@@ -66,7 +67,18 @@ async function singUpUser(request, response) {
     }
 }
 
+async function getUsersController(request, response) {
+    try {
+        const users = await getUsersHandler();
+        response.json(users);
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500);
+    }
+}
+
 export {
-    logingUserControler,
-    singUpUser
+    logingUserController,
+    singUpUser,
+    getUsersController
 }
