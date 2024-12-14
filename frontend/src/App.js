@@ -11,6 +11,7 @@ import OptionsContainer from './components/OptionsContainer/OptionsContainer';
 import SuggestionsView from './Views/SuggestionsView/SuggestionsView';
 import { useContext, useEffect } from 'react';
 import { OwnUser } from './services/OwnUserStorage';
+import HomeView from './Views/HomeView/HomeView';
 
 function App() {
   const [ user, setUser ] = useContext(OwnUser);
@@ -25,7 +26,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<LoginView/>} />
+        <Route path='/' element={<HomeView/>}/>
+        <Route path='/login' element={<LoginView/>} />
         <Route path='/suggestions/' element={<SuggestionsView/>} />
         <Route path='/about/' element={<AboutView/>} />
         <Route path='/rules-of-conduct/' element={<RulesView/>} />
