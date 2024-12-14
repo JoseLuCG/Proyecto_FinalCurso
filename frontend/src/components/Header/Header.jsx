@@ -20,6 +20,11 @@ function Header() {
                 <nav className='nv'>
                     <ul className='lst'>
                         <li className='h-li'>
+                            <Link to={"/"} className='li-link'>
+                                INICIO
+                            </Link>
+                        </li>
+                        <li className='h-li'>
                             <Link to={"/about/"} className='li-link'>
                                 SOBRE BLOOMLY
                             </Link>
