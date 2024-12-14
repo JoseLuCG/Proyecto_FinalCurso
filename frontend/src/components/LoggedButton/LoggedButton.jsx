@@ -10,7 +10,8 @@ function LoggedButton() {
     async function closeSession() {
         const redirectResponse = await logOut();
         if (redirectResponse.success) {
-            navigate("/");
+            // TODO: Make the page reload if the session is closed
+            navigate("/"); // ! Delete this line when the TODO will be finished.
         }
     }
     //----------Handlers:----------
