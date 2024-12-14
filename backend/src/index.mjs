@@ -2,27 +2,23 @@ import {
     getInterestControler, 
     sessionManager,
 } from "./controllers/controllersMySql.mjs";
-//import { config } from "dotenv";
 import express from "express";
 import session, { Store } from "express-session";
 import connectSessionSequelize from "connect-session-sequelize" ;
-import { sequelize } from "./connection/sequelizeConn.mjs";
-import { PORT } from "./models/defines.mjs";
-import { SessionTable } from "./models/sessionModel.mjs";
 import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
-import authorizationMiddleware from "./middleware/authorization.mjs";
 import { config } from "dotenv";
-import { 
-    getUserMessagesController,
-    sendMessageController
-} from "./controllers/messagesControllers/messagesControllersMySql.mjs";
-import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
+import authorizationMiddleware from "./middleware/authorization.mjs";
 import { 
     logingUserController,
     singUpUser,
     getUsersController
 } from "./controllers/userControllers/userControllersMySql.mjs";
+import { 
+    getUserMessagesController,
+    sendMessageController
+} from "./controllers/messagesControllers/messagesControllersMySql.mjs";
+import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -62,7 +58,7 @@ try{
     }));
 
     // ----- User Endpoints -----
-    app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
+    app.post("/singup/",jsonParser, singUpUser);
     app.post("/login/", jsonParser, authorizationMiddleware,logingUserController);
     app.get("/users/", getUsersController);
     //app.put("/user-edit/", jsonParser, putUserControler);
@@ -81,12 +77,6 @@ try{
 
     
     //---------- Listen the port ----------
-    /*
-    app.listen( / process.env. /PORT, ()=> {
-        console.log(`Listening at ${/ process.env. /PORT}`,"Express Running") 
-    });
-    */
-
     sessionStore.onReady().then(()=> {
         console.log("MySQLStore ready.");
         app.listen(process.env.PORT, () => {
