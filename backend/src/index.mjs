@@ -1,6 +1,5 @@
 import {
     getInterestControler, 
-    getUsersControler,
     sessionManager,
 } from "./controllers/controllersMySql.mjs";
 //import { config } from "dotenv";
@@ -20,8 +19,9 @@ import {
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
 import { 
-    logingUserControler,
-    singUpUser
+    logingUserController,
+    singUpUser,
+    getUsersController
 } from "./controllers/userControllers/userControllersMySql.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
@@ -63,8 +63,8 @@ try{
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser/*, logingUserControlerFirstEntry*/);
-    app.post("/login/", jsonParser, authorizationMiddleware,logingUserControler);
-    app.get("/users/", getUsersControler);
+    app.post("/login/", jsonParser, authorizationMiddleware,logingUserController);
+    app.get("/users/", getUsersController);
     //app.put("/user-edit/", jsonParser, putUserControler);
     //app.delete("/user/:id", jsonParser, deleteUserControler);
 
