@@ -1,0 +1,105 @@
+/* ---------- VARIABLES ---------- */
+:root {
+    --hdr-bkgrnd-color: #212E3F;
+}
+
+/* ---------- MARGIN STYLE ---------- */
+header.h-bd > aside > h1, li, ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* ---------- HEADER CONTAINER ---------- */
+header.h-bd {
+    background-color: var(--hdr-bkgrnd-color);
+    width: 100%;
+}
+
+/* ---------- Logo Container ---------- */
+.lg-ctnr {
+    float: left;
+    margin-right: 20px;
+    height: 100%;
+    width: 15%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.img-ctnr {
+    height: 100px;
+    width: 100px;
+    background: url('../../assets/logo.png') center;
+    background-size: 160px 160px;
+    border-radius: 50%;
+    border: 5px black solid;
+    
+}
+
+/* ---------- SECTION HEADER ---------- */
+section.sctn-ctnr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 150px;
+}
+
+/* ----- NAV ----- */
+/*
+nav.nv {
+    
+}
+*/
+/* ----- UL NAV ----- */
+ul.lst {
+    width: 50rem;
+    padding: 30px;
+}
+
+
+/* ----- LI UL NAV ----- */
+li.h-li {
+    display: inline;
+    margin: 2%;
+    padding: 25px;
+    list-style: none;
+    background-color: #142234;
+    color: #9aa2ac;
+    border-radius: 10%;
+}
+
+/* ---------- Link li ---------- */
+.li-link {
+    text-decoration: none;
+    color: #9aa2ac;
+}
+
+.li-link:hover, li:hover {
+    text-decoration: none;
+    color: #2979db;
+    background-color: #374556;
+}
+
+
+/* ---------- Circular Buttons CSS ---------- */
+button.crcl-l {
+    border-radius: 50% 0% 0% 50%;
+    padding: 20px;
+    background-color: #142234;
+}
+
+button.crcl-l:hover {
+    text-decoration: none;
+    color: #2979db;
+    background-color: #374556;
+}
+
+
+button.crcl-r {
+    border-radius: 0% 50% 50% 0%;
+    padding: 20px;
+}
+
+/*
+https://www.falconmasters.com/jquery/header-dinamico-html-css-javascript/
+*/
