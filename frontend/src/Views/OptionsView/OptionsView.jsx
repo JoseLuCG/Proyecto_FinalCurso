@@ -2,6 +2,8 @@ import "./OptionsView.css";
 import Header from "../../components/Header/Header";
 
 function OptionsView() {
+    // TODO: Change the styles of the OptionsView
+    // TODO: Add functionality for the buttons
     return(
         <>
             <Header/>

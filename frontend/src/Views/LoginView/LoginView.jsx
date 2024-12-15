@@ -5,7 +5,6 @@ import Header from '../../components/Header/Header';
 function LoginView() {
     //----------States:----------
     
-    // TODO: Add a page reload if the user is log in
     //----------Handlers:----------
     return (
         <>

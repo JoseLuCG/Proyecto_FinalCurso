@@ -33,7 +33,7 @@ function PrincipalView () {
     }
 
     // ---------- Handlers ----------
-    
+    // TODO: Implement `socket.io-client` for manage the connection of the users
     async function loadUsersHandler () {
         const backendUsers = await loadUserData();
         setUsers(backendUsers);
