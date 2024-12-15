@@ -18,9 +18,6 @@ function LoggedButton() {
     return (
         <div className='circle-logButton'>
             <button onClick={closeSession}>Cerrar Sesión</button>
-            <Link to={"/profiles/"}>
-                    <button className='' >Back</button>
-            </Link>
         </div>
     );
 }
