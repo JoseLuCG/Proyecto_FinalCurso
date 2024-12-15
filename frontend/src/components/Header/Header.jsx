@@ -1,14 +1,17 @@
 import './Header.css';
 import logo from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
 import LoginButtons from '../LoginButtons/LoginButtons';
 import LoggedButton from '../LoggedButton/LoggedButton';
 import { sessionCookie } from '../../tools/defines.mjs';
+import ButtonsHeaderOut from '../ButtonsHeaderOut/ButtonsHeaderOut';
+import ButtonsHeaderIn from '../ButtonsHeaderIn/ButtonsHeaderIn';
 
 function Header() {
     //----------States:----------
  
     //----------Handlers:----------
+
+    // TODO: Add a change in buttons when the user is logged
     return (
         <header className='h-bd'>
             <aside className='lg-ctnr'>
@@ -17,30 +20,11 @@ function Header() {
                 <h1 className='appname'>BLOOMLY</h1>
             </aside>
             <section className='sctn-ctnr'>
-                <nav className='nv'>
-                    <ul className='lst'>
-                        <li className='h-li'>
-                            <Link to={"/"} className='li-link'>
-                                INICIO
-                            </Link>
-                        </li>
-                        <li className='h-li'>
-                            <Link to={"/about/"} className='li-link'>
-                                SOBRE BLOOMLY
-                            </Link>
-                        </li>
-                        <li className='h-li'>
-                            <Link to={"/suggestions/"} className='li-link'>
-                                SUGERENCIAS
-                            </Link>
-                        </li>
-                        <li className='h-li'>
-                            <Link to={"/rules-of-conduct/"} className='li-link'>
-                                NORMAS
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+                {
+                    sessionCookie ?
+                    <ButtonsHeaderIn/> :
+                    <ButtonsHeaderOut/>
+                }
                 <div>
                     {
                         sessionCookie ?
