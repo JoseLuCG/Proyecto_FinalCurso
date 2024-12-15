@@ -12,6 +12,7 @@ import SuggestionsView from './Views/SuggestionsView/SuggestionsView';
 import { useContext, useEffect } from 'react';
 import { OwnUser } from './services/OwnUserStorage';
 import HomeView from './Views/HomeView/HomeView';
+import OptionsView from './Views/OptionsView/OptionsView';
 
 function App() {
   const [ user, setUser ] = useContext(OwnUser);
@@ -32,6 +33,7 @@ function App() {
         <Route path='/about/' element={<AboutView/>} />
         <Route path='/rules-of-conduct/' element={<RulesView/>} />
         <Route path='/sing-up/' element={<RegistrerView/>}/>
+        <Route path='/options/' element={<Authorization><OptionsView/></Authorization>} />
         <Route path='/profiles/' element={<Authorization><PrincipalView/></Authorization>}/>
         <Route path='/edit-user/' element={<Authorization><EditingView/></Authorization>}/>
         <Route path='/settings/' element={<Authorization><OptionsContainer/></Authorization>}/>
