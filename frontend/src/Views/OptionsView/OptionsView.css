@@ -6,16 +6,32 @@
 .o-ctnr {
     margin-top: 20px;
     background-color: rgb(55, 83, 119, 0.6);
+    margin-bottom: 20px;
 }
 
 .slctr-cntnr {
     background-color: rgba(42, 112, 202, 0.6);
     margin-left: 20px;
     margin-right: 20px;
+    padding-bottom: 10px;
 
+}
+
+.slctr-cntnr ul {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
 }
 
 .slctr-cntnr ul li {
     list-style: none;
     text-align: center;
+    margin-top: 10px;
+    background-color: aqua;
+    /*width: 200px;*/
 }
+
+.slctr-cntnr ul li:last-child {
+    margin-bottom: 10px;
+}
+
