@@ -1,0 +1,21 @@
+.o-mn-cntnr {
+    display: flex;
+    justify-content: center;
+}
+
+.o-ctnr {
+    margin-top: 20px;
+    background-color: rgb(55, 83, 119, 0.6);
+}
+
+.slctr-cntnr {
+    background-color: rgba(42, 112, 202, 0.6);
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+.slctr-cntnr ul li {
+    list-style: none;
+    text-align: center;
+}
