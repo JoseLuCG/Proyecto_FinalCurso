@@ -11,7 +11,6 @@ function Header() {
  
     //----------Handlers:----------
 
-    // TODO: Add a change in buttons when the user is logged
     return (
         <header className='h-bd'>
             <aside className='lg-ctnr'>
