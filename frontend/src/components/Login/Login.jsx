@@ -32,6 +32,7 @@ function Login () {
             const response = await logingUser(user);
             setUser(response);
             setLocalSotore();
+            window.location.reload();
         } catch (error) {
             alert(messsage.sessionError)
         }
