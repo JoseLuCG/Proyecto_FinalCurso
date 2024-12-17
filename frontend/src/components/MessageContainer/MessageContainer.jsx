@@ -4,6 +4,7 @@ import { changeValueFactory } from '../../tools/apptools.mjs';
 import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
 import { getUserMessages, postMessage } from '../../tools/connectors/conections.mjs';
+import { socket } from '../../tools/connectors/socketConnections.mjs';
 
 function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
@@ -17,20 +18,20 @@ function MessageContainer ({hiddeMessages, idUser}) {
     // TODO: Implement `socket.io-client` for manage the connection of messages
 
     function messageConstruct(msg) {
-        let message = {
+        return {
             idUserEmisor: ownUserID,
             idUserReceptor: idUser,
             message_body: msg
         };
-        return message;
     }
-
 
     function sendMessageHandler() {
         if (message !== "") {
-            setMessagesArray(prevMessages => [...prevMessages, messageConstruct(message)]);
+            const newMessage = messageConstruct(message);
+            setMessagesArray(prevMessages => [...prevMessages, newMessage]);
             setMessage("");
-            wasSent.current = true;   
+            wasSent.current = true;
+            socket.emit("sendMmessage", newMessage);
         }
     }
     // ---------- Async Functions ----------
@@ -51,6 +52,22 @@ function MessageContainer ({hiddeMessages, idUser}) {
     async function sendData() {
         const response = await postMessage(messagesArray[messagesArray.length-1]);
     }
+
+    // ! This is the socket-connection:
+    // Set up socket listeners and emitters
+    useEffect(
+        () => {
+        // Listen for incoming messages
+        socket.on('receiveMessage', (message) => {
+            setMessagesArray((prevMessages) => [...prevMessages, message]);
+        });
+
+        return () => {
+        // Cleanup socket on unmount
+        socket.off('receiveMessage');
+        };
+        }, []
+    );
 
     useEffect(
         ()=> {
