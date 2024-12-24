@@ -31,7 +31,7 @@ const io = new Server(server, {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     credentials: true,
-    transports: ['websocket']
+    //transports: ['websocket']
   }
 });
 const jsonParser = express.json();
@@ -48,24 +48,24 @@ try{
         origin: 'http://localhost:3000',
         credentials: true
     }));
-
-    app.use(
-        session({
-            key: "cookie_session",
-            secret: "penguinsarebeautiful",
-            resave: false,
-            saveUninitialized: false,
-            store: sessionStore,
-            cookie: { 
-                maxAge: cookieDuration,
-                httpOnly: false,
-                sameSite: true,
-                secure: false
-            },
-            expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
-    }));
+    const sessionMiddleware = session({
+        key: "cookie_session",
+        secret: "penguinsarebeautiful",
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+        cookie: { 
+            maxAge: cookieDuration,
+            httpOnly: false,
+            sameSite: true,
+            secure: false
+        },
+        expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
+    }); 
+    app.use(sessionMiddleware);
 
     // ---------- Sockets: ----------
+    io.engine.use(sessionMiddleware);
  
     io.engine.on("connection_error", (err) => {
         console.log(err.req);      // the request object
@@ -77,17 +77,32 @@ try{
     // Listen for connections from clients
     io.on('connection', (socket) => {
         console.log('A user connected');
-
-        // Listen for messages from clients
-        socket.on('sendMessage', (message) => {
+        
+        // Usar `socket.on` para escuchar eventos de cada cliente específico
+        socket.on('hola', (message) => {
             console.log('Received message:', message);
-
-            // Broadcast the message to the other user
-            // Example: Emit the message to a specific room or user
-            socket.broadcast.emit('receiveMessage', message);
+            
+            // Emitir el mensaje a todos los usuarios (incluyendo al que lo envió)
+            // envia el mensaje "Hola mundo"
+            io.emit('Hola mundo', (message)=> {
+                if (message) {
+                    console.log("mensaje recivido");
+                    
+                }
+            });
         });
 
-        // Handle user disconnections
+        socket.on('sendMmessage', (message) => {
+            console.log('Received message:', message);
+            
+            // Emitir el mensaje a todos los usuarios (incluyendo al que lo envió)
+            io.emit('sendMmessage', (message)=> {
+                if (message) {
+                    console.log("mensaje recivido");
+                }
+            });
+        });
+    
         socket.on('disconnect', () => {
             console.log('A user disconnected');
         });
