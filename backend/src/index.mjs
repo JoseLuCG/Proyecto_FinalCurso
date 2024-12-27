@@ -6,6 +6,7 @@ import connectSessionSequelize from "connect-session-sequelize" ;
 import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
 import cors from 'cors'
 import { config } from "dotenv";
+import sessionMiddleware from "./middleware/sessionMiddleware.mjs";
 import authorizationMiddleware from "./middleware/authorization.mjs";
 import { 
     logingUserController,
@@ -18,6 +19,7 @@ import {
     sendMessageController
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
+import { initSocket } from "./connection/socketConnection.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -26,14 +28,6 @@ if ( process.env.NODE_ENV != "production" ) {
 // ---------- Create the instances of express: ----------
 const app = express();
 const server = createServer(app);
-const io = new Server(server, {
-    cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true,
-    //transports: ['websocket']
-  }
-});
 const jsonParser = express.json();
 const cookieDuration = 1000 * 60 * 15; // * Will linger 15 minutes
 const SequelizeStore = connectSessionSequelize(session.Store);
@@ -48,23 +42,12 @@ try{
         origin: 'http://localhost:3000',
         credentials: true
     }));
-    const sessionMiddleware = session({
-        key: "cookie_session",
-        secret: "penguinsarebeautiful",
-        resave: false,
-        saveUninitialized: false,
-        store: sessionStore,
-        cookie: { 
-            maxAge: cookieDuration,
-            httpOnly: false,
-            sameSite: true,
-            secure: false
-        },
-        expires: new Date(Date.now() + cookieDuration).toISOString().slice(0,19).replace('T'," ")
-    }); 
+     
     app.use(sessionMiddleware);
 
     // ---------- Sockets: ----------
+    initSocket(server);
+    /*
     io.engine.use(sessionMiddleware);
  
     io.engine.on("connection_error", (err) => {
@@ -79,8 +62,9 @@ try{
         console.log('A user connected');
         
         // Usar `socket.on` para escuchar eventos de cada cliente específico
-        socket.on('hola', (message) => {
+        socket.on('message-sent-by-the-user', (message) => {
             console.log('Received message:', message);
+
             
             // Emitir el mensaje a todos los usuarios (incluyendo al que lo envió)
             // envia el mensaje "Hola mundo"
@@ -91,7 +75,7 @@ try{
                 }
             });
         });
-
+        
         socket.on('sendMmessage', (message) => {
             console.log('Received message:', message);
             
@@ -102,12 +86,12 @@ try{
                 }
             });
         });
-    
+        
         socket.on('disconnect', () => {
             console.log('A user disconnected');
         });
     });
-
+    */
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser);
