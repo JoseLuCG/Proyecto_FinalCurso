@@ -65,7 +65,8 @@ try{
 
     
     //---------- Listen the port ----------
-    sessionStore.onReady().then(()=> {
+    sessionStore.onReady()
+    .then(()=> {
         console.log(logMessages.mySQLStoreOkStatus);
         server.listen(process.env.PORT, () => {
             console.log(logMessages.expressOkStatus, process.env.PORT);

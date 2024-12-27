@@ -16,18 +16,39 @@ CALL insertInterest("Fiesta",3);
 CALL insertInterest("Leer",4);
 CALL insertInterest("Libros",4);
 CALL insertInterest("Estudiar",4);
+-- Insert messages:
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (2,1,"Hola, ¿cómo estás");
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (1,2,"Hola, bien. ¿Y tú?");
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (3,1,"Hola, ¿cómo estás");
+    INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (1,3,"Hola, bien. ¿Y tú?");
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (4,1,"Hola, ¿cómo estás");
+    INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (1,4,"Hola, bien. ¿Y tú?");
+INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (5,1,"Hola, ¿cómo estás");
+    INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
+	VALUES (1,5,"Hola, bien. ¿Y tú?");
 
-
-SELECT * FROM users;
-
+DELETE FROM message_proves_v1
+/*
 SELECT * 
 	FROM users
 		RIGHT JOIN user_interests ON users.id = user_interests.idUser
 ORDER BY users.id
 ;
+*/
 
 SELECT *
-FROM message_proves_v1;
-
-INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
-            VALUES (2,1,"Hola, ¿cómo estás");
+	FROM message_proves_v1
+	WHERE 
+	(id_emisor_user = 1
+	AND id_receptor_user = 2)
+	OR
+	(id_emisor_user = 2
+	AND id_receptor_user = 1)
+;
