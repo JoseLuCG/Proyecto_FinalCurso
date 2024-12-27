@@ -32,7 +32,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             setMessagesArray(prevMessages => [...prevMessages, newMessage]);
             setMessage("");
             wasSent.current = true;
-            socket.emit("hola", newMessage);
+            socket.emit("message-sent-by-the-user", newMessage);
         }
     }
     // ---------- Async Functions ----------
