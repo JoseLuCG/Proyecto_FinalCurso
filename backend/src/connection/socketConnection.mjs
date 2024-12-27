@@ -17,8 +17,9 @@ export function initSocket(server) {
     io.on("connection", (socket) => {
         console.log(`User connected: ${socket.id}`);
 
-        socket.on("fetch-messages", async ( idEmisor, idReceptor ) => {
+        socket.on("fetch-messages", async ( ids ) => {
             try {
+                const {idEmisor, idReceptor} = ids;
                 const messages = await getMessagesData(idEmisor, idReceptor);
                 socket.emit("messages-data", messages);
             } catch (error) {
