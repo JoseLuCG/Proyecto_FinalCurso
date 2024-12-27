@@ -13,7 +13,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
     const wasSent = useRef(false);
     const ownUserID = ownUser[0].id;
     const previousMessagesRef = useRef(messagesArray);
-    const [ sock_messages, setSock_messages ] = useState([]);
 
     const messageHandler = changeValueFactory(setMessage);
     // TODO: Implement `socket.io-client` for manage the connection of messages
@@ -32,7 +31,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
             setMessagesArray(prevMessages => [...prevMessages, newMessage]);
             setMessage("");
             wasSent.current = true;
-            socket.emit("message-sent-by-the-user", newMessage);
         }
     }
     // ---------- Async Functions ----------
@@ -58,13 +56,16 @@ function MessageContainer ({hiddeMessages, idUser}) {
     // Set up socket listeners and emitters
     useEffect(
         () => {
-        // Listen for incoming messages
-        socket.on('sendMmessage', (message) => {
+            const idEmisor = ownUserID;
+            const idReceptor = idUser;
+            socket.emit("fetch-messages", { idEmisor, idReceptor });
+            
+            // Listen for incoming messages
+            socket.on('messages-data', (message) => {
             //setMessagesArray((prevMessages) => [...prevMessages, message]);
-            setSock_messages((prevMessages) => [...prevMessages, message]);
+            setMessagesArray((prevMessages) => [...prevMessages, message]);
 
         });
-
         return () => {
         // Cleanup socket on unmount
         socket.off('receiveMessage');
