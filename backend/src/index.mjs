@@ -1,13 +1,10 @@
 import express from "express";
 import { createServer } from "node:http";
-import { Server } from "socket.io";
-import session from "express-session";
-import connectSessionSequelize from "connect-session-sequelize" ;
 import { sessionStore } from "./connection/connectionSessionMySQL.mjs";
-import cors from 'cors'
 import { config } from "dotenv";
 import sessionMiddleware from "./middleware/sessionMiddleware.mjs";
 import authorizationMiddleware from "./middleware/authorization.mjs";
+import corsMiddleware from "./middleware/corsMiddleware.mjs";
 import { 
     logingUserController,
     singUpUser,
@@ -29,76 +26,24 @@ if ( process.env.NODE_ENV != "production" ) {
 const app = express();
 const server = createServer(app);
 const jsonParser = express.json();
-const cookieDuration = 1000 * 60 * 15; // * Will linger 15 minutes
-const SequelizeStore = connectSessionSequelize(session.Store);
-
 
 // ---------- Endpoints of the API with MySQL: ----------
-
 try{
-    //app.use("/",express.static("../frontend/build/", {index: "index.html"}));
-
-    app.use(cors({
-        origin: 'http://localhost:3000',
-        credentials: true
-    }));
-     
+    if ( process.env.NODE_ENV == "production" ) {
+        app.use("/",express.static("../frontend/build/", {index: "index.html"}));
+    }
+    app.use(corsMiddleware);
     app.use(sessionMiddleware);
 
     // ---------- Sockets: ----------
     initSocket(server);
-    /*
-    io.engine.use(sessionMiddleware);
- 
-    io.engine.on("connection_error", (err) => {
-        console.log(err.req);      // the request object
-        console.log(err.code);     // the error code, for example 1
-        console.log(err.message);  // the error message, for example "Session ID unknown"
-        console.log(err.context);  // some additional error context
-    });
-
-    // Listen for connections from clients
-    io.on('connection', (socket) => {
-        console.log('A user connected');
-        
-        // Usar `socket.on` para escuchar eventos de cada cliente específico
-        socket.on('message-sent-by-the-user', (message) => {
-            console.log('Received message:', message);
-
-            
-            // Emitir el mensaje a todos los usuarios (incluyendo al que lo envió)
-            // envia el mensaje "Hola mundo"
-            io.emit('Hola mundo', (message)=> {
-                if (message) {
-                    console.log("mensaje recivido");
-                    
-                }
-            });
-        });
-        
-        socket.on('sendMmessage', (message) => {
-            console.log('Received message:', message);
-            
-            // Emitir el mensaje a todos los usuarios (incluyendo al que lo envió)
-            io.emit('sendMmessage', (message)=> {
-                if (message) {
-                    console.log("mensaje recivido");
-                }
-            });
-        });
-        
-        socket.on('disconnect', () => {
-            console.log('A user disconnected');
-        });
-    });
-    */
 
     // ----- User Endpoints -----
     app.post("/singup/",jsonParser, singUpUser);
     app.post("/login/", jsonParser, authorizationMiddleware,logingUserController);
     app.get("/users/", getUsersController);
-    //app.put("/user-edit/", jsonParser, putUserControler);
-    //app.delete("/user/:id", jsonParser, deleteUserControler);
+    // TODO: Add the endpoint "/user-edit" for edit the user
+    // TODO: Add the endpoint "/user/:id" to delete the user
 
     // ----- Interests Endpoints -----
     app.get("/interests", getInterestsController);
