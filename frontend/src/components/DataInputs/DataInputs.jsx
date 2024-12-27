@@ -62,7 +62,7 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
               {
                 user ?
                   user.interest.map(
-                    (interest) => { return (<InterestItem interest={interest} />) }
+                    (interest) => { return (<InterestItem key={interest+ "#" +user.id} interest={interest} />) }
                   )
                   : "None"
               }

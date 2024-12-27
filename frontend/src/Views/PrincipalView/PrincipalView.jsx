@@ -48,7 +48,7 @@ function PrincipalView () {
                 <div className='usersContainer'>
                     {
                         users.map(
-                            (user) => <ProfileCard key={user._id} user={user} editable="false" />
+                            (user) => <ProfileCard key={user.id} user={user} editable="false" />
                         )
                     }
                 </div>
