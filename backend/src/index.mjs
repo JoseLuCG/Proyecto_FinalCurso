@@ -17,6 +17,14 @@ import {
 } from "./controllers/messagesControllers/messagesControllersMySql.mjs";
 import { logOut } from "./controllers/sessionControllers/sessionControllersMySql.mjs";
 import { initSocket } from "./connection/socketConnection.mjs";
+import { 
+    interestsRoutes,
+    logErrors,
+    logMessages,
+    messageRoutes,
+    sessionRoutes,
+    userRoutes 
+} from "./tools/defines.mjs";
 
 if ( process.env.NODE_ENV != "production" ) {
     config()
@@ -39,31 +47,31 @@ try{
     initSocket(server);
 
     // ----- User Endpoints -----
-    app.post("/singup/",jsonParser, singUpUser);
-    app.post("/login/", jsonParser, authorizationMiddleware,logingUserController);
-    app.get("/users/", getUsersController);
+    app.post(userRoutes.newUserRegistrationPath, jsonParser, singUpUser);
+    app.post(userRoutes.logInUser, jsonParser, authorizationMiddleware,logingUserController);
+    app.get(userRoutes.obtainUsers, getUsersController);
     // TODO: Add the endpoint "/user-edit" for edit the user
     // TODO: Add the endpoint "/user/:id" to delete the user
 
     // ----- Interests Endpoints -----
-    app.get("/interests", getInterestsController);
+    app.get(interestsRoutes.obtainInterests, getInterestsController);
 
     // ----- Messages Endpoints -----
-    app.post("/send-message/", jsonParser, sendMessageController);
-    app.post("/messages/",jsonParser, getUserMessagesController);
+    app.post(messageRoutes.getNewMessage, jsonParser, sendMessageController);
+    app.post(messageRoutes.obtainMessages, jsonParser, getUserMessagesController);
 
     // ----- Session Management -----
-    app.get("/session-log-out", logOut);
+    app.get(sessionRoutes.closeSession, logOut);
 
     
     //---------- Listen the port ----------
     sessionStore.onReady().then(()=> {
-        console.log("MySQLStore ready.");
+        console.log(logMessages.mySQLStoreOkStatus);
         server.listen(process.env.PORT, () => {
-            console.log(`Listening at ${process.env.PORT}`,"Express Running");
+            console.log(logMessages.expressOkStatus, process.env.PORT);
         }); 
     }).catch((error)=> {
-        console.error('Error syncing the sessions table',error);
+        console.error(logErrors.storeSynchronizationError, error);
         
     });
 
@@ -72,6 +80,6 @@ try{
         next()
     });
 
-}catch (err){
-    console.log(err);
+}catch (error){
+    console.log(logErrors.serverError, error);
 }
