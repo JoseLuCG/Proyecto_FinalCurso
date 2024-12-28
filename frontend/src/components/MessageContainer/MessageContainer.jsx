@@ -61,11 +61,22 @@ function MessageContainer ({hiddeMessages, idUser}) {
             socket.emit("fetch-messages", { idEmisor, idReceptor });
             
             // Listen for incoming messages
-            socket.on('messages-data', (message) => {
-            //setMessagesArray((prevMessages) => [...prevMessages, message]);
-            setMessagesArray((prevMessages) => [...prevMessages, message]);
-
-        });
+            socket.on('messages-data', (messages) => {
+                if (messages.length > 0) {
+                    if (messages !== messagesArray) {
+                        for (let msg in messages) {
+                            setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
+                            console.log(messagesArray);
+                        }
+                    }
+                    /*
+                    for (let msg in messages) {
+                        setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
+                        console.log(messagesArray);
+                    }
+                    */
+                }
+            });
         return () => {
         // Cleanup socket on unmount
         socket.off('receiveMessage');
@@ -75,7 +86,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     useEffect(
         ()=> {
-            console.log(messagesArray);
+            console.log("Messages array: ", messagesArray);
             if (previousMessagesRef.current !== messagesArray) {
                 if (wasSent.current) {
                     sendData();
