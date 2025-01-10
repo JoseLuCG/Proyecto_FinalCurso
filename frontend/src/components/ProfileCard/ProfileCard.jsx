@@ -61,11 +61,6 @@ function ProfileCard ({user, editable}) {
       return user;
     } 
 
-    function loadInterests () {
-        if (showInterests) setShowInterests(false);    
-        else setShowInterests(true);
-    }
-
     function showMessagesHandler() {
       if (!hiddeMessages) {
         setHiddeMessages(true);
