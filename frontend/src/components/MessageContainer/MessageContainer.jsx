@@ -33,6 +33,34 @@ function MessageContainer ({hiddeMessages, idUser}) {
             wasSent.current = true;
         }
     }
+
+    // !! This way!
+    function isFirstTime() {
+        if (messagesArray.length == 0) return true;
+        else return false;
+    }
+
+    function isOurMessage(message) {
+        if (
+            idUser == message.id_emisor_user || 
+            idUser == message.id_receptor_user
+        ) return true;
+        else return false;
+    }
+
+    function getNonRepeatedMessages(messagesObtained) {
+        if(isFirstTime()) {
+            console.log("¿Primera vez?");
+            for (let msg of messagesObtained) {
+                if (isOurMessage(msg)) {
+                    setMessagesArray((prevMessages) => [...prevMessages, msg]);   
+                }
+            }
+        } else {
+            console.log("¡Ya se ha hecho una vez!");
+        }
+    }
+    
     // ---------- Async Functions ----------
     async function getMessagesData() {
         const backendMessages = [];
@@ -52,7 +80,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
         const response = await postMessage(messagesArray[messagesArray.length-1]);
     }
 
-    // ! This is the socket-connection:
     // Set up socket listeners and emitters
     useEffect(
         () => {
@@ -63,18 +90,9 @@ function MessageContainer ({hiddeMessages, idUser}) {
             // Listen for incoming messages
             socket.on('messages-data', (messages) => {
                 if (messages.length > 0) {
-                    if (messages !== messagesArray) {
-                        for (let msg in messages) {
-                            setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
-                            console.log(messagesArray);
-                        }
-                    }
-                    /*
-                    for (let msg in messages) {
-                        setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
-                        console.log(messagesArray);
-                    }
-                    */
+                    getNonRepeatedMessages(messages);
+                } else {
+                    console.log("No new messages have been sent.");
                 }
             });
         return () => {
@@ -112,7 +130,8 @@ function MessageContainer ({hiddeMessages, idUser}) {
                 messagesArray.map(
                     (msg) => {
                         return(
-                        <p 
+                        <p
+                        key={"mm"+ idUser}
                         className={(msg.id_emisor_user == ownUserID) && "myMessage"}
                         >
                             {msg.message_body}
@@ -128,6 +147,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             id="msg" 
             onChange={messageHandler}
             value={message}
+            key={"T" + idUser}
             ></textarea>
             <button className='snd-bttn' type="button" onClick={sendMessageHandler}></button>
         </div>
