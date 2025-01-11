@@ -18,9 +18,10 @@ CALL insertInterest("Libros",4);
 CALL insertInterest("Estudiar",4);
 -- Insert messages:
 INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
-	VALUES (2,1,"Hola, ¿cómo estás");
+	VALUES (2,1,"Hola, soy Mercedes. ¿cómo estás P01?");
 INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
-	VALUES (1,2,"Hola, bien. ¿Y tú?");
+	VALUES (1,2,"¡Hola Mercedes!. Bien, ¿y tú?");
+    
 INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
 	VALUES (3,1,"Hola, ¿cómo estás");
     INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
@@ -34,7 +35,7 @@ INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
     INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
 	VALUES (1,5,"Hola, bien. ¿Y tú?");
 
-DELETE FROM message_proves_v1
+DELETE FROM message_proves_v1;
 /*
 SELECT * 
 	FROM users
