@@ -49,13 +49,17 @@ function MessageContainer ({hiddeMessages, idUser}) {
     }
 
     function getNonRepeatedMessages(messagesObtained) {
+        const arrayTemplate = [];
         if(isFirstTime()) {
             console.log("¿Primera vez?");
             for (let msg of messagesObtained) {
                 if (isOurMessage(msg)) {
+                    console.log(`Usuario ${idUser}, mensaje:`, msg);
+                    
                     setMessagesArray((prevMessages) => [...prevMessages, msg]);   
                 }
             }
+
         } else {
             console.log("¡Ya se ha hecho una vez!");
         }
@@ -91,8 +95,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
             socket.on('messages-data', (messages) => {
                 if (messages.length > 0) {
                     getNonRepeatedMessages(messages);
-                } else {
-                    console.log("No new messages have been sent.");
                 }
             });
         return () => {
@@ -104,7 +106,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     useEffect(
         ()=> {
-            console.log("Messages array: ", messagesArray);
+            console.log(`Messages array user's ${idUser}: `, messagesArray);
             if (previousMessagesRef.current !== messagesArray) {
                 if (wasSent.current) {
                     sendData();
