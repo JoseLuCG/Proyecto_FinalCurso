@@ -15,7 +15,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
     const previousMessagesRef = useRef(messagesArray);
 
     const messageHandler = changeValueFactory(setMessage);
-    // TODO: Implement `socket.io-client` for manage the connection of messages
 
     function messageConstruct(msg) {
         return {
@@ -52,17 +51,16 @@ function MessageContainer ({hiddeMessages, idUser}) {
         const arrayTemplate = [];
         if(isFirstTime()) {
             console.log("¿Primera vez?");
+            setMessagesArray(messagesObtained);
             for (let msg of messagesObtained) {
                 if (isOurMessage(msg)) {
-                    console.log(`Usuario ${idUser}, mensaje:`, msg);
-                    
-                    setMessagesArray((prevMessages) => [...prevMessages, msg]);   
+                    arrayTemplate.push(msg);
                 }
             }
-
         } else {
             console.log("¡Ya se ha hecho una vez!");
         }
+        setMessagesArray(arrayTemplate);
     }
     
     // ---------- Async Functions ----------
