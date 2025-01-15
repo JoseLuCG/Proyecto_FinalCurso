@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
 import { getUserMessages, postMessage } from '../../tools/connectors/conections.mjs';
 import { socket } from '../../tools/connectors/socketConnections.mjs';
+import MessageComponent from '../MessageComponent/MessageComponent';
 
 function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
@@ -127,15 +128,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             <div className='wallpaper'>
             {
                 messagesArray.map(
-                    (msg) => {
-                        return(
-                        <p
-                        key={"mm"+ idUser}
-                        className={(msg.id_emisor_user == ownUserID) && "myMessage"}
-                        >
-                            {msg.message_body}
-                        </p>
-                    )}
+                    (msg) => { return( <MessageComponent key={"mm"+ idUser} msg={msg} /> )}
                 )
             }
             </div>
