@@ -51,7 +51,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
         const arrayTemplate = [];
         if(isFirstTime()) {
             console.log("¿Primera vez?");
-            setMessagesArray(messagesObtained);
             for (let msg of messagesObtained) {
                 if (isOurMessage(msg)) {
                     arrayTemplate.push(msg);
