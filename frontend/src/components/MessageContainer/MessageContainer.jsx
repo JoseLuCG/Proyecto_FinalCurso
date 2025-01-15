@@ -128,7 +128,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             <div className='wallpaper'>
             {
                 messagesArray.map(
-                    (msg) => { return( <MessageComponent key={"mm"+ idUser} msg={msg} /> )}
+                    (msg) => { return( <MessageComponent key={"mm"+ idUser} msg={msg} ownUser={ownUser[0].id}/> )}
                 )
             }
             </div>

@@ -1,3 +1,9 @@
 .msgC {
     background-color: blueviolet;
 }
+
+.myMessage {
+    display: inline-block;
+    background-color: violet;
+    align-self: start;
+}
