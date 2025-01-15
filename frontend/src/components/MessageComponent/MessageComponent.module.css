@@ -1,9 +1,10 @@
 .msgC {
     background-color: blueviolet;
+    align-self: start;
 }
 
 .myMessage {
     display: inline-block;
     background-color: violet;
-    align-self: start;
+    align-self: self-end;
 }
