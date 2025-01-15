@@ -28,7 +28,8 @@ function MessageContainer ({hiddeMessages, idUser}) {
     function sendMessageHandler() {
         if (message !== "") {
             const newMessage = messageConstruct(message);
-            setMessagesArray(prevMessages => [...prevMessages, newMessage]);
+            //setMessagesArray(prevMessages => [...prevMessages, newMessage]);
+            socket.emit("send-message", newMessage);
             setMessage("");
             wasSent.current = true;
         }
@@ -79,7 +80,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
     }
 
     async function sendData() {
-        const response = await postMessage(messagesArray[messagesArray.length-1]);
+        //const response = await postMessage(messagesArray[messagesArray.length-1]);
     }
 
     // Set up socket listeners and emitters
