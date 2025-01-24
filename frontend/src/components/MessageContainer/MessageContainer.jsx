@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
 import { getUserMessages, postMessage } from '../../tools/connectors/conections.mjs';
 import { socket } from '../../tools/connectors/socketConnections.mjs';
+import MessageComponent from '../MessageComponent/MessageComponent';
 
 function MessageContainer ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
@@ -15,7 +16,6 @@ function MessageContainer ({hiddeMessages, idUser}) {
     const previousMessagesRef = useRef(messagesArray);
 
     const messageHandler = changeValueFactory(setMessage);
-    // TODO: Implement `socket.io-client` for manage the connection of messages
 
     function messageConstruct(msg) {
         return {
@@ -28,11 +28,42 @@ function MessageContainer ({hiddeMessages, idUser}) {
     function sendMessageHandler() {
         if (message !== "") {
             const newMessage = messageConstruct(message);
-            setMessagesArray(prevMessages => [...prevMessages, newMessage]);
+            //setMessagesArray(prevMessages => [...prevMessages, newMessage]);
+            socket.emit("send-message", newMessage);
             setMessage("");
             wasSent.current = true;
         }
     }
+
+    // !! This way!
+    function isFirstTime() {
+        if (messagesArray.length == 0) return true;
+        else return false;
+    }
+
+    function isOurMessage(message) {
+        if (
+            idUser == message.id_emisor_user || 
+            idUser == message.id_receptor_user
+        ) return true;
+        else return false;
+    }
+
+    function getNonRepeatedMessages(messagesObtained) {
+        const arrayTemplate = [];
+        if(isFirstTime()) {
+            console.log("¿Primera vez?");
+            for (let msg of messagesObtained) {
+                if (isOurMessage(msg)) {
+                    arrayTemplate.push(msg);
+                }
+            }
+        } else {
+            console.log("¡Ya se ha hecho una vez!");
+        }
+        setMessagesArray(arrayTemplate);
+    }
+    
     // ---------- Async Functions ----------
     async function getMessagesData() {
         const backendMessages = [];
@@ -49,10 +80,9 @@ function MessageContainer ({hiddeMessages, idUser}) {
     }
 
     async function sendData() {
-        const response = await postMessage(messagesArray[messagesArray.length-1]);
+        //const response = await postMessage(messagesArray[messagesArray.length-1]);
     }
 
-    // ! This is the socket-connection:
     // Set up socket listeners and emitters
     useEffect(
         () => {
@@ -63,18 +93,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             // Listen for incoming messages
             socket.on('messages-data', (messages) => {
                 if (messages.length > 0) {
-                    if (messages !== messagesArray) {
-                        for (let msg in messages) {
-                            setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
-                            console.log(messagesArray);
-                        }
-                    }
-                    /*
-                    for (let msg in messages) {
-                        setMessagesArray((prevMessages) => [...prevMessages, messages[msg]]);
-                        console.log(messagesArray);
-                    }
-                    */
+                    getNonRepeatedMessages(messages);
                 }
             });
         return () => {
@@ -86,7 +105,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     useEffect(
         ()=> {
-            console.log("Messages array: ", messagesArray);
+            console.log(`Messages array user's ${idUser}: `, messagesArray);
             if (previousMessagesRef.current !== messagesArray) {
                 if (wasSent.current) {
                     sendData();
@@ -110,14 +129,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             <div className='wallpaper'>
             {
                 messagesArray.map(
-                    (msg) => {
-                        return(
-                        <p 
-                        className={(msg.id_emisor_user == ownUserID) && "myMessage"}
-                        >
-                            {msg.message_body}
-                        </p>
-                    )}
+                    (msg) => { return( <MessageComponent key={"mm"+ idUser} msg={msg} ownUser={ownUser[0].id}/> )}
                 )
             }
             </div>
@@ -128,6 +140,7 @@ function MessageContainer ({hiddeMessages, idUser}) {
             id="msg" 
             onChange={messageHandler}
             value={message}
+            key={"T" + idUser}
             ></textarea>
             <button className='snd-bttn' type="button" onClick={sendMessageHandler}></button>
         </div>

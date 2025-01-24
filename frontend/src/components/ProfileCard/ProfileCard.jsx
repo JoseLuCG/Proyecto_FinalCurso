@@ -109,7 +109,7 @@ function ProfileCard ({user, editable}) {
           <button type='button' className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
           {
             user ?
-            <MessageContainer hiddeMessages={hiddeMessages} idUser={user.id}></MessageContainer> :
+            <MessageContainer key={"M" + user.id} hiddeMessages={hiddeMessages} idUser={user.id}></MessageContainer> :
             ""
           }
           

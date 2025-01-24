@@ -1,6 +1,7 @@
 import { Server } from 'socket.io';
 import sessionMiddleware from '../middleware/sessionMiddleware.mjs';
 import getMessagesData from '../controllers/messagesControllers/dataHandlers/getMessagesDataHandler.mjs';
+import setNewMessageHandler from '../controllers/messagesControllers/dataHandlers/setMessageDataHandler.mjs';
 
 let io;
 
@@ -26,6 +27,20 @@ export function initSocket(server) {
                 console.error("Error fetching messages:", error);
                 socket.emit("fetch-error", { error: "Unable to fetch messages" });
             }
+        });
+
+        socket.on("send-message", async (message) => {
+            try {
+                const {idUserEmisor, idUserReceptor, message_body} = message;
+                const promise = await setNewMessageHandler(idUserEmisor,idUserReceptor, message_body);        
+                if (promise == 'OK' ) {
+                    console.log("OK");
+                }
+            } catch (error) {
+                console.error(error);
+            }
+            console.log(message);
+            
         });
 
         socket.on("disconnect", ()=> {
