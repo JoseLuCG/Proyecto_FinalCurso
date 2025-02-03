@@ -3,7 +3,7 @@ import { mySqlConn } from "../../../connection/connection.mjs";
 function getMessagesData(idEmisor, idReceptor) {
     const sqlQuery = `
         SELECT *
-            FROM message_proves_v1
+            FROM message_proves_v2
             WHERE 
                 (id_emisor_user = ?
                 AND id_receptor_user = ?)
