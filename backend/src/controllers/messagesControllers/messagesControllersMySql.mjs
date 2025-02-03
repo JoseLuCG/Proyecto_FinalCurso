@@ -18,13 +18,16 @@ async function getUserMessagesController(request, response) {
 }
 
 async function sendMessageController(request, response) {
+    console.log(request.body);
+    
     const {
+        messageTime,
         idUserEmisor,
         idUserReceptor,
         message_body
     } = request.body;
     try {
-        const promise = await setNewMessageHandler(idUserEmisor,idUserReceptor, message_body);        
+        const promise = await setNewMessageHandler(messageTime, idUserEmisor, idUserReceptor, message_body);        
         if (promise == 'OK' ) {
             response.sendStatus(200);
         }
