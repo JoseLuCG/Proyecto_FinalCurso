@@ -53,6 +53,15 @@ CREATE TABLE IF NOT EXISTS message_proves_v1 (
 	PRIMARY KEY (message_id)
 );
 
+CREATE TABLE IF NOT EXISTS message_proves_v2 (
+	messageTime DATETIME NOT NULL,
+    id_emisor_user INTEGER NOT NULL,
+    id_receptor_user INTEGER NOT NULL,
+    message_body VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (messageTime)
+);
+
+
 CREATE TABLE sessions (
 	sid VARCHAR(255) PRIMARY KEY,
     data_session JSON,
@@ -60,3 +69,4 @@ CREATE TABLE sessions (
 );
 
 ALTER TABLE sessions MODIFY COLUMN expires BIGINT;
+ALTER TABLE message_proves_v2 MODIFY COLUMN messageTime CHAR(24);

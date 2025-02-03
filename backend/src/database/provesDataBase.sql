@@ -36,6 +36,7 @@ INSERT INTO message_proves_v1 (id_emisor_user, id_receptor_user, message_body)
 	VALUES (1,5,"Hola, bien. ¿Y tú?");
 
 DELETE FROM message_proves_v1;
+DELETE FROM message_proves_v2;
 /*
 SELECT * 
 	FROM users
