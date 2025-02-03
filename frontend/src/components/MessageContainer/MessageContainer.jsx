@@ -21,7 +21,8 @@ function MessageContainer ({hiddeMessages, idUser}) {
         return {
             idUserEmisor: ownUserID,
             idUserReceptor: idUser,
-            message_body: msg
+            message_body: msg,
+            messageTime: new Date()
         };
     }
 
@@ -50,16 +51,21 @@ function MessageContainer ({hiddeMessages, idUser}) {
 
     function getNonRepeatedMessages(messagesObtained) {
         const arrayTemplate = [];
+
         if(isFirstTime()) {
-            console.log("¿Primera vez?");
+            console.log("¿Primera vez?", idUser);
             for (let msg of messagesObtained) {
                 if (isOurMessage(msg)) {
-                    console.log(`Usuario ${idUser}, mensaje:`, msg);
-                    
-                    setMessagesArray((prevMessages) => [...prevMessages, msg]);   
+                    const messageExists = messagesArray.some(existingMsg => existingMsg.messageTime === msg.messageTime);
+                    if (!messageExists) {
+                        console.log(`Usuario ${idUser}, mensaje:`, msg);
+                        console.log("Array:",messagesArray.length);
+                        setMessagesArray((prevMessages) => [...prevMessages, msg]);
+                    }   
+                } else {
+                    console.log("El mensaje se agregó");
                 }
             }
-
         } else {
             console.log("¡Ya se ha hecho una vez!");
         }
