@@ -92,13 +92,14 @@ function MessageContainer ({hiddeMessages, idUser}) {
             
             // Listen for incoming messages
             socket.on('messages-data', (messages) => {
+                console.log("Mensajes recibidos aaa");
                 if (messages.length > 0) {
-                    getNonRepeatedMessages(messages);
+                    getNonRepeatedMessages(messages);                
                 }
             });
         return () => {
         // Cleanup socket on unmount
-        socket.off('receiveMessage');
+        //socket.off('receiveMessage');
         };
         }, []
     );
