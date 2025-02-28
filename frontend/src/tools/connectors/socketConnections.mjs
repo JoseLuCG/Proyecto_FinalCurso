@@ -4,7 +4,7 @@ import { sessionCookie } from "../defines.mjs";
 export const socket = io("http://localhost:4000", {
     withCredentials: true,
     methods: ["GET", "POST"],
-    //transports: ['websocket'] 
+    transports: ['websocket'] 
 });
 
 socket.on("connect_error", (err) => {
