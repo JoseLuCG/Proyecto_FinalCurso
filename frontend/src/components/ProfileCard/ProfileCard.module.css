@@ -20,6 +20,7 @@
     flex-grow: 1;
     min-width: 15rem;
     max-width: 25rem;
+    /* TODO: cambiar la altura de este componente */
 }
 /* ---------- Photo container CSS ----------*/
 .containerPhotoAge{
@@ -39,6 +40,7 @@
 /*----- Age input CSS -----*/
 .age{
     width: 2rem;
+    height: 4rem;
 }
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
