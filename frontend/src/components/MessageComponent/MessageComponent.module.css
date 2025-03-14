@@ -1,10 +1,40 @@
+/* ---------- Variables ---------- */
+:root{
+    --color-messageTime: rgb(196, 196, 196);
+    --color-anotherUserMessage:  rgb(51, 116, 160);
+    --color-ownUserMessage:  rgb(14, 136, 145);
+}
+/* ---------- Div CSS ---------- */
 .msgC {
-    background-color: blueviolet;
     align-self: start;
+    background-color: var(--color-anotherUserMessage);
+    margin-left: 4px;
+    margin-bottom: 4px;
+    border-radius: 0px 20px 20px 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ---------- Text CSS ---------- */
+p.msgText {
+    margin: 0px;
+}
+
+/* ---------- Time CSS ---------- */
+p.time {
+    margin: 0px;
+    text-align: right;
+    font-size: 0.8em;
+    color: var(--color-messageTime);
+
 }
 
 .myMessage {
     display: inline-block;
-    background-color: violet;
+    background-color: var(--color-ownUserMessage);
     align-self: self-end;
+    margin-bottom: 4px;
+    border-radius: 20px 0px 20px 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
