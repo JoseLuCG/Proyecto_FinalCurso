@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './PhotoContainer';
 import PicIcon from '../PicIcon/PicIcon';
 import defaultImg from './../../assets/default-img.jpg';
+import './PhotoContainer.css'
 
 function PhotoContainer({user, editable, userForm, userFormHandler}) {
     

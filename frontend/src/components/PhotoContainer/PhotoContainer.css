@@ -25,7 +25,6 @@ div.containerPhotoAge{
 /*----- Age input CSS -----*/
 .age{
     width: 2rem;
-    background-color: aqua;
 }
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
