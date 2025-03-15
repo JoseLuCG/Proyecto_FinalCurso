@@ -5,46 +5,7 @@
     --background-buttonMessage: rgb(74, 241, 186);
     --color-inputStyle: white;
 }
-/* ---------- Container CSS ---------- */
-.profileContainer {
-    background-color: var(--background-profileCard);
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    align-content: stretch;
-    justify-content: space-evenly;
-    align-items: center;
-    justify-items: start;
-    margin: 20px;
-    flex-grow: 1;
-    min-width: 15rem;
-    max-width: 25rem;
-}
-/* ---------- Photo container CSS ----------*/
-.containerPhotoAge{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px;
-    /* Grid position: */
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-/*----- Age input CSS -----*/
-.age{
-    width: 2rem;
-}
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;
-}
+
 /* ---------- DataInput CSS ---------- */
 .dataInputs {
     /* Grid position: */
@@ -85,53 +46,4 @@ input::-webkit-outer-spin-button {
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
-}
-
-/* ---------- Textarea and mesage Button ----------*/
-.textareaDescription {
-    margin:10px;
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    /* Grid position: */
-    grid-row-start: 2;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-.description {
-    resize: none;
-    border-radius: 5px 5px 0px 0px;
-    border: none;
-    margin: 2px;
-    background-color: var(--background-inputStyle);
-    color: var(--color-inputStyle);
-}
-.messageButton{
-    border-radius: 0px 0px 13px 13px;
-    border: none;
-    background-color: var(--background-buttonMessage);
-    height: 25px;
-}
-
-/* ---------- User password and email CSS ---------- */
-.userLogin {
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 95%;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    ;
-}
-/* ---------- Hidden elements ---------- */
-[hidden] {
-    display: none;
-}
-.email{
-    width: 100%;
 }
