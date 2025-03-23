@@ -2,7 +2,7 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage.jsx';
 import { postUser } from '../../tools/connectors/conections.mjs';
 import styles from './ProfileCard.module.css';
-import MessageContainer from '../MessageContainer/MessageContainer.jsx';
+import ChatComponenet from '../ChatComponent/ChatComponent.jsx';
 import DataInputs from '../DataInputs/DataInputs.jsx';
 import PhotoContainer from '../PhotoContainer/PhotoContainer.jsx';
 import EmailPasswordInputs from '../EmailPasswordInputs/EmailPasswordInputs.jsx';
@@ -91,31 +91,36 @@ function ProfileCard ({user, editable}) {
       }
     });
 
-    return (
-      <form className={styles.profileContainer} onSubmit={handleSubmit}>
-        <PhotoContainer user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler}/>
+  return (
+    <form className={styles.profileContainer} onSubmit={handleSubmit}>
+      <div className={styles.frontSide}>
+        <PhotoContainer user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
         <DataInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
         <div className={styles.textareaDescription}>
-          <textarea 
-            disabled={editable && "disabled"} 
-            value={user ? user.description : userForm.description} 
-            onChange={userFormHandler} 
-            name="description" 
-            className={styles.description} 
-            cols="20" 
-            rows="6" 
+          <textarea
+            disabled={editable && "disabled"}
+            value={user ? user.description : userForm.description}
+            onChange={userFormHandler}
+            name="description"
+            className={styles.description}
+            cols="20"
+            rows="6"
             placeholder="Descripción">
           </textarea>
-          <button type='button' className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
-          {
-            user ?
-            <MessageContainer key={"M" + user.id} hiddeMessages={hiddeMessages} idUser={user.id}></MessageContainer> :
-            ""
-          }
-          
         </div>
-        <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler}/>
-      </form>      
-    );
+        <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
+        <div>
+          <button type='button' className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
+        </div>
+      </div>
+      <div className={styles.backSide}>
+        {
+          user ?
+            <ChatComponenet key={"M" + user.id} hiddeMessages={hiddeMessages} idUser={user.id}></ChatComponenet> :
+            ""
+        }
+        </div>
+    </form>
+  );
 }
 export default ProfileCard;
