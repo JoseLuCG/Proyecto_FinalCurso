@@ -83,3 +83,7 @@
     backface-visibility: hidden;
     transform: rotateY(180deg);
 }
+
+.backSide > .messageButton {
+    width: 100%;
+} 
