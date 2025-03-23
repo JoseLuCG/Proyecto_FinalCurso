@@ -26,13 +26,7 @@ div.containerPhotoAge{
 .age{
     width: 2rem;
 }
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;
-}
 
-/* ---------- Inputs CSS ---------- */
 .inputData{
     border-radius: 5px;
     border: none;
@@ -41,4 +35,11 @@ input::-webkit-outer-spin-button {
     background-color: var(--background-inputStyle);
     color: var(--color-inputStyle);
     text-align: center;
+}
+
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
 }
