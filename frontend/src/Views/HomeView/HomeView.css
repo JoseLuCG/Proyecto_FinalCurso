@@ -34,7 +34,7 @@ h1 {
 }
 /* ---------- Left Side ---------- */
 .ndS-left .l-dv {
-    background-color: rgb(55, 83, 119, 0.6);
+    background-color: rgb(224, 179, 159, 0.6);
     width: 420px;
     text-align: center;
     padding: 10px;
@@ -47,7 +47,7 @@ h1 {
 
 /* ---------- Right Side ---------- */
 .ndS-right .r-dv {
-    background-color: rgb(55, 83, 119, 0.6);
+    background-color: rgb(224, 179, 159, 0.6);
     width: 420px;
     text-align: center;
     padding: 10px;
