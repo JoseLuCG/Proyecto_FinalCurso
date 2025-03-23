@@ -9,7 +9,7 @@
 .profileContainer {
     display: block;
 }
-
+/* ---------- FRONT SIDE ---------- */
 .frontSide {
     background-color: var(--background-profileCard);
     border-radius: 20px;
@@ -27,6 +27,38 @@
     /* TODO: cambiar la altura de este componente */
 }
 
+/* ---------- Textarea and mesage Button ----------*/
+.textareaDescription {
+    margin:10px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    /* Grid position: */
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+/* ----- Description style ----- */
+.description {
+    resize: none;
+    border-radius: 5px 5px 0px 0px;
+    border: none;
+    margin: 2px;
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
+}
+
+/* ----- Message Button ----- */
+.messageButton{
+    border-radius: 0px 0px 13px 13px;
+    border: none;
+    background-color: var(--background-buttonMessage);
+    height: 25px;
+}
+
+/* ---------- BACK SIDE ---------- */
 .backSide {
     /* ----- Template ----- */
     background-color: var(--background-profileCard);

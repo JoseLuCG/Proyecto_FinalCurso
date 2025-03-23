@@ -107,11 +107,9 @@ function ProfileCard ({user, editable}) {
             rows="6"
             placeholder="Descripción">
           </textarea>
-        </div>
-        <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
-        <div>
           <button type='button' className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
         </div>
+        <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
       </div>
       <div className={styles.backSide}>
         {
