@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import './MessageContainer.css';
+import './ChatComponent.css';
 import { changeValueFactory } from '../../tools/apptools.mjs';
 import { useContext } from 'react';
 import { OwnUser } from '../../services/OwnUserStorage';
@@ -7,7 +7,7 @@ import { getUserMessages, postMessage } from '../../tools/connectors/conections.
 import { socket } from '../../tools/connectors/socketConnections.mjs';
 import MessageComponent from '../MessageComponent/MessageComponent';
 
-function MessageContainer ({hiddeMessages, idUser}) {
+function ChatComponent ({hiddeMessages, idUser}) {
     const [message, setMessage] = useState("");
     const [messagesArray, setMessagesArray] = useState([]);
     const ownUser = useContext(OwnUser);
@@ -148,4 +148,4 @@ function MessageContainer ({hiddeMessages, idUser}) {
         </div>
     );
 }
-export default MessageContainer;
+export default ChatComponent;
