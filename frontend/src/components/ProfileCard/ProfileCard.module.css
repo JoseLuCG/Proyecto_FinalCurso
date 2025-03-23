@@ -4,11 +4,22 @@
     --background-inputStyle: rgb(110, 173, 168);
     --background-buttonMessage: rgb(74, 241, 186);
     --color-inputStyle: white;
+    --component-width: 25rem;
 }
 
-.profileContainer {
-    display: block;
+/* ---------- FLIP CARD ---------- */
+.flipCard {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
 /* ---------- FRONT SIDE ---------- */
 .frontSide {
     background-color: var(--background-profileCard);
@@ -22,8 +33,9 @@
     justify-items: start;
     margin: 20px;
     flex-grow: 1;
-    min-width: 15rem;
-    max-width: 25rem;
+    width: var(--component-width);
+    /*position: absolute;*/
+    backface-visibility: hidden;
     /* TODO: cambiar la altura de este componente */
 }
 
@@ -63,7 +75,11 @@
     /* ----- Template ----- */
     background-color: var(--background-profileCard);
     border-radius: 20px;
-    min-width: 15rem;
-    max-width: 25rem;    
+    width: var(--component-width);
     margin: 20px;
+    /* ----- Flip Card -----*/
+    position: absolute;
+    top: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
 }

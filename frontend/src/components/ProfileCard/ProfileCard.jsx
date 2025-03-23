@@ -10,7 +10,6 @@ import EmailPasswordInputs from '../EmailPasswordInputs/EmailPasswordInputs.jsx'
 function ProfileCard ({user, editable}) {
     //----------States:----------
     const [ ownUser, setOwnUser ] = useContext(OwnUser);
-
     const [ userForm, setUserForm ] = useState({
       nameProfile: "",
       nameUser: "",
@@ -22,11 +21,10 @@ function ProfileCard ({user, editable}) {
       email: "",
     });
     // https://search.brave.com/search?q=manejo+de+useState+con+objetos&source=desktop&summary=1&summary_og=116d200a65c72bad55c100
-
     const [ showInterests, setShowInterests] = useState(true);
     const [ hiddeMessages, setHiddeMessages ] = useState(false);
-
     const prevUserRef = useRef(ownUser);
+    const [ flipped, setFlipped ] = useState(false);
 
     //----------Handlers:----------
 
@@ -37,6 +35,10 @@ function ProfileCard ({user, editable}) {
         ...previousState,
         [name]: value
       }));
+    }
+
+    function handleFlipCard() {
+      setFlipped(!flipped);
     }
 
     //----------Functions:---------- 
@@ -75,7 +77,6 @@ function ProfileCard ({user, editable}) {
      */
     function handleSubmit (event) {   
         event.preventDefault();
-
         setOwnUser(userBuilder());
     }
 
@@ -93,31 +94,34 @@ function ProfileCard ({user, editable}) {
 
   return (
     <form className={styles.profileContainer} onSubmit={handleSubmit}>
-      <div className={styles.frontSide}>
-        <PhotoContainer user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
-        <DataInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
-        <div className={styles.textareaDescription}>
-          <textarea
-            disabled={editable && "disabled"}
-            value={user ? user.description : userForm.description}
-            onChange={userFormHandler}
-            name="description"
-            className={styles.description}
-            cols="20"
-            rows="6"
-            placeholder="Descripción">
-          </textarea>
-          <button type='button' className={styles.messageButton} onClick={showMessagesHandler}>Mensaje</button>
+      <div className={`${styles.flipCard} ${flipped? styles.flipped : ""}`}>
+        <div className={styles.frontSide}>
+          <PhotoContainer user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
+          <DataInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
+          <div className={styles.textareaDescription}>
+            <textarea
+              disabled={editable && "disabled"}
+              value={user ? user.description : userForm.description}
+              onChange={userFormHandler}
+              name="description"
+              className={styles.description}
+              cols="20"
+              rows="6"
+              placeholder="Descripción">
+            </textarea>
+            <button type='button' className={styles.messageButton} onClick={handleFlipCard}>Mensaje</button>
+          </div>
+          <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
         </div>
-        <EmailPasswordInputs user={user} editable={editable} userForm={userForm} userFormHandler={userFormHandler} />
+        <div className={styles.backSide}>
+          {
+            user ?
+              <ChatComponenet key={"M" + user.id} hiddeMessages={hiddeMessages} idUser={user.id}></ChatComponenet> :
+              ""
+          }
+          <button type='button' className={styles.messageButton} onClick={handleFlipCard}>Mensaje</button>
+        </div>
       </div>
-      <div className={styles.backSide}>
-        {
-          user ?
-            <ChatComponenet key={"M" + user.id} hiddeMessages={hiddeMessages} idUser={user.id}></ChatComponenet> :
-            ""
-        }
-        </div>
     </form>
   );
 }
