@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import InterestItem from '../InterestItem/InterestItem.jsx';
-import './DataInputs.css';
+import styles from './DataInputs.module.css';
 
 function DataInputs({user, editable, userForm, userFormHandler}) {
   const [ showInterests, setShowInterests ] = useState(true);
@@ -10,13 +10,13 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
     else setShowInterests(true);
   }
     return(
-        <div className='dataInputs'>
+        <div className={styles.dataInputs}>
           <input
             name='nameProfile'
             disabled={editable && "disabled"}
             value={user ? user.nameProfile : userForm.nameProfile}
             onChange={userFormHandler}
-            className='inputData'
+            className={styles.inputData}
             type="text"
             placeholder="Nombre de perfil"
           />
@@ -25,7 +25,7 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
             disabled={editable && "disabled"}
             value={user ? user.nameUser : userForm.nameUser}
             onChange={userFormHandler}
-            className='inputData'
+            className={styles.inputData}
             type="text"
             placeholder="Nombre"
           />
@@ -34,7 +34,7 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
             disabled={editable && "disabled"}
             value={user ? user.location : userForm.location}
             onChange={userFormHandler}
-            className='inputData'
+            className={styles.inputData}
             type="text"
             placeholder="Ciudad"
           />
@@ -43,19 +43,19 @@ function DataInputs({user, editable, userForm, userFormHandler}) {
             disabled={editable && "disabled"}
             hidden={editable && "hidden"}
             onChange={userFormHandler}
-            className='inputData'
+            className={styles.inputData}
             type="text"
             placeholder="Intereses"
           />
           <button
-            className='deployInterestsButton'
+            className={styles.deployInterestsButton}
             type='button'
             onClick={loadInterests}
           >
             display interests
           </button>
           <div
-            className='interestsContainer'
+            className={styles.interestsContainer}
             hidden={showInterests && "hidden"}
           >
             <ul>

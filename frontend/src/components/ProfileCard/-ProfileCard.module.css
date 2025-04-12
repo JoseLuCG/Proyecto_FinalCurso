@@ -1,6 +1,6 @@
 /*---------- Variables ----------*/
 :root{
-    --background-profileCard: rgb(184, 30, 94, 0.6);;
+    --background-profileCard: rgb(184, 30, 94, 0.6);
     --background-inputStyle: rgb(110, 173, 168);
     --background-buttonMessage: rgb(74, 241, 186);
     --color-inputStyle: white;
@@ -20,6 +20,7 @@
     flex-grow: 1;
     min-width: 15rem;
     max-width: 25rem;
+    /* TODO: cambiar la altura de este componente */
 }
 /* ---------- Photo container CSS ----------*/
 .containerPhotoAge{
@@ -39,6 +40,7 @@
 /*----- Age input CSS -----*/
 .age{
     width: 2rem;
+    height: 4rem;
 }
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {

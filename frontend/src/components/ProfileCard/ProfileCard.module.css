@@ -4,9 +4,24 @@
     --background-inputStyle: rgb(110, 173, 168);
     --background-buttonMessage: rgb(74, 241, 186);
     --color-inputStyle: white;
+    --component-width: 25rem;
 }
-/* ---------- Container CSS ---------- */
-.profileContainer {
+
+/* ---------- FLIP CARD ---------- */
+.flipCard {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+/* ---------- FRONT SIDE ---------- */
+.frontSide {
     background-color: var(--background-profileCard);
     border-radius: 20px;
     display: grid;
@@ -18,73 +33,10 @@
     justify-items: start;
     margin: 20px;
     flex-grow: 1;
-    min-width: 15rem;
-    max-width: 25rem;
-}
-/* ---------- Photo container CSS ----------*/
-.containerPhotoAge{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px;
-    /* Grid position: */
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-/*----- Age input CSS -----*/
-.age{
-    width: 2rem;
-}
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;
-}
-/* ---------- DataInput CSS ---------- */
-.dataInputs {
-    /* Grid position: */
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-/* ---------- Inputs CSS ---------- */
-.inputData{
-    border-radius: 5px;
-    border: none;
-    height: 20px;
-    margin: 2px;
-    background-color: var(--background-inputStyle);
-    color: var(--color-inputStyle);
-    text-align: center;
-}
-
-/* ---------- Interest Button ---------- */
-.deployInterestsButton {
-    background-color: var(--background-inputStyle);
-    color: var(--color-inputStyle);
-    border-radius: 5px;
-    height: 20px;
-    margin: 2px;
-    width: 68%;    
-}
-
-/* ---------- Interests Container ---------- */
-.interestsContainer {
-    width: 68%;
-}
-
-.interestsContainer ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
+    width: var(--component-width);
+    /*position: absolute;*/
+    backface-visibility: hidden;
+    /* TODO: cambiar la altura de este componente */
 }
 
 /* ---------- Textarea and mesage Button ----------*/
@@ -99,6 +51,8 @@ input::-webkit-outer-spin-button {
     grid-column-start: 1;
     grid-column-end: 3;
 }
+
+/* ----- Description style ----- */
 .description {
     resize: none;
     border-radius: 5px 5px 0px 0px;
@@ -107,6 +61,8 @@ input::-webkit-outer-spin-button {
     background-color: var(--background-inputStyle);
     color: var(--color-inputStyle);
 }
+
+/* ----- Message Button ----- */
 .messageButton{
     border-radius: 0px 0px 13px 13px;
     border: none;
@@ -114,24 +70,20 @@ input::-webkit-outer-spin-button {
     height: 25px;
 }
 
-/* ---------- User password and email CSS ---------- */
-.userLogin {
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 95%;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    ;
+/* ---------- BACK SIDE ---------- */
+.backSide {
+    /* ----- Template ----- */
+    background-color: var(--background-profileCard);
+    border-radius: 20px;
+    width: var(--component-width);
+    margin: 20px;
+    /* ----- Flip Card -----*/
+    position: absolute;
+    top: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
 }
-/* ---------- Hidden elements ---------- */
-[hidden] {
-    display: none;
-}
-.email{
+
+.backSide > .messageButton {
     width: 100%;
-}
+} 

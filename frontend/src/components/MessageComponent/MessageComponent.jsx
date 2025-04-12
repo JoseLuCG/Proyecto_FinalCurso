@@ -7,8 +7,8 @@ function MessageComponent({msg, ownUser}) {
         styles.myMessage:
         styles.msgC
         } >
-        <p>{msg.message_body}</p>
-        <p>12:20</p>
+        <p className={styles.msgText}>{msg.message_body}</p>
+        <p className={styles.time}>12:20</p>
     </div>
    ); 
 }

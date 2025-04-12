@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './PhotoContainer';
 import PicIcon from '../PicIcon/PicIcon';
 import defaultImg from './../../assets/default-img.jpg';
+import styles from './PhotoContainer.module.css';
 
 function PhotoContainer({user, editable, userForm, userFormHandler}) {
     
@@ -13,7 +14,7 @@ function PhotoContainer({user, editable, userForm, userFormHandler}) {
           disabled={editable && "disabled"}
           value={user ? user.age : userForm.age}
           onChange={userFormHandler}
-          className='age inputData'
+          className={[styles.age, styles.inputData].join(' ')}
           type="number"
           placeholder="Edad"
           min="10"

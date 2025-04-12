@@ -31,15 +31,20 @@ export function initSocket(server) {
 
         socket.on("send-message", async (message) => {
             try {
+                console.log(message);
+                
                 const {idUserEmisor, idUserReceptor, message_body} = message;
                 const promise = await setNewMessageHandler(idUserEmisor,idUserReceptor, message_body);        
                 if (promise == 'OK' ) {
+                    const messages = await getMessagesData(idUserEmisor, idUserReceptor);
+                    socket.emit("messages-data", messages);
                     console.log("OK");
                 }
+
             } catch (error) {
                 console.error(error);
             }
-            console.log(message);
+            //console.log(message);
             
         });
 

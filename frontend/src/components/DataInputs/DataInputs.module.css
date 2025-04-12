@@ -1,0 +1,49 @@
+/*---------- Variables ----------*/
+:root{
+    --background-profileCard: rgb(184, 30, 94, 0.6);;
+    --background-inputStyle: rgb(110, 173, 168);
+    --background-buttonMessage: rgb(74, 241, 186);
+    --color-inputStyle: white;
+}
+
+/* ---------- DataInput CSS ---------- */
+.dataInputs {
+    /* Grid position: */
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+/* ---------- Inputs CSS ---------- */
+.inputData{
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    margin: 2px;
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
+    text-align: center;
+}
+
+/* ---------- Interest Button ---------- */
+.deployInterestsButton {
+    background-color: var(--background-inputStyle);
+    color: var(--color-inputStyle);
+    border-radius: 5px;
+    height: 20px;
+    margin: 2px;
+    width: 68%;    
+}
+
+/* ---------- Interests Container ---------- */
+.interestsContainer {
+    width: 68%;
+}
+
+.interestsContainer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
