@@ -1,0 +1,56 @@
+:root {
+    --color-primary: rgb(126, 87, 194);
+    --color-primary-dark: rgb(94, 53, 177);
+    --color-secondary-pink: rgb(252, 228, 236);
+    --color-secondary-blue: rgb(224, 247, 250);
+    --color-text-main: rgb(51, 51, 51);
+    --color-text-secondary: rgb(102, 102, 102);
+    --color-bg-container: rgb(255, 255, 255);
+    /* Acentos florales */
+    --accent-pink: rgb(255, 105, 180);
+    --accent-purple: rgb(186, 104, 200);
+    --accent-blue: rgb(100, 181, 246);
+}
+  
+.container {
+    text-align: center;
+    background-color: var(--color-bg-container);
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--color-text-main);
+}
+
+p {
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--color-primary-dark);
+}
