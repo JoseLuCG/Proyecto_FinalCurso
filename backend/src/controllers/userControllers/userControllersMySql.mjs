@@ -11,10 +11,10 @@ import { userMolder } from "./tools/userMold.mjs";
  * @param {*} response Object represents the HTTP response that an Express app sends when it gets an HTTP request.
  */
 async function logingUserController(request, response) {
-    const {userData,password} = request.body;
+    const {emailOrProfile,password} = request.body;
     
     try {
-        const user = await getUserData(userData, password);
+        const user = await getUserData(emailOrProfile, password);
         const userInterests = await getInterestData(user.id);
         const data = userMolder(user, userInterests);
         
