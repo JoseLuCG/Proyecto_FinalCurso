@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from '../../assets/logo.png';
+import bloomlyLogo from '../../assets/Bloomly_logoR.png'
 import LoginButtons from '../LoginButtons/LoginButtons';
 import LoggedButton from '../LoggedButton/LoggedButton';
 import { sessionCookie } from '../../tools/defines.mjs';
@@ -14,9 +14,7 @@ function Header() {
     return (
         <header className='h-bd'>
             <aside className='lg-ctnr'>
-                <div className='img-ctnr'>
-                </div>
-                <h1 className='appname'>BLOOMLY</h1>
+                <img  className="bloomlyLogo" src={bloomlyLogo} alt="logo"/>
             </aside>
             <section className='sctn-ctnr'>
                 {
