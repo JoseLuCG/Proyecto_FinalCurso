@@ -9,7 +9,7 @@ function LoginView() {
     return (
         <>
             <Header/>
-            <main className='mn-container'>
+            <main className='mn-wrapper'>
                 <Login/>
             </main>
         </>
