@@ -1,59 +1,22 @@
-/*
-background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
-background-size: cover;
-*/
-main.mn-cntnr {
-    background: url(https://ewm.swiss/application/files/5716/0379/3279/social_media_.jpg) no-repeat center fixed;
-    background-size: cover;
+:root {
+  --color-primary: rgb(126, 87, 194);
+  --color-primary-dark: rgb(94, 53, 177);
+  --color-secondary-pink: rgb(252, 228, 236);
+  --color-secondary-blue: rgb(224, 247, 250);
+  --color-text-main: rgb(51, 51, 51);
+  --color-text-secondary: rgb(102, 102, 102);
+  --color-bg-container: rgb(255, 255, 255);
+  /* Acentos florales */
+  --accent-pink: rgb(255, 105, 180);
+  --accent-purple: rgb(186, 104, 200);
+  --accent-blue: rgb(100, 181, 246);
 }
 
-h1 {
-    margin-top: 20px;
-}
-
-.stSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.stSection p {
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 400px;
-    text-align: justify;
-    text-indent: 40px;
-    color: black;
-}
-
-.ndSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-/* ---------- Left Side ---------- */
-.ndS-left .l-dv {
-    background-color: rgb(55, 83, 119, 0.6);
-    width: 420px;
-    text-align: center;
-    padding: 10px;
-}
-
-.l-dv button {
-    width: 100%;
-    height: 5rem;
-}
-
-/* ---------- Right Side ---------- */
-.ndS-right .r-dv {
-    background-color: rgb(55, 83, 119, 0.6);
-    width: 420px;
-    text-align: center;
-    padding: 10px;
-}
-
-.r-dv button {
-    width: 100%;
-    height: 5rem;
+.mn-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin-top: 3%;
 }
